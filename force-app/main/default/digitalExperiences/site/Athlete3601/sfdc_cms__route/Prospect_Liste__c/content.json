@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Prospect Liste",
+  "contentBody" : {
+    "activeViewId" : "Prospect_Liste",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "list-Prospect__c",
+    "urlPrefix" : "prospect"
+  },
+  "urlName" : "prospect-liste"
+}

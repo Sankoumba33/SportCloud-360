@@ -1,0 +1,46 @@
+:host {
+  display: block;
+}
+
+.card {
+  border-radius: 8px;
+  padding: 0.8rem;
+  border: 1px solid var(--sc360-border);
+  background: linear-gradient(180deg, var(--sc360-card), var(--sc360-card-2));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.label {
+  margin: 0;
+  color: var(--sc360-muted);
+  font-size: 0.82rem;
+}
+
+h3 {
+  margin: 0.45rem 0;
+  font-size: 1.35rem;
+  line-height: 1.1;
+}
+
+h3 span {
+  margin-left: 0.2rem;
+  font-size: 0.8rem;
+  color: var(--sc360-muted);
+}
+
+.delta {
+  margin: 0;
+  font-weight: 700;
+}
+
+.up {
+  color: var(--sc360-ok);
+}
+
+.down {
+  color: var(--sc360-danger);
+}
+
+.stable {
+  color: var(--sc360-muted);
+}

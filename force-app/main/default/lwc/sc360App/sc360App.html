@@ -1,0 +1,66 @@
+<template>
+  <section class={shellClass}>
+    <template if:true={hasData}>
+      <c-sc360-header-hero
+        page-label={pageLabel}
+        athlete-name={dashboard.profile.name}
+        external-id={dashboard.profile.externalId}
+        sync-at={dashboard.profile.lastSync}
+      ></c-sc360-header-hero>
+
+      <div class="main-grid">
+        <section class="left-col">
+          <div class="kpis">
+            <template for:each={dashboard.kpis} for:item="kpi">
+              <c-sc360-kpi-card key={kpi.key} kpi={kpi}></c-sc360-kpi-card>
+            </template>
+          </div>
+
+          <div class="charts">
+            <c-sc360-chart-card
+              title="Training Load Trend"
+              type="line"
+              series={dashboard.loadSeries}
+            ></c-sc360-chart-card>
+            <c-sc360-chart-card
+              title="Readiness Trend"
+              type="bar"
+              series={dashboard.readinessSeries}
+            ></c-sc360-chart-card>
+          </div>
+
+          <c-sc360-timeline items={dashboard.timeline}></c-sc360-timeline>
+          <c-sc360-kanban items={dashboard.kanban}></c-sc360-kanban>
+        </section>
+
+        <aside class="right-col">
+          <c-sc360-player-profile profile={dashboard.profile}></c-sc360-player-profile>
+          <c-sc360-ai-insight insights={dashboard.aiInsights}></c-sc360-ai-insight>
+
+          <section class="docs">
+            <h3>Documents</h3>
+            <template if:true={emptyDocuments}>
+              <p class="empty">Aucun document lie a cet athlete.</p>
+            </template>
+            <template for:each={dashboard.documents} for:item="doc">
+              <c-sc360-document-card key={doc.id} doc={doc}></c-sc360-document-card>
+            </template>
+          </section>
+        </aside>
+      </div>
+    </template>
+
+    <template if:true={hasError}>
+      <div class="loading-state error-state">
+        {errorMessage}
+      </div>
+    </template>
+    <template if:false={hasData}>
+      <template if:false={hasError}>
+        <div class="loading-state">
+          Chargement du dashboard SC360...
+        </div>
+      </template>
+    </template>
+  </section>
+</template>

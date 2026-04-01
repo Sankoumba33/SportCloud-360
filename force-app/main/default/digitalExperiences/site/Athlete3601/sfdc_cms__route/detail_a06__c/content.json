@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Prospect Détails",
+  "contentBody" : {
+    "activeViewId" : "detail_a06",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "detail-Prospect__c",
+    "urlPrefix" : "prospect"
+  },
+  "urlName" : "prospect-détails"
+}

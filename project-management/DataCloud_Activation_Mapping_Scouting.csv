@@ -1,0 +1,11 @@
+activation_key;target_object;target_field;source_feature;datatype;refresh_frequency
+prospect_external_id;Prospect__c;ScoutingScore__c;scouting_score;Number(5,2);Daily
+prospect_external_id;Prospect__c;PotentialScore__c;potential_score;Number(5,2);Daily
+prospect_external_id;Prospect__c;FitScore__c;fit_score;Number(5,2);Daily
+prospect_external_id;Prospect__c;RiskScore__c;risk_score;Number(5,2);Daily
+prospect_external_id;Prospect__c;DataConfidence__c;data_confidence;Number(5,2);Daily
+prospect_external_id;Prospect__c;LastDataCloudSync__c;activation_timestamp;DateTime;Daily
+prospect_external_id;Prospect__c;ScoutingSummary__c;scouting_summary;LongText;Daily
+prospect_external_id;Prospect__c;TopStrengths__c;top_strengths;LongText;Daily
+prospect_external_id;Prospect__c;TopRisks__c;top_risks;LongText;Daily
+prospect_external_id;Prospect__c;ScoutingFeaturesJson__c;features_json;LongText;Daily

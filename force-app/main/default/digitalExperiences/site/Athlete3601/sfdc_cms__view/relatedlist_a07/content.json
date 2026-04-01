@@ -1,0 +1,58 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "Athlete Education Liste associée",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"34fe101e-f4c6-495b-b128-17ccba339ddb\",\"columns\":[{\"UUID\":\"b63e8bfd-677c-4ed0-8016-43c2405c830e\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "id" : "b63e8bfd-677c-4ed0-8016-43c2405c830e",
+            "name" : "col1",
+            "title" : "Colonne 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "34fe101e-f4c6-495b-b128-17ccba339ddb",
+          "type" : "component"
+        } ],
+        "id" : "fc64a497-a306-422b-a712-103f7ce996fe",
+        "name" : "content",
+        "title" : "Contenu",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "8f8a8061-2231-4f20-bb04-d47902a6fcb3",
+          "type" : "component"
+        } ],
+        "id" : "316a0c95-1f72-42cb-b24b-e5b9b1e5b87d",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsFlexibleLayout",
+      "id" : "93680fa7-2117-4093-a404-9153a3809b1a",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "relatedlist-AthleteEducation__c"
+  },
+  "urlName" : "athlete-education-liste-associée"
+}

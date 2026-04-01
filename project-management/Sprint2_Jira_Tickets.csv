@@ -1,0 +1,11 @@
+Issue Type,Summary,Description,Acceptance Criteria,Priority,Story Points,Labels,Component
+Story,S2-T1 Data ingestion football-data.org,Configurer ingestion source football-data.org + fallback mock CSV pour pipeline Sprint 2,"Token configure; source documentee; mock importable; external IDs alignes",High,5,sprint2;datacloud;ingestion,Data Cloud
+Story,S2-T2 Feature engineering athlete,Calculer readiness risk load trends pour activation Athlete 360,"readiness_score et injury_risk_score calcules; features_json produit; quality checks OK",High,8,sprint2;datacloud;features;athlete,Data Cloud
+Story,S2-T2b Feature engineering scouting,Calculer scouting score potential fit risk pour Scouting 360,"scores calcules; data_confidence calcule; scouting_summary genere",High,8,sprint2;datacloud;features;scouting,Data Cloud
+Story,S2-T3 Activation Athlete__c,Activer features athlete vers Core via external id,"upsert sans doublon; champs athlete cibles remplis; timestamps sync mis a jour",High,5,sprint2;activation;athlete,Core CRM
+Story,S2-T3b Activation Prospect__c,Activer features scouting vers Core via external id,"upsert sans doublon; champs prospect cibles remplis; sync timestamp renseigne",High,5,sprint2;activation;scouting,Core CRM
+Story,S2-T4 Prompt pack AthleteAgent,Definir prompts summary risk alert Q&A pour usage staff,"3 prompts versionnes; input/output schema documente; examples fournis",Medium,5,sprint2;agentforce;prompts,Agentforce
+Story,S2-T5 Flows alertes risque,Creer flows alerting risque blessure et surcharge ACWR,"flow high risk actif; flow ACWR out-of-range actif; notifications tracees",High,5,sprint2;flow;alerts,Automation
+Story,S2-T6 UAT Sprint 2,Executer script UAT et valider passage demo,"8 etapes UAT valides; zero blocker; rapport UAT partage",High,3,sprint2;uat;demo,QA
+Task,S2-QA-01 Data quality checks,Verifier null rates mapping coverage et coherence des types,"rapport qualite genere; ecarts identifies; plan correction propose",Medium,3,sprint2;qa;datacloud,QA
+Task,S2-OPS-01 Monitoring sync,Mettre en place suivi latence activation et erreurs upsert,"indicateurs latence et erreur documentes; runbook incidents cree",Medium,3,sprint2;ops;monitoring,Operations

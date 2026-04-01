@@ -1,0 +1,66 @@
+:host {
+  display: block;
+  --sc360-bg: #f4f6f9;
+  --sc360-card: #ffffff;
+  --sc360-border: #e5e8ed;
+  --sc360-text: #181818;
+  --sc360-muted: #706e6b;
+  --sc360-danger: #ba0517;
+}
+
+.shell {
+  min-height: 100vh;
+  padding: 1rem;
+  color: var(--sc360-text);
+  background: var(--sc360-bg);
+}
+
+.hero {
+  margin-bottom: 0.8rem;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--sc360-border);
+  background: var(--sc360-card);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.overline {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--sc360-muted);
+}
+
+h1 {
+  margin: 0.15rem 0;
+  font-size: 1.45rem;
+}
+
+.meta {
+  margin: 0;
+  color: var(--sc360-muted);
+}
+
+.kpi-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.chart-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0.8rem 0;
+}
+
+.state {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  color: var(--sc360-muted);
+}
+
+.error {
+  color: var(--sc360-danger);
+}

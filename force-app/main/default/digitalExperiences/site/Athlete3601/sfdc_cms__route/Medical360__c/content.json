@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Medical360",
+  "contentBody" : {
+    "activeViewId" : "medical360",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-medical360",
+    "urlPrefix" : "medical360"
+  },
+  "urlName" : "medical360"
+}

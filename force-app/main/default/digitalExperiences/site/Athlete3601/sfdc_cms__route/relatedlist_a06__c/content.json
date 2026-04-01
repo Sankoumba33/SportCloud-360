@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Prospect Liste associée",
+  "contentBody" : {
+    "activeViewId" : "relatedlist_a06",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "relatedlist-Prospect__c",
+    "urlPrefix" : "prospect"
+  },
+  "urlName" : "prospect-liste-associée"
+}

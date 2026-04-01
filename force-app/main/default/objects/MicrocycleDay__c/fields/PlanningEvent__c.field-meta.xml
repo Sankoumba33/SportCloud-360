@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PlanningEvent__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Lien optionnel vers une seance de planning terrain principale.</description>
+    <label>Planning Event</label>
+    <referenceTo>PlanningEvent__c</referenceTo>
+    <relationshipLabel>Microcycle Days</relationshipLabel>
+    <relationshipName>MicrocycleDays</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

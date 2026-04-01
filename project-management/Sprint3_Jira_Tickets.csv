@@ -1,0 +1,9 @@
+﻿Issue Type,Summary,Description,Acceptance Criteria,Priority,Story Points,Labels,Component
+Story,S3-T1 Identity alignment hardening,Finaliser alignement des cles externes Core et Data Cloud pour garantir le matching event->Core,"0 Athlete sans ExternalId; 0 Prospect sans ExternalId; aucun doublon; format ATH-001/PROS-001 coherent",Highest,5,sprint3;identity;datacloud,Data Cloud
+Story,S3-T2 Alert flows production,Industrialiser les alertes blessure et surcharge charge sur Athlete 360,"Flow injury risk actif; Flow ACWR actif; notifications dedupliquees; trace d execution disponible",High,8,sprint3;flow;alerts;automation,Automation
+Story,S3-T3 Agentforce prompt pack,Pack prompts operationnels pour staff performance et scouting,"Prompt Athlete Summary valide; Prompt Risk Alert valide; Prompt Scouting Recommendation valide; exemples fournis",High,5,sprint3;agentforce;prompts,Agentforce
+Story,S3-T4 Monitoring and observability,Mettre en place le suivi de la chaine Data Cloud -> Event -> Core,"dashboard suivi sync disponible; KPI latence et echec documentes; runbook incident teste",High,5,sprint3;ops;monitoring,Operations
+Story,S3-T5 UAT and hardening,Executer UAT Sprint 3 avec cas positifs et negatifs,"8 etapes UAT validees; cas limite couverts; zero blocker critique",High,3,sprint3;uat;qa,QA
+Task,S3-QA-01 External ID audit,Audit rapide des cles externes et des collisions,"rapport produit; collisions corrigees; preuve de controle archivee",Medium,2,sprint3;qa;identity,QA
+Task,S3-OPS-01 Replay procedure,Documenter la procedure replay en cas d echec d activation,"procedure pas a pas prete; testee sur sandbox; temps de reprise mesure",Medium,2,sprint3;ops;incident,Operations
+Task,S3-AG-01 Prompt evaluation set,Creer un jeu de cas de test pour evaluer la qualite des prompts,"10 cas de test; score de qualite; actions de tuning identifiees",Medium,2,sprint3;agentforce;evaluation,Agentforce

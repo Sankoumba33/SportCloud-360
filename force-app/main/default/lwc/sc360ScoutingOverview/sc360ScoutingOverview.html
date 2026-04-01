@@ -1,0 +1,33 @@
+<template>
+  <section class="shell">
+    <template if:true={hasData}>
+      <header class="hero">
+        <p class="overline">SCOUTING 360</p>
+        <h1>Prospect Intelligence</h1>
+        <p class="meta">Dernier sync: {overview.lastSync}</p>
+      </header>
+
+      <section class="kpi-grid">
+        <template for:each={kpis} for:item="kpi">
+          <c-sc360-kpi-card key={kpi.key} kpi={kpi}></c-sc360-kpi-card>
+        </template>
+      </section>
+
+      <section class="chart-grid">
+        <c-sc360-chart-card title="Pipeline par statut" type="bar" series={statusSeries}></c-sc360-chart-card>
+        <c-sc360-chart-card title="Distribution par poste" type="bar" series={positionSeries}></c-sc360-chart-card>
+      </section>
+
+      <c-sc360-ai-insight insights={insights}></c-sc360-ai-insight>
+    </template>
+
+    <template if:true={hasError}>
+      <div class="state error">{errorMessage}</div>
+    </template>
+    <template if:false={hasData}>
+      <template if:false={hasError}>
+        <div class="state">Chargement dashboard Scouting...</div>
+      </template>
+    </template>
+  </section>
+</template>

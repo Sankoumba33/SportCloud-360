@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Platform Event used to sync Data Cloud prospect features into Prospect__c.</description>
+    <eventType>HighVolume</eventType>
+    <label>Prospect Feature Update</label>
+    <pluralLabel>Prospect Feature Updates</pluralLabel>
+    <publishBehavior>PublishAfterCommit</publishBehavior>
+</CustomObject>

@@ -1,0 +1,168 @@
+{
+  "type" : "sfdc_cms__themeLayout",
+  "title" : "Default Header and Footer",
+  "contentBody" : {
+    "component" : {
+      "attributes" : { },
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "allowVisitorClose" : false,
+            "assistiveText" : "",
+            "buttonVerticalAlignment" : "Top",
+            "closeStyle" : "X Icon - Dark",
+            "dxpStyle" : { },
+            "mobileMaxHeight" : 10
+          },
+          "children" : [ {
+            "id" : "3c06a346-2793-4e53-a6aa-1c580ce3c5cd",
+            "name" : "content",
+            "title" : "Contenu",
+            "type" : "region"
+          } ],
+          "definition" : "dxp_page_layout:sectionTopSetting",
+          "id" : "28b072bd-477f-4ea8-b6bc-965d2d4b409c",
+          "type" : "component"
+        } ],
+        "id" : "f41d3398-778c-4eb3-ad21-dc49ffb94d93",
+        "name" : "stickyHeader",
+        "title" : "En-tête fixe du thème",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "dxpStyle" : { },
+            "height" : 50,
+            "imageInfo" : "{}",
+            "imageOverlayColor" : "rgba(0,0,0,0)",
+            "logoLocation" : "center",
+            "logoWidth" : 75,
+            "menuStyle" : "hamburger",
+            "showLogo" : true
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "dxpStyle" : { },
+                "menuAlignment" : "left",
+                "menuSpacing" : "none",
+                "menuStyle" : "horizontal",
+                "showHomeLink" : true,
+                "textDecoration" : "none",
+                "visibleMenuItemsCount" : 10
+              },
+              "definition" : "community_navigation:multiLevelNavigationWrapper",
+              "id" : "d6e9f1e5-8f81-42f1-809a-008603786b2e",
+              "type" : "component"
+            } ],
+            "id" : "7b40ea82-6a04-4fcb-af56-3e14ea8fa808",
+            "name" : "horizontalNavigation",
+            "title" : "Menu de navigation horizontal",
+            "type" : "region"
+          }, {
+            "children" : [ {
+              "attributes" : {
+                "dxpStyle" : { },
+                "menuAlignment" : "left",
+                "menuSpacing" : "none",
+                "menuStyle" : "hamburger",
+                "showHomeLink" : true,
+                "textDecoration" : "none",
+                "visibleMenuItemsCount" : 10
+              },
+              "definition" : "community_navigation:multiLevelNavigationWrapper",
+              "id" : "10fe8ca9-592a-43ce-ab28-8338ea81c0a6",
+              "type" : "component"
+            } ],
+            "id" : "60c21020-3a25-44be-a69e-ca9eb4f48b66",
+            "name" : "hamburgerNavigation",
+            "title" : "Menu de navigation hamburger",
+            "type" : "region"
+          } ],
+          "definition" : "dxp_content_layout:header",
+          "id" : "32c8a2cd-33eb-4a8f-b36c-6c1dcc0dc58c",
+          "type" : "component"
+        } ],
+        "id" : "0e03617d-4cdc-4e35-9903-de370fc3c44f",
+        "name" : "header",
+        "title" : "En-tête du thème",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : { },
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"8e5b6b63-6557-479c-9e57-e180712012c5\",\"columns\":[{\"UUID\":\"db8d8abf-d677-462d-a22b-2627a77d35f4\",\"columnName\":\"Column 1\",\"columnKey\":\"footerSection\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "id" : "db8d8abf-d677-462d-a22b-2627a77d35f4",
+            "name" : "footerSection",
+            "title" : "Pied de page du thème",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "8e5b6b63-6557-479c-9e57-e180712012c5",
+          "type" : "component"
+        } ],
+        "id" : "503730a4-6256-419c-8cc3-4ff0a7ebbc27",
+        "name" : "footer",
+        "title" : "Pied de page du thème",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "allowVisitorClose" : false,
+            "assistiveText" : "",
+            "closeStyle" : "X Icon - Dark",
+            "dxpStyle" : { },
+            "hideWhenFooterInViewport" : false,
+            "mobileMaxHeight" : 10
+          },
+          "children" : [ {
+            "id" : "2a2d0ede-0c36-4ccb-a361-2b4c4106ef9d",
+            "name" : "content",
+            "title" : "Contenu",
+            "type" : "region"
+          } ],
+          "definition" : "dxp_page_layout:sectionBottomSetting",
+          "id" : "34242235-9e72-4fd3-9866-d735c62c36ea",
+          "type" : "component"
+        } ],
+        "id" : "1c0f98a7-ac08-461f-9591-9b423e2d69b2",
+        "name" : "stickyFooter",
+        "title" : "Pied de page fixe du thème",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "dxpStyle" : { }
+          },
+          "definition" : "dxp_page_layout:placeHolder",
+          "id" : "3470bb08-ad2b-493f-9412-2f0d301007b4",
+          "type" : "component"
+        } ],
+        "id" : "53793af7-cc58-42ec-a2ce-cc5d7d2f6576",
+        "name" : "placeHolder",
+        "title" : "Espace réservé",
+        "type" : "region"
+      }, {
+        "id" : "6c40561a-49eb-419b-9fac-92e3b22d856d",
+        "name" : "default",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:simpleThemeLayout",
+      "id" : "387e0f98-7823-4d33-8232-06ddd0653674",
+      "type" : "component"
+    }
+  },
+  "urlName" : "default-header-and-footer"
+}

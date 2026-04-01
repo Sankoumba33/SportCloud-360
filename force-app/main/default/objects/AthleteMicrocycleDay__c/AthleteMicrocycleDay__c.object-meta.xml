@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Charge prevue vs reelle par athlete et par jour de microcycle (alignement).</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <label>Athlete Microcycle Day</label>
+    <nameField>
+        <displayFormat>AMD-{000000}</displayFormat>
+        <label>Athlete Microcycle Day Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Athlete Microcycle Days</pluralLabel>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Athlete__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <label>Athlete</label>
+    <referenceTo>Athlete__c</referenceTo>
+    <relationshipLabel>Athlete Microcycle Days</relationshipLabel>
+    <relationshipName>AthleteMicrocycleDayLinks</relationshipName>
+    <required>true</required>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,149 @@
+:host {
+    display: block;
+    --sc360-bg: #f4f6f9;
+    --sc360-card: #ffffff;
+    --sc360-border: #e5e8ed;
+    --sc360-text: #181818;
+    --sc360-muted: #706e6b;
+    --sc360-danger: #ba0517;
+    --sc360-accent: #0b5cab;
+}
+
+.shell {
+    min-height: 60vh;
+    padding: 1rem;
+    color: var(--sc360-text);
+    background: var(--sc360-bg);
+}
+
+.hero {
+    margin-bottom: 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--sc360-border);
+    background: var(--sc360-card);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.overline {
+    margin: 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--sc360-muted);
+}
+
+h1 {
+    margin: 0.15rem 0;
+    font-size: 1.45rem;
+}
+
+.meta {
+    margin: 0;
+    color: var(--sc360-muted);
+}
+
+.pickers {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    margin-bottom: 0.75rem;
+}
+
+.actions {
+    margin-bottom: 1rem;
+}
+
+.names {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.name-link {
+    border: none;
+    background: transparent;
+    color: var(--sc360-accent);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.name-link:hover {
+    color: #094a8f;
+}
+
+.grid {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--sc360-card);
+    border: 1px solid var(--sc360-border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.grid th,
+.grid td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--sc360-border);
+}
+
+.grid th {
+    background: #fafbfc;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.muted {
+    color: var(--sc360-muted);
+}
+
+.text-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 0.75rem;
+}
+
+.text-grid.single {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--sc360-border);
+    background: var(--sc360-card);
+}
+
+.card.wide {
+    min-height: 4rem;
+}
+
+.card h2 {
+    margin: 0 0 0.35rem;
+    font-size: 0.85rem;
+    color: var(--sc360-muted);
+}
+
+.block {
+    margin: 0;
+    white-space: pre-wrap;
+    font-size: 0.9rem;
+    line-height: 1.35;
+}
+
+.state {
+    min-height: 120px;
+    display: grid;
+    place-items: center;
+    color: var(--sc360-muted);
+}
+
+.error {
+    color: var(--sc360-danger);
+}

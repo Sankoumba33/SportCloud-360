@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CurrentSquad__c</fullName>
+    <label>Current Squad</label>
+    <referenceTo>Squad__c</referenceTo>
+    <relationshipLabel>Current Squad Athletes</relationshipLabel>
+    <relationshipName>CurrentSquadAthletes</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

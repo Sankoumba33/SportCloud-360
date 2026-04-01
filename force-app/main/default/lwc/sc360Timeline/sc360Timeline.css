@@ -1,0 +1,36 @@
+:host {
+  display: block;
+}
+
+.card {
+  border-radius: 8px;
+  padding: 0.8rem;
+  border: 1px solid var(--sc360-border);
+  background: linear-gradient(180deg, var(--sc360-card), var(--sc360-card-2));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+h3 {
+  margin: 0 0 0.5rem;
+}
+
+.event {
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed rgba(130, 150, 220, 0.2);
+}
+
+.title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.meta {
+  margin: 0.2rem 0 0;
+  color: var(--sc360-muted);
+  font-size: 0.83rem;
+}
+
+.empty {
+  margin: 0;
+  color: var(--sc360-muted);
+}

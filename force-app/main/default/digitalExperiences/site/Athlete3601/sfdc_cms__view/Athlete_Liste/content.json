@@ -1,0 +1,58 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "Athlete Liste",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"f11ea27d-6706-4486-9746-2fcd6f39c795\",\"columns\":[{\"UUID\":\"2d09eeb8-4ee6-4c65-b0dc-efe49ff1d278\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "id" : "2d09eeb8-4ee6-4c65-b0dc-efe49ff1d278",
+            "name" : "col1",
+            "title" : "Colonne 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "f11ea27d-6706-4486-9746-2fcd6f39c795",
+          "type" : "component"
+        } ],
+        "id" : "87aca184-8d44-45ac-b31c-7a8871191dec",
+        "name" : "content",
+        "title" : "Contenu",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "f3ee4fdc-4bdb-4fe4-ba70-1eb4c80942aa",
+          "type" : "component"
+        } ],
+        "id" : "2aa540fb-d65b-4a9f-856d-e51cea771da3",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsFlexibleLayout",
+      "id" : "74545928-9f8f-42b4-80ae-73f5f8024e28",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "list-Athlete__c"
+  },
+  "urlName" : "athlete-liste"
+}

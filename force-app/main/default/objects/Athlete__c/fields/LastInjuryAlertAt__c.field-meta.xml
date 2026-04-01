@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Dernier envoi d'alerte risque blessure (cooldown 24h).</description>
+    <fullName>LastInjuryAlertAt__c</fullName>
+    <label>Last Injury Alert At</label>
+    <required>false</required>
+    <type>DateTime</type>
+</CustomField>

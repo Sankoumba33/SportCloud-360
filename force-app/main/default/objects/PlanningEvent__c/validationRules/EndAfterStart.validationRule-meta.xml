@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EndAfterStart</fullName>
+    <active>true</active>
+    <description>Empêche une fin d'evenement avant le debut.</description>
+    <errorConditionFormula>EndDateTime__c &lt;= StartDateTime__c</errorConditionFormula>
+    <errorDisplayField>EndDateTime__c</errorDisplayField>
+    <errorMessage>End Date Time must be greater than Start Date Time.</errorMessage>
+</ValidationRule>

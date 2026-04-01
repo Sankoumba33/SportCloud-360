@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ConvertedNeedsAthlete</fullName>
+    <active>true</active>
+    <description>Si le prospect est converti, un Athlete lié doit être renseigné.</description>
+    <errorConditionFormula>AND(ISPICKVAL(Status__c, "Converted"), ISBLANK(ConvertedAthlete__c))</errorConditionFormula>
+    <errorDisplayField>ConvertedAthlete__c</errorDisplayField>
+    <errorMessage>Converted prospects must have a Converted Athlete.</errorMessage>
+</ValidationRule>

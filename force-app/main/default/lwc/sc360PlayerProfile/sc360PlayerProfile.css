@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+.card {
+  border-radius: 16px;
+  padding: 0.8rem;
+  border: 1px solid var(--sc360-border);
+  background: linear-gradient(180deg, var(--sc360-card), var(--sc360-card-2));
+}
+
+h3 {
+  margin: 0 0 0.5rem;
+}
+
+.grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 0.6rem;
+}
+
+dt {
+  color: var(--sc360-muted);
+  font-size: 0.83rem;
+}
+
+dd {
+  margin: 0;
+  font-weight: 600;
+}

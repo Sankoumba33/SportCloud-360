@@ -1,0 +1,14 @@
+<template>
+  <section class="card">
+    <h3>Timeline</h3>
+    <template for:each={items} for:item="item">
+      <article class="event" key={item.startAt}>
+        <p class="title">{item.title}</p>
+        <p class="meta">{item.type} - {item.startAt} - {item.location}</p>
+      </article>
+    </template>
+    <template if:false={hasItems}>
+      <p class="empty">Aucun evenement planifie.</p>
+    </template>
+  </section>
+</template>

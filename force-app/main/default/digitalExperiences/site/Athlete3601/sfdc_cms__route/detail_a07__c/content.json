@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Athlete Education Détails",
+  "contentBody" : {
+    "activeViewId" : "detail_a07",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "detail-AthleteEducation__c",
+    "urlPrefix" : "athleteeducation"
+  },
+  "urlName" : "athlete-education-détails"
+}

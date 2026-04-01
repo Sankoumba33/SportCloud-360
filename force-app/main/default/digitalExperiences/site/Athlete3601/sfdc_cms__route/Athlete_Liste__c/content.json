@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Athlete Liste",
+  "contentBody" : {
+    "activeViewId" : "Athlete_Liste",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "list-Athlete__c",
+    "urlPrefix" : "athlete"
+  },
+  "urlName" : "athlete-liste"
+}

@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Athlete Détails",
+  "contentBody" : {
+    "activeViewId" : "detail_a01",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "detail-Athlete__c",
+    "urlPrefix" : "athlete"
+  },
+  "urlName" : "athlete-détails"
+}

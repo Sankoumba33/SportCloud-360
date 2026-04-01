@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Semaine de preparation (microcycle) ancree sur un match de reference (MD).</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <label>Microcycle</label>
+    <nameField>
+        <label>Microcycle Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Microcycles</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

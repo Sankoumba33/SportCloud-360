@@ -1,0 +1,128 @@
+:host {
+  display: block;
+}
+
+.sc360-shell {
+  min-height: 100vh;
+  padding: 1rem;
+  color: var(--sc360-text);
+  background: var(--sc360-bg);
+}
+
+.theme-reset .docs {
+  background: var(--sc360-card);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.theme-dark {
+  --sc360-bg: radial-gradient(1200px 550px at 8% -5%, #1d2a52 0%, #0a1020 55%, #080d1a 100%);
+  --sc360-card: #141f39;
+  --sc360-card-2: #1a2744;
+  --sc360-border: rgba(115, 140, 220, 0.26);
+  --sc360-text: #e9eeff;
+  --sc360-muted: #8fa1cf;
+  --sc360-primary: #6a95ff;
+  --sc360-ok: #17d7a3;
+  --sc360-danger: #ff5a84;
+}
+
+.theme-light {
+  --sc360-bg: linear-gradient(180deg, #f7f9ff 0%, #eef2ff 100%);
+  --sc360-card: #ffffff;
+  --sc360-card-2: #f8faff;
+  --sc360-border: rgba(70, 97, 180, 0.15);
+  --sc360-text: #1a2342;
+  --sc360-muted: #596488;
+  --sc360-primary: #486dff;
+  --sc360-ok: #0eae84;
+  --sc360-danger: #de3f68;
+}
+
+.theme-neon {
+  --sc360-bg: radial-gradient(1200px 600px at 10% 0%, #10143a 0%, #060710 60%, #050509 100%);
+  --sc360-card: #0f1230;
+  --sc360-card-2: #14183b;
+  --sc360-border: rgba(0, 245, 255, 0.35);
+  --sc360-text: #e8f7ff;
+  --sc360-muted: #9fb0d4;
+  --sc360-primary: #00f5ff;
+  --sc360-ok: #4dffb1;
+  --sc360-danger: #ff4bc8;
+}
+
+/* Reset UI: neutre, plat, proche SLDS — base pour refaire le design */
+.theme-reset {
+  --sc360-bg: #f4f6f9;
+  --sc360-card: #ffffff;
+  --sc360-card-2: #fafbfc;
+  --sc360-border: #e5e8ed;
+  --sc360-text: #181818;
+  --sc360-muted: #706e6b;
+  --sc360-primary: #0176d3;
+  --sc360-ok: #2e844a;
+  --sc360-danger: #ba0517;
+}
+
+.main-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 2fr minmax(280px, 1fr);
+}
+
+.left-col,
+.right-col {
+  display: grid;
+  gap: 0.8rem;
+  align-content: start;
+}
+
+.kpis {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.charts {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.docs {
+  background: linear-gradient(180deg, var(--sc360-card), var(--sc360-card-2));
+  border: 1px solid var(--sc360-border);
+  border-radius: 16px;
+  padding: 0.8rem;
+}
+
+.docs h3 {
+  margin: 0 0 0.6rem 0;
+}
+
+.empty {
+  margin: 0;
+  color: var(--sc360-muted);
+}
+
+.loading-state {
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  color: var(--sc360-muted);
+}
+
+.error-state {
+  color: var(--sc360-danger);
+}
+
+@media (max-width: 1200px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+  .kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .charts {
+    grid-template-columns: 1fr;
+  }
+}

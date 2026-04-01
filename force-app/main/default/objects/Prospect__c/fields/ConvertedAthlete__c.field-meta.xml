@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ConvertedAthlete__c</fullName>
+    <label>Converted Athlete</label>
+    <referenceTo>Athlete__c</referenceTo>
+    <relationshipLabel>Origin Prospects</relationshipLabel>
+    <relationshipName>OriginProspects</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

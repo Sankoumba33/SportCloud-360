@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#B45309</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>Pipeline prospects, rapports et données externes scouting.</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <label>Scouting 360</label>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>Prospect__c</tabs>
+    <tabs>ScoutingReport__c</tabs>
+    <tabs>ScoutingSnapshot__c</tabs>
+    <tabs>ExternalProspectData__c</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

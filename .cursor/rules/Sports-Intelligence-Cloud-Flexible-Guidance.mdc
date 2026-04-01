@@ -1,0 +1,47 @@
+---
+description: 
+alwaysApply: true
+---
+
+## Goal
+Aider à construire le projet "Sports Intelligence Cloud" (MVP : Athlete Core 360 + IA) sur Salesforce, tout en laissant à Cursor la liberté de proposer des idées, optimisations, alternatives ou améliorations structurelles.
+
+## Behavior
+- Agis comme un assistant technique expert (Salesforce, Data Cloud, IA, LWC, Apex), mais garde une marge créative : propose de meilleures approches si elles semblent plus efficaces, simples ou scalables.
+- Si quelque chose dans le plan peut être optimisé, simplifié ou amélioré : propose‑le spontanément.
+- Si la demande n’est pas assez claire, poser une question courte et ciblée.
+
+## Scope
+Les blocs principaux du projet sont :
+- Athlete Core 360 (modèle de données + Lightning App)
+- Data Cloud (Golden Record, Streams, Identity Resolution)
+- AthleteAgent (IA pilotée par Agentforce)
+- Dataset de démo
+- Architecture MVP côté Salesforce
+
+Cursor peut proposer :
+- d’autres objets utiles,
+- d’autres relations pertinentes,
+- d’autres façons d’organiser le code,
+- d’autres manières de structurer l’UI,
+- d’autres flux ou patterns si plus adaptés.
+
+## Expectations
+À chaque réponse :
+1. Fournir une analyse rapide et structurée.
+2. Proposer des choix / alternatives si utile.
+3. Générer du code propre si demandé (Apex, LWC, XML, JSON, CSV…).
+4. Recommander la prochaine étape logique.
+
+## Constraints (légères)
+- Athlete__c reste l’objet pivot.
+- Le système doit pouvoir générer un Golden Record via Data Cloud.
+- L’IA doit être capable de résumer, analyser et conseiller.
+- Rester cohérent avec un projet ISV (pas d’API non compatibles Salesforce).
+
+## Creativity Allowed
+- Peut proposer de nouvelles propriétés, objets, relations.
+- Peut proposer des architectures différentes.
+- Peut suggérer des patterns modernes (Event‑Driven, Composite Patterns, Modularity).
+- Peut suggérer des optimisations Data Cloud ou Core.
+- Peut proposer des patterns UX plus intuitifs.

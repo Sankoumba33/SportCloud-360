@@ -1,0 +1,25 @@
+<template>
+    <section class="card">
+        <header class="hdr">
+            <p class="overline">PERFORMANCE</p>
+            <h2>Profil radar</h2>
+        </header>
+
+        <template if:true={error}>
+            <div class="state error">{errorMessage}</div>
+        </template>
+
+        <template if:true={hasRadar}>
+            <div class="chart-wrap">
+                <canvas class="radar-canvas"></canvas>
+            </div>
+            <p class="footnote">{footnote}</p>
+        </template>
+
+        <template if:false={hasRadar}>
+            <template if:false={error}>
+                <div class="state">Sélectionne un athlète ou complète les scores.</div>
+            </template>
+        </template>
+    </section>
+</template>

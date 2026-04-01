@@ -1,0 +1,150 @@
+<template>
+    <section class="shell">
+        <header class="hero">
+            <p class="overline">SCOUTING 360</p>
+            <h1>Explorateur prospects</h1>
+            <p class="meta">
+                Segmentation Core + champs prêts pour Data Cloud (pays, championnat, nationalité, geo).
+                Résultats : {totalCount} — cartographie si lat/long renseignées.
+            </p>
+        </header>
+
+        <div class="toolbar">
+            <lightning-input
+                class="grow"
+                label="Recherche"
+                placeholder="Nom, club, external ID…"
+                value={searchKey}
+                onchange={handleSearchKey}
+            ></lightning-input>
+            <lightning-button
+                variant="brand"
+                label="Rechercher"
+                onclick={handleSearch}
+                disabled={loading}
+            ></lightning-button>
+            <lightning-button
+                variant="neutral"
+                label="Nouveau prospect"
+                onclick={openNewProspect}
+            ></lightning-button>
+            <lightning-button
+                variant="success"
+                label="Créer depuis filtres"
+                title="Crée un prospect avec nom + filtres courants"
+                onclick={openCreateModal}
+            ></lightning-button>
+        </div>
+
+        <div class="filters">
+            <lightning-combobox
+                label="Poste"
+                value={position}
+                options={positionOptions}
+                data-field="position"
+                onchange={handleChange}
+            ></lightning-combobox>
+            <lightning-combobox
+                label="Statut"
+                value={status}
+                options={statusOptions}
+                data-field="status"
+                onchange={handleChange}
+            ></lightning-combobox>
+            <lightning-combobox
+                label="Pays"
+                value={country}
+                options={countryOptions}
+                data-field="country"
+                onchange={handleChange}
+            ></lightning-combobox>
+            <lightning-combobox
+                label="Nationalité"
+                value={nationality}
+                options={nationalityOptions}
+                data-field="nationality"
+                onchange={handleChange}
+            ></lightning-combobox>
+            <lightning-combobox
+                label="Championnat"
+                value={championship}
+                options={championshipOptions}
+                data-field="championship"
+                onchange={handleChange}
+            ></lightning-combobox>
+            <lightning-combobox
+                label="Données (confiance)"
+                value={dataQuality}
+                options={dataQualityOptions}
+                data-field="dataQuality"
+                onchange={handleChange}
+            ></lightning-combobox>
+        </div>
+
+        <template if:true={loading}>
+            <div class="state">Chargement…</div>
+        </template>
+
+        <div class="split">
+            <div class="panel">
+                <lightning-datatable
+                    key-field="id"
+                    data={rows}
+                    columns={columns}
+                    hide-checkbox-column
+                    show-row-number-column
+                    onrowaction={handleRowAction}
+                ></lightning-datatable>
+            </div>
+            <aside class="map-panel">
+                <template if:true={hasMap}>
+                    <lightning-map map-markers={mapMarkers} zoom-level="4"></lightning-map>
+                </template>
+                <template if:false={hasMap}>
+                    <div class="map-placeholder">
+                        <p>Aucun point géolocalisé.</p>
+                        <p class="hint">Renseigne Geo Latitude / Longitude sur le prospect (activation Data Cloud ou import).</p>
+                    </div>
+                </template>
+            </aside>
+        </div>
+
+        <section class="dc-banner">
+            <p>
+                <strong>Data Cloud :</strong> branchement API / connecteurs à brancher côté intégration — le modèle de filtres et
+                les champs Prospect sont prêts pour enrichissement automatisé.
+            </p>
+        </section>
+    </section>
+
+    <template if:true={showCreateModal}>
+        <section class="modal-backdrop" onclick={closeCreateModal}>
+            <div class="modal" onclick={stopProp}>
+                <h2>Nouveau prospect (filtres actuels)</h2>
+                <lightning-input
+                    label="Nom"
+                    value={draftName}
+                    data-field="name"
+                    onchange={handleDraftChange}
+                    required
+                ></lightning-input>
+                <lightning-input
+                    label="Poste"
+                    value={draftPosition}
+                    data-field="position"
+                    onchange={handleDraftChange}
+                ></lightning-input>
+                <lightning-input
+                    label="Club actuel"
+                    value={draftClub}
+                    data-field="club"
+                    onchange={handleDraftChange}
+                ></lightning-input>
+                <div class="modal-actions">
+                    <lightning-button label="Annuler" onclick={closeCreateModal}></lightning-button>
+                    <lightning-button variant="brand" label="Créer et ouvrir" onclick={saveDraftProspect}></lightning-button>
+                </div>
+            </div>
+        </section>
+    </template>
+</template>

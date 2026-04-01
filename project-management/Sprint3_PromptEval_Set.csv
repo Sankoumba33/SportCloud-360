@@ -1,0 +1,11 @@
+Prompt,Entity,CaseId,Scenario,InputHint,ExpectedDecision,ExpectedQualityChecks
+Athlete Summary,Athlete,AS-01,Readiness haut risque bas acwr normal,"Readiness 84; InjuryRisk 21; Acwr 1.03; trends up/stable",MATCH FIT,"Decision explicite; 2 actions max; aucune hallucination"
+Athlete Summary,Athlete,AS-02,Readiness moyen risque eleve,"Readiness 58; InjuryRisk 81; Acwr 1.12",HIGH RISK,"Met l'accent sur risque blessure; action 24h claire"
+Athlete Summary,Athlete,AS-03,Readiness faible acwr critique haut,"Readiness 46; InjuryRisk 72; Acwr 1.68",HIGH RISK,"Signale surcharge; escalade medical/performance"
+Risk Alert,Athlete,RA-01,Risque rouge blessure,"InjuryRisk 88; Acwr 1.21",RED,"Niveau RED; action immediate + action 48h"
+Risk Alert,Athlete,RA-02,ACWR hors plage bas,"InjuryRisk 44; Acwr 0.72",AMBER,"Cause ACWR basse; plan monitor court terme"
+Risk Alert,Athlete,RA-03,Donnees quasi normales,"InjuryRisk 32; Acwr 1.01",GREEN,"Pas d'alarmisme; action legere de suivi"
+Scouting Recommendation,Prospect,SR-01,Prospect elite faible risque,"Scouting 86; Potential 90; Fit 82; Risk 24; Confidence 88",GO,"Decision GO; actions 7j/30j precises"
+Scouting Recommendation,Prospect,SR-02,Prospect prometteur mais risque moyen,"Scouting 74; Potential 84; Fit 70; Risk 52; Confidence 73",MONITOR,"Decision MONITOR; mitigations identifiees"
+Scouting Recommendation,Prospect,SR-03,Prospect faible fit risque eleve,"Scouting 58; Potential 66; Fit 49; Risk 78; Confidence 69",NO-GO,"Decision NO-GO justifiee sans ambiguite"
+Scouting Recommendation,Prospect,SR-04,Confiance data faible,"Scouting 80; Potential 85; Fit 77; Risk 40; Confidence 42",MONITOR,"Demande collecte data supplementaire; confiance Low/Medium"

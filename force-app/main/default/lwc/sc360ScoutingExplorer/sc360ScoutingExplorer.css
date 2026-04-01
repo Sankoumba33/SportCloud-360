@@ -1,0 +1,146 @@
+:host {
+    display: block;
+    --sc360-bg: #f4f6f9;
+    --sc360-card: #ffffff;
+    --sc360-border: #e5e8ed;
+    --sc360-text: #181818;
+    --sc360-muted: #706e6b;
+    --sc360-accent: #b45309;
+}
+
+.shell {
+    padding: 0.75rem 1rem 1.5rem;
+    background: var(--sc360-bg);
+    color: var(--sc360-text);
+}
+
+.hero {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--sc360-border);
+    background: var(--sc360-card);
+}
+
+.overline {
+    margin: 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--sc360-muted);
+}
+
+h1 {
+    margin: 0.15rem 0;
+    font-size: 1.45rem;
+}
+
+.meta {
+    margin: 0;
+    color: var(--sc360-muted);
+    font-size: 0.9rem;
+    line-height: 1.35;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: flex-end;
+    margin-bottom: 0.75rem;
+}
+
+.toolbar .grow {
+    flex: 1 1 220px;
+}
+
+.filters {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    margin-bottom: 0.75rem;
+}
+
+.state {
+    padding: 1rem;
+    color: var(--sc360-muted);
+}
+
+.split {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 320px);
+    align-items: start;
+}
+
+.panel {
+    background: var(--sc360-card);
+    border: 1px solid var(--sc360-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.map-panel {
+    min-height: 320px;
+    border: 1px solid var(--sc360-border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--sc360-card);
+}
+
+.map-placeholder {
+    padding: 1rem;
+    color: var(--sc360-muted);
+    font-size: 0.9rem;
+}
+
+.hint {
+    margin-top: 0.35rem;
+    font-size: 0.8rem;
+}
+
+.dc-banner {
+    margin-top: 1rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 8px;
+    border: 1px dashed #c4c4c4;
+    background: #fffaf5;
+    font-size: 0.85rem;
+    color: var(--sc360-text);
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 9000;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+}
+
+.modal {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.25rem;
+    min-width: min(420px, 100%);
+    max-width: 520px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.modal h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+    .split {
+        grid-template-columns: 1fr;
+    }
+}

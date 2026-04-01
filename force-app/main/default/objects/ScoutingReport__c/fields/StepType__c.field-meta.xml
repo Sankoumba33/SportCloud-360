@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StepType__c</fullName>
+    <description>Scouting pipeline step type.</description>
+    <label>Step Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Video Scouting</fullName>
+                <default>false</default>
+                <label>Video Scouting</label>
+            </value>
+            <value>
+                <fullName>Live Scouting</fullName>
+                <default>false</default>
+                <label>Live Scouting</label>
+            </value>
+            <value>
+                <fullName>Data Check</fullName>
+                <default>false</default>
+                <label>Data Check</label>
+            </value>
+            <value>
+                <fullName>Reference Check</fullName>
+                <default>false</default>
+                <label>Reference Check</label>
+            </value>
+            <value>
+                <fullName>Background Check</fullName>
+                <default>false</default>
+                <label>Background Check</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

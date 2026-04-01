@@ -1,0 +1,25 @@
+<template>
+  <section class="card">
+    <h3>Kanban Actions</h3>
+    <div class="board">
+      <div class="col">
+        <p class="lane">A faire</p>
+        <template for:each={todo} for:item="item">
+          <article class="item" key={item.title}>{item.title}</article>
+        </template>
+      </div>
+      <div class="col">
+        <p class="lane">En cours / Alertes</p>
+        <template for:each={doing} for:item="item">
+          <article class="item" key={item.title}>{item.title}</article>
+        </template>
+      </div>
+      <div class="col">
+        <p class="lane">Done</p>
+        <template for:each={done} for:item="item">
+          <article class="item" key={item.title}>{item.title}</article>
+        </template>
+      </div>
+    </div>
+  </section>
+</template>

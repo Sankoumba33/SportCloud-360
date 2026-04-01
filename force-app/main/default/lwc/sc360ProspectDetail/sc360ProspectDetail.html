@@ -1,0 +1,75 @@
+<template>
+  <section class="shell">
+    <template if:true={isBuilderPreview}>
+      <div class="state">
+        Mode Builder: ouvre cette page avec un enregistrement Prospect pour afficher les donnees.
+      </div>
+    </template>
+    <template if:true={hasData}>
+      <header class="hero">
+        <p class="overline">PROSPECT DETAIL</p>
+        <h1>{detail.name}</h1>
+        <p class="meta">{detail.position} - {detail.currentClub} - {detail.status}</p>
+      </header>
+
+      <lightning-tabset>
+        <lightning-tab label="Overview">
+          <section class="kpi-grid">
+            <template for:each={detail.kpis} for:item="kpi">
+              <c-sc360-kpi-card key={kpi.key} kpi={kpi}></c-sc360-kpi-card>
+            </template>
+          </section>
+
+          <template if:true={hasApiSeasonKpis}>
+            <h3 class="section-title">Stats saison (API-Football)</h3>
+            <section class="kpi-grid">
+              <template for:each={apiSeasonKpis} for:item="kpi">
+                <c-sc360-kpi-card key={kpi.key} kpi={kpi}></c-sc360-kpi-card>
+              </template>
+            </section>
+          </template>
+
+          <section class="chart-grid">
+            <c-sc360-chart-card title="Benchmark poste" type="bar" series={detail.benchmark}></c-sc360-chart-card>
+          </section>
+          <c-sc360-ai-insight insights={insights}></c-sc360-ai-insight>
+        </lightning-tab>
+
+        <lightning-tab label="Scouting Process">
+          <div class="step-form">
+            <lightning-combobox name="stepType" label="Etape" value={form.stepType} options={stepOptions} onchange={handleInput}></lightning-combobox>
+            <lightning-input name="rating" type="number" label="Rating /10" value={form.rating} min="0" max="10" step="0.1" onchange={handleInput}></lightning-input>
+            <lightning-textarea name="matchSelection" label="Matchs observes (video/live)" value={form.matchSelection} onchange={handleInput}></lightning-textarea>
+            <lightning-textarea name="summary" label="Rapport scout" value={form.summary} onchange={handleInput}></lightning-textarea>
+            <lightning-textarea name="comparisonNotes" label="Data Check / Comparaison" value={form.comparisonNotes} onchange={handleInput}></lightning-textarea>
+            <lightning-textarea name="referenceContacts" label="Reference Check (personnes rencontrees + resume)" value={form.referenceContacts} onchange={handleInput}></lightning-textarea>
+            <lightning-textarea name="socialNetworks" label="Background Check (reseaux sociaux/liens)" value={form.socialNetworks} onchange={handleInput}></lightning-textarea>
+            <lightning-button variant="brand" label="Enregistrer etape" onclick={handleSaveStep} disabled={saving}></lightning-button>
+          </div>
+
+          <section class="reports">
+            <h3>Historique des etapes</h3>
+            <template for:each={reports} for:item="r">
+              <article class="report" key={r.id}>
+                <p class="title">{r.stepType} - {r.reportDate}</p>
+                <p>{r.summary}</p>
+                <p class="small">{r.autoInsights}</p>
+              </article>
+            </template>
+          </section>
+        </lightning-tab>
+      </lightning-tabset>
+    </template>
+
+    <template if:true={hasError}>
+      <div class="state error">{errorMessage}</div>
+    </template>
+    <template if:false={hasData}>
+      <template if:false={hasError}>
+        <template if:false={isBuilderPreview}>
+          <div class="state">Chargement detail prospect...</div>
+        </template>
+      </template>
+    </template>
+  </section>
+</template>

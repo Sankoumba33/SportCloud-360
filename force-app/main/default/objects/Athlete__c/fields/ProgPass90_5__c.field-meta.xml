@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Passes progressives par 90 sur les 5 derniers matchs.</description>
+    <fullName>ProgPass90_5__c</fullName>
+    <label>Prog Pass 90 5</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>3</scale>
+    <type>Number</type>
+</CustomField>

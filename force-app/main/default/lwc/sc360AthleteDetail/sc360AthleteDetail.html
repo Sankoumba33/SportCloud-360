@@ -1,0 +1,51 @@
+<template>
+  <section class="shell">
+    <template if:true={isBuilderPreview}>
+      <div class="state">
+        Mode Builder: ouvre cette page avec un enregistrement Athlete pour afficher les donnees.
+      </div>
+    </template>
+    <template if:true={hasData}>
+      <header class="hero">
+        <p class="overline">ATHLETE DETAIL</p>
+        <h1>{detail.name}</h1>
+        <p class="meta">{detail.externalId} - {detail.sport} - {detail.status}</p>
+      </header>
+
+      <lightning-tabset>
+        <lightning-tab label="Overview">
+          <section class="kpi-grid">
+            <template for:each={detail.kpis} for:item="kpi">
+              <c-sc360-kpi-card key={kpi.key} kpi={kpi}></c-sc360-kpi-card>
+            </template>
+          </section>
+          <section class="chart-grid">
+            <c-sc360-chart-card title="Load trend" type="line" series={detail.loadSeries}></c-sc360-chart-card>
+            <c-sc360-chart-card title="Readiness trend" type="bar" series={detail.readinessSeries}></c-sc360-chart-card>
+          </section>
+          <section class="radar-row">
+            <c-sc360-athlete-radar record-id={recordId}></c-sc360-athlete-radar>
+          </section>
+        </lightning-tab>
+
+        <lightning-tab label="Medical">
+          <section class="content-grid">
+            <c-sc360-ai-insight insights={detail.medicalInsights}></c-sc360-ai-insight>
+            <c-sc360-timeline items={detail.timeline}></c-sc360-timeline>
+          </section>
+        </lightning-tab>
+      </lightning-tabset>
+    </template>
+
+    <template if:true={hasError}>
+      <div class="state error">{errorMessage}</div>
+    </template>
+    <template if:false={hasData}>
+      <template if:false={hasError}>
+        <template if:false={isBuilderPreview}>
+          <div class="state">Chargement detail athlete...</div>
+        </template>
+      </template>
+    </template>
+  </section>
+</template>

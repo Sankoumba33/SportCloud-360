@@ -1,0 +1,67 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "Prospect Détails",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"f966eede-2ce5-477e-9335-01ed2dc002e7\",\"columns\":[{\"UUID\":\"0eb72b4c-efeb-4204-b236-e5407be3ea83\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : { },
+              "definition" : "c:sc360ProspectDetail",
+              "id" : "5e6df557-3d46-4d19-8322-2a5618f1f124",
+              "type" : "component"
+            } ],
+            "id" : "0eb72b4c-efeb-4204-b236-e5407be3ea83",
+            "name" : "col1",
+            "title" : "Colonne 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "f966eede-2ce5-477e-9335-01ed2dc002e7",
+          "type" : "component"
+        } ],
+        "id" : "1bfc6e36-ce5d-479e-bf7b-31cced6889ba",
+        "name" : "content",
+        "title" : "Contenu",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "customHeadTags" : "",
+            "description" : "",
+            "pageTitle" : "{!Record._Object}: {!Record._Title}",
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "893b67d0-6354-4ee4-9e75-dbf53b620a52",
+          "type" : "component"
+        } ],
+        "id" : "5033752f-fa27-4662-86a8-4f451ec8ed31",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsFlexibleLayout",
+      "id" : "edc6e137-2e22-4faf-9c36-cc3e1607af27",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "detail-Prospect__c"
+  },
+  "urlName" : "prospect-détails"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AthleteEducation__c</fullName>
+    <label>Athlete Education</label>
+    <referenceTo>AthleteEducation__c</referenceTo>
+    <relationshipLabel>Education Reports</relationshipLabel>
+    <relationshipName>EducationReports</relationshipName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <required>true</required>
+    <type>Lookup</type>
+</CustomField>

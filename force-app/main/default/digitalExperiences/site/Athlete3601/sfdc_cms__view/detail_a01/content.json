@@ -1,0 +1,67 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "Athlete Détails",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"fd2b6686-9405-4531-98e5-4b0b866f68f9\",\"columns\":[{\"UUID\":\"cad42590-6269-4e4e-87cb-18b0e0e8ef56\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : { },
+              "definition" : "c:sc360AthleteDetail",
+              "id" : "1f8c9f63-10e6-4dbf-b1a4-8f660e65ea11",
+              "type" : "component"
+            } ],
+            "id" : "cad42590-6269-4e4e-87cb-18b0e0e8ef56",
+            "name" : "col1",
+            "title" : "Colonne 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "fd2b6686-9405-4531-98e5-4b0b866f68f9",
+          "type" : "component"
+        } ],
+        "id" : "4012089d-e9d7-42ff-a17e-25bbd9b07e4c",
+        "name" : "content",
+        "title" : "Contenu",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "customHeadTags" : "",
+            "description" : "",
+            "pageTitle" : "{!Record._Object}: {!Record._Title}",
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "b831a276-6f00-4e4e-9ef9-0559918597cf",
+          "type" : "component"
+        } ],
+        "id" : "a905b6c5-15f6-423b-8702-f00d0a08ca3e",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsFlexibleLayout",
+      "id" : "28eddd7f-a313-474d-b81f-5f7267a0fdb7",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "detail-Athlete__c"
+  },
+  "urlName" : "athlete-détails"
+}

@@ -1,0 +1,8 @@
+<template>
+  <section class="card">
+    <h3>AI Insights</h3>
+    <template for:each={insights} for:item="insight">
+      <article key={insight} class="pill">{insight}</article>
+    </template>
+  </section>
+</template>

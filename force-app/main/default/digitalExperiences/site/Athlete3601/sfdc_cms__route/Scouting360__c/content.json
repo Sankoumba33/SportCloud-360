@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Scouting360",
+  "contentBody" : {
+    "activeViewId" : "scouting360",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-scouting360",
+    "urlPrefix" : "scouting360"
+  },
+  "urlName" : "scouting360"
+}

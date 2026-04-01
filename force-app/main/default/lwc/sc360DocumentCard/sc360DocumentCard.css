@@ -1,0 +1,22 @@
+:host {
+  display: block;
+}
+
+.doc {
+  margin-bottom: 0.45rem;
+  padding: 0.55rem;
+  border-radius: 10px;
+  border: 1px solid rgba(130, 150, 220, 0.2);
+  background: rgba(106, 149, 255, 0.06);
+}
+
+.title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.meta {
+  margin: 0.2rem 0 0;
+  font-size: 0.8rem;
+  color: var(--sc360-muted);
+}

@@ -1,0 +1,44 @@
+<template>
+  <section class="shell">
+    <template if:true={hasData}>
+      <header class="hero">
+        <div>
+          <p class="overline">HOME - CLUB OVERVIEW</p>
+          <h1>{overview.clubName}</h1>
+          <p class="meta">Dernier sync global: {overview.lastSync}</p>
+        </div>
+      </header>
+
+      <section class="kpi-grid">
+        <template for:each={kpis} for:item="kpi">
+          <c-sc360-kpi-card key={kpi.key} kpi={kpi}></c-sc360-kpi-card>
+        </template>
+      </section>
+
+      <section class="chart-grid">
+        <c-sc360-chart-card title="Repartition par statut" type="bar" series={statusSeries}></c-sc360-chart-card>
+        <c-sc360-chart-card title="Repartition par squad" type="bar" series={squadSeries}></c-sc360-chart-card>
+      </section>
+
+      <section class="content-grid">
+        <c-sc360-timeline items={timelineItems}></c-sc360-timeline>
+
+        <article class="card">
+          <h3>Data Quality</h3>
+          <template for:each={qualityRows} for:item="row">
+            <p key={row.key} class="row">
+              <span>{row.label}</span>
+              <strong>{row.value}</strong>
+            </p>
+          </template>
+        </article>
+
+        <c-sc360-ai-insight insights={insights}></c-sc360-ai-insight>
+      </section>
+    </template>
+
+    <template if:false={hasData}>
+      <div class="loading">Chargement de la page d'accueil...</div>
+    </template>
+  </section>
+</template>

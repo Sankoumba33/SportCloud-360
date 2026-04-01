@@ -1,0 +1,41 @@
+:host {
+  display: block;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+  padding: 0.8rem 1rem;
+  border-radius: 18px;
+  border: 1px solid var(--sc360-border);
+  background: linear-gradient(135deg, rgba(106, 149, 255, 0.2), var(--sc360-card));
+}
+
+.overline {
+  margin: 0;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--sc360-muted);
+}
+
+h1 {
+  margin: 0.15rem 0;
+  font-size: 1.45rem;
+}
+
+.meta {
+  margin: 0;
+  color: var(--sc360-muted);
+}
+
+.badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--sc360-border);
+  color: var(--sc360-primary);
+  font-weight: 600;
+}

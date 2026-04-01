@@ -1,0 +1,42 @@
+activation_key;target_object;target_field;source_feature;datatype;unit;refresh_frequency;notes
+athlete_external_id;Athlete__c;ExternalId__c;athlete_external_id;Text;;;Identity key
+athlete_external_id;Athlete__c;Status__c;athlete_operational_status;Text;;;Daily;Active/Injured/Unavailable/Released
+athlete_external_id;Athlete__c;Sport__c;primary_sport;Text;;;Daily;Fallback only if missing in Core
+
+athlete_external_id;Athlete__c;Load7d__c;training_load_7d;Number(12,2);AU;Every 2h;Acute load rolling 7 days
+athlete_external_id;Athlete__c;Load28d__c;training_load_28d;Number(12,2);AU;Every 2h;Chronic load rolling 28 days
+athlete_external_id;Athlete__c;Acwr__c;acwr;Number(8,3);ratio;Every 2h;Acute/Chronic workload ratio
+athlete_external_id;Athlete__c;SessionDuration7d__c;session_duration_min_7d;Number(10,2);min;Every 2h;Training minutes over 7 days
+athlete_external_id;Athlete__c;SessionCount7d__c;session_count_7d;Number(6,0);count;Every 2h;Number of sessions over 7 days
+
+athlete_external_id;Athlete__c;Distance7d__c;distance_total_m_7d;Number(12,2);m;Every 2h;Total distance over 7 days
+athlete_external_id;Athlete__c;Hid15_7d__c;hid_gt15_m_7d;Number(12,2);m;Every 2h;High intensity distance >15 km/h
+athlete_external_id;Athlete__c;Hid20_7d__c;hid_gt20_m_7d;Number(12,2);m;Every 2h;High intensity distance >20 km/h
+athlete_external_id;Athlete__c;Sprints25_7d__c;sprints_gt25_7d;Number(8,0);count;Every 2h;Sprint exposure >25 km/h
+athlete_external_id;Athlete__c;MaxSpeed7d__c;max_speed_kmh_7d;Number(6,2);km/h;Every 2h;Max speed latest 7 days
+athlete_external_id;Athlete__c;Accel3_7d__c;accel_gt3_7d;Number(8,0);count;Every 2h;Acceleration count >3 m/s²
+athlete_external_id;Athlete__c;Decel3_7d__c;decel_gt3_7d;Number(8,0);count;Every 2h;Deceleration count >3 m/s²
+
+athlete_external_id;Athlete__c;MinutesMatch7d__c;minutes_match_7d;Number(10,2);min;Post-match + nightly;Played minutes last 7 days
+athlete_external_id;Athlete__c;MinutesMatch28d__c;minutes_match_28d;Number(10,2);min;Post-match + nightly;Played minutes last 28 days
+athlete_external_id;Athlete__c;Matches5__c;matches_last5_count;Number(6,0);count;Post-match + nightly;Played matches count last 5
+athlete_external_id;Athlete__c;xG5__c;xg_last5_sum;Number(10,3);xG;Post-match + nightly;xG sum over last 5 matches
+athlete_external_id;Athlete__c;xA5__c;xa_last5_sum;Number(10,3);xA;Post-match + nightly;xA sum over last 5 matches
+athlete_external_id;Athlete__c;ShotsOnTargetPct5__c;shots_on_target_pct_last5;Number(6,2);%;Post-match + nightly;On-target ratio last 5 matches
+athlete_external_id;Athlete__c;PassAccuracy5__c;pass_accuracy_pct_last5;Number(6,2);%;Post-match + nightly;Pass accuracy last 5 matches
+athlete_external_id;Athlete__c;DuelWinPct5__c;duel_win_pct_last5;Number(6,2);%;Post-match + nightly;Duel success last 5 matches
+athlete_external_id;Athlete__c;ProgPass90_5__c;progressive_passes_per90_last5;Number(8,3);per90;Post-match + nightly;Progressive passes /90
+athlete_external_id;Athlete__c;Recoveries90_5__c;recoveries_per90_last5;Number(8,3);per90;Post-match + nightly;Recoveries /90
+
+athlete_external_id;Athlete__c;ReadinessScore__c;readiness_score;Number(5,2);0-100;Every 2h;Composite readiness model
+athlete_external_id;Athlete__c;InjuryRiskScore__c;injury_risk_score;Number(5,2);0-100;Every 2h;Risk model output
+athlete_external_id;Athlete__c;LoadTrend__c;load_trend;Text;;Every 2h;up/down/stable
+athlete_external_id;Athlete__c;PerformanceTrend__c;performance_trend;Text;;Post-match + nightly;up/down/stable
+athlete_external_id;Athlete__c;TopStrengths__c;athlete_top_strengths;LongText;;Daily;Top strengths summary
+athlete_external_id;Athlete__c;TopRisks__c;athlete_top_risks;LongText;;Daily;Top risk signals summary
+athlete_external_id;Athlete__c;AthleteSummary__c;athlete_summary;LongText;;Daily;Executive summary for staff
+athlete_external_id;Athlete__c;FeaturesJson__c;athlete_features_json;LongText;;Daily;Snapshot JSON of features
+
+athlete_external_id;Athlete__c;LastTrainingSync__c;last_training_sync_utc;DateTime;;Every 2h;Timestamp of last training activation
+athlete_external_id;Athlete__c;LastMatchSync__c;last_match_sync_utc;DateTime;;Post-match + nightly;Timestamp of last match activation
+athlete_external_id;Athlete__c;LastDataCloudSync__c;last_datacloud_sync_utc;DateTime;;Every 2h;Global activation timestamp

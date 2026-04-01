@@ -1,0 +1,162 @@
+<template>
+    <section class="shell">
+        <header class="hero">
+            <p class="overline">SCOUTING 360</p>
+            <h1>Comparaison prospects</h1>
+            <p class="meta">Choisis deux prospects puis lance la comparaison.</p>
+        </header>
+
+        <div class="pickers">
+            <lightning-record-picker
+                label="Prospect A"
+                placeholder="Rechercher un prospect..."
+                object-api-name="Prospect__c"
+                value={prospectAId}
+                onchange={handleChangeA}
+            ></lightning-record-picker>
+            <lightning-record-picker
+                label="Prospect B"
+                placeholder="Rechercher un prospect..."
+                object-api-name="Prospect__c"
+                value={prospectBId}
+                onchange={handleChangeB}
+            ></lightning-record-picker>
+        </div>
+
+        <div class="actions">
+            <lightning-button
+                variant="brand"
+                label="Comparer"
+                onclick={handleCompare}
+                disabled={compareDisabled}
+            ></lightning-button>
+        </div>
+
+        <template if:true={error}>
+            <div class="state error">{error}</div>
+        </template>
+
+        <template if:true={loading}>
+            <div class="state">Chargement…</div>
+        </template>
+
+        <template if:true={hasRows}>
+            <div class="names">
+                <template for:each={rows} for:item="p">
+                    <button
+                        key={p.id}
+                        type="button"
+                        class="name-link"
+                        data-id={p.id}
+                        aria-label={p.name}
+                        onclick={navigateToProspect}
+                    >
+                        {p.name}
+                    </button>
+                </template>
+            </div>
+
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Critère</th>
+                        <th>Prospect A</th>
+                        <th>Prospect B</th>
+                        <th>Écart (A − B)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Poste</td>
+                        <td>{prospectA.position}</td>
+                        <td>{prospectB.position}</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Statut</td>
+                        <td>{prospectA.status}</td>
+                        <td>{prospectB.status}</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Club actuel</td>
+                        <td>{prospectA.currentClub}</td>
+                        <td>{prospectB.currentClub}</td>
+                        <td>—</td>
+                    </tr>
+                    <template for:each={metricRows} for:item="row">
+                        <tr key={row.label}>
+                            <td>{row.label}</td>
+                            <td>
+                                <template if:true={row.hasAVal}>
+                                    <lightning-formatted-number
+                                        value={row.aVal}
+                                        format-style="decimal"
+                                        maximum-fraction-digits="2"
+                                    ></lightning-formatted-number>
+                                </template>
+                                <template if:false={row.hasAVal}>
+                                    <span class="muted">—</span>
+                                </template>
+                            </td>
+                            <td>
+                                <template if:true={row.hasBVal}>
+                                    <lightning-formatted-number
+                                        value={row.bVal}
+                                        format-style="decimal"
+                                        maximum-fraction-digits="2"
+                                    ></lightning-formatted-number>
+                                </template>
+                                <template if:false={row.hasBVal}>
+                                    <span class="muted">—</span>
+                                </template>
+                            </td>
+                            <td>
+                                <template if:true={row.showDelta}>
+                                    <lightning-formatted-number
+                                        value={row.delta}
+                                        format-style="decimal"
+                                        maximum-fraction-digits="2"
+                                    ></lightning-formatted-number>
+                                </template>
+                                <template if:false={row.showDelta}>
+                                    <span class="muted">—</span>
+                                </template>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+
+            <div class="text-grid">
+                <article class="card">
+                    <h2>Forces — {prospectA.name}</h2>
+                    <p class="block">{prospectA.topStrengths}</p>
+                </article>
+                <article class="card">
+                    <h2>Forces — {prospectB.name}</h2>
+                    <p class="block">{prospectB.topStrengths}</p>
+                </article>
+                <article class="card">
+                    <h2>Risques — {prospectA.name}</h2>
+                    <p class="block">{prospectA.topRisks}</p>
+                </article>
+                <article class="card">
+                    <h2>Risques — {prospectB.name}</h2>
+                    <p class="block">{prospectB.topRisks}</p>
+                </article>
+            </div>
+
+            <div class="text-grid single">
+                <article class="card wide">
+                    <h2>Résumé scouting — {prospectA.name}</h2>
+                    <p class="block">{prospectA.scoutingSummary}</p>
+                </article>
+                <article class="card wide">
+                    <h2>Résumé scouting — {prospectB.name}</h2>
+                    <p class="block">{prospectB.scoutingSummary}</p>
+                </article>
+            </div>
+        </template>
+    </section>
+</template>

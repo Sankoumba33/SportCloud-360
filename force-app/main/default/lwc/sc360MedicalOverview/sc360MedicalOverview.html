@@ -1,0 +1,36 @@
+<template>
+  <section class="shell">
+    <template if:true={hasData}>
+      <header class="hero">
+        <p class="overline">MEDICAL 360</p>
+        <h1>Medical Risk Overview</h1>
+        <p class="meta">Dernier sync: {overview.lastSync}</p>
+      </header>
+
+      <section class="kpi-grid">
+        <template for:each={kpis} for:item="kpi">
+          <c-sc360-kpi-card key={kpi.key} kpi={kpi}></c-sc360-kpi-card>
+        </template>
+      </section>
+
+      <section class="chart-grid">
+        <c-sc360-chart-card title="Repartition statuts athletes" type="bar" series={statusSeries}></c-sc360-chart-card>
+        <c-sc360-chart-card title="Bands risque blessure" type="bar" series={riskSeries}></c-sc360-chart-card>
+      </section>
+
+      <section class="content-grid">
+        <c-sc360-timeline items={timelineItems}></c-sc360-timeline>
+        <c-sc360-ai-insight insights={insights}></c-sc360-ai-insight>
+      </section>
+    </template>
+
+    <template if:true={hasError}>
+      <div class="state error">{errorMessage}</div>
+    </template>
+    <template if:false={hasData}>
+      <template if:false={hasError}>
+        <div class="state">Chargement dashboard Medical...</div>
+      </template>
+    </template>
+  </section>
+</template>

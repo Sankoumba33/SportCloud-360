@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Athlete Liste associée",
+  "contentBody" : {
+    "activeViewId" : "relatedlist_a01",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "relatedlist-Athlete__c",
+    "urlPrefix" : "athlete"
+  },
+  "urlName" : "athlete-liste-associée"
+}
