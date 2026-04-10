@@ -1,0 +1,41 @@
+<template>
+  <section class="slds-box slds-theme_default">
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-bottom_small">{errorMessage}</div>
+    </template>
+    <lightning-tabset>
+      <lightning-tab label="Overview">
+        <lightning-record-view-form record-id={recordId} object-api-name="RTPPhase__c">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="Injury__c"></lightning-output-field>
+              <lightning-output-field field-name="Title__c"></lightning-output-field>
+              <lightning-output-field field-name="Subtitle__c"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="PhaseStatus__c"></lightning-output-field>
+              <lightning-output-field field-name="TargetDate__c"></lightning-output-field>
+              <lightning-output-field field-name="Notes__c"></lightning-output-field>
+            </div>
+          </div>
+        </lightning-record-view-form>
+      </lightning-tab>
+      <lightning-tab label="Injury">
+        <template if:true={hasInjury}>
+          <lightning-button variant="brand" label={injuryLabel} onclick={openInjury}></lightning-button>
+        </template>
+        <template if:false={hasInjury}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucune blessure liée.</div>
+        </template>
+      </lightning-tab>
+      <lightning-tab label="Athlete">
+        <template if:true={hasAthlete}>
+          <lightning-button variant="brand-outline" label={athleteLabel} onclick={openAthlete}></lightning-button>
+        </template>
+        <template if:false={hasAthlete}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucun athlète parent.</div>
+        </template>
+      </lightning-tab>
+    </lightning-tabset>
+  </section>
+</template>

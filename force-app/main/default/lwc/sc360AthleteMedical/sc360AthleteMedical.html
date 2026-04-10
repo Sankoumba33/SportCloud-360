@@ -1,0 +1,267 @@
+<template>
+  <section class="m360-shell">
+    <template if:true={isBuilderPreview}>
+      <div class="state">Place ce composant sur une record page Athlete.</div>
+    </template>
+
+    <template if:true={hasError}>
+      <div class="state err">{errorMessage}</div>
+    </template>
+
+    <template if:true={hasData}>
+      <section class="hero-medical animated-entrance delay-1">
+        <div class="hero-header">
+          <div class="player-identity">
+            <div class="player-avatar">
+              <lightning-icon icon-name="utility:user" size="large"></lightning-icon>
+            </div>
+            <div>
+              <h1 class="player-name">{payload.hero.athleteName}</h1>
+              <div class={payload.hero.statusLineClass}>
+                <lightning-icon icon-name="utility:sync" size="xx-small"></lightning-icon>
+                {payload.hero.statusLine}
+              </div>
+            </div>
+          </div>
+          <div class="overall-risk">
+            <div class={payload.hero.riskGaugeClass}>
+              <span class="gauge-value">{gaugeDisplay}<small>%</small></span>
+            </div>
+            <span class="risk-label">Risque blessure</span>
+          </div>
+        </div>
+
+        <div class="injury-details">
+          <div class="detail-item">
+            <lightning-icon icon-name="utility:topic2" size="small" class="ic-muted"></lightning-icon>
+            <div class="d-text">
+              <span class="d-label">Synthèse risque</span>
+              <span class="d-val">{payload.hero.zoneLabel}</span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <lightning-icon icon-name="utility:event" size="small" class="ic-muted"></lightning-icon>
+            <div class="d-text">
+              <span class="d-label">Dernière alerte blessure</span>
+              <span class="d-val">{payload.hero.injuryDateLabel}</span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <lightning-icon icon-name="utility:flag" size="small" class="ic-muted"></lightning-icon>
+            <div class="d-text">
+              <span class="d-label">Retour compétition</span>
+              <span class="d-val warning-text">{payload.hero.returnCompetitionLabel}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kpi-strip animated-entrance delay-2">
+        <template for:each={payload.stripKpis} for:item="k">
+          <div key={k.id} class={k.cardClass}>
+            <div class="kpi-data">
+              <span class={k.valClass}>
+                {k.valueMain}<small>{k.valueUnit}</small>
+              </span>
+              <span class="kpi-title">{k.title}</span>
+            </div>
+          </div>
+        </template>
+      </section>
+
+      <section class="tabs-section animated-entrance delay-3">
+        <div class="tabs-nav" role="tablist">
+          <template for:each={tabDefs} for:item="tab">
+            <button
+              key={tab.id}
+              type="button"
+              class={tab.buttonClass}
+              data-tabid={tab.id}
+              onclick={handleTabClick}
+              aria-label={tab.label}
+            >
+              {tab.label}
+            </button>
+          </template>
+        </div>
+
+        <div class="tabs-container">
+          <template lwc:if={isReath}>
+            <div class="tab-panel" role="tabpanel">
+              <div class="panel-grid-2">
+                <div class="content-panel">
+                  <h3 class="panel-title">Phases protocole RTP</h3>
+                  <div class="rtp-steps">
+                    <template for:each={rtpStepsView} for:item="step">
+                      <div key={step.id} class={step.rowClass}>
+                        <div class="step-icon">
+                          <template lwc:if={step.iconName}>
+                            <lightning-icon icon-name={step.iconName} size="x-small"></lightning-icon>
+                          </template>
+                        </div>
+                        <div class="step-info">
+                          <strong>{step.title}</strong>
+                          <span>{step.subtitle}</span>
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+                <div class="content-panel">
+                  <h3 class="panel-title">Exercices & contraintes (guidage)</h3>
+                  <div class="task-list">
+                    <template for:each={payload.tasks} for:item="task">
+                      <div key={task.id} class="task-item">
+                        <span class="task-name">{task.taskName}</span>
+                        <span class={task.badgeClass}>{task.badgeLabel}</span>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <template lwc:if={isLoad}>
+            <div class="tab-panel" role="tabpanel">
+              <div class="content-panel">
+                <h3 class="panel-title">Charge relative (semaines — illustration)</h3>
+                <div class="chart-mockup compare-chart">
+                  <div class="chart-y-axis">
+                    <span>100%</span>
+                    <span>50%</span>
+                    <span>0</span>
+                  </div>
+                  <div class="chart-area">
+                    <div class="reference-line"></div>
+                    <div class="trend-bars">
+                      <template for:each={loadBarsView} for:item="bar">
+                        <div key={bar.id} class="t-bar">
+                          <div class={bar.fillClassName} style={bar.fillStyleObj}></div>
+                          <span class="t-label">{bar.weekLabel}</span>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+                <div class="risk-zones">
+                  <div class="rz-item">
+                    <span class="dot success"></span> Zone sécure (&lt; 60% réf.)
+                  </div>
+                  <div class="rz-item">
+                    <span class="dot warning"></span> Zone stimuli (60–85%)
+                  </div>
+                  <div class="rz-item">
+                    <span class="dot danger"></span> Zone risque (&gt; 85%)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <template lwc:if={isCollab}>
+            <div class="tab-panel" role="tabpanel">
+              <div class="panel-grid-2">
+                <div class="content-panel">
+                  <h3 class="panel-title">Canal staff médical</h3>
+                  <template if:true={noteMedical}>
+                    <div class="note-card">
+                      <div class="nc-meta">
+                        <span class="author">{noteMedical.author}</span>
+                        <span class="date">{noteMedical.dateLabel}</span>
+                      </div>
+                      <p>{noteMedical.body}</p>
+                    </div>
+                  </template>
+                </div>
+                <div class="content-panel">
+                  <h3 class="panel-title">Canal performance</h3>
+                  <template if:true={notePerformance}>
+                    <div class="note-card">
+                      <div class="nc-meta">
+                        <span class="author">{notePerformance.author}</span>
+                        <span class="date">{notePerformance.dateLabel}</span>
+                      </div>
+                      <p>{notePerformance.body}</p>
+                    </div>
+                  </template>
+                  <p class="hint-note">Les notes temps réel staff → à brancher sur Tasks / Chatter / custom plus tard.</p>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <template lwc:if={isHistory}>
+            <div class="tab-panel" role="tabpanel">
+              <div class="content-panel">
+                <h3 class="panel-title">Timeline &amp; antécédents (Core)</h3>
+                <table class="medical-table">
+                  <thead>
+                    <tr>
+                      <th>Période</th>
+                      <th>Sujet</th>
+                      <th>Durée</th>
+                      <th>Récidive</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <template for:each={historyRowsView} for:item="row">
+                      <tr key={row.id} class={row.rowClass}>
+                        <td>{row.eventPeriod}</td>
+                        <td><strong>{row.injuryLabel}</strong></td>
+                        <td>{row.durationLabel}</td>
+                        <td>{row.recurrenceLabel}</td>
+                      </tr>
+                    </template>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </template>
+
+          <template lwc:if={isAi}>
+            <div class="tab-panel" role="tabpanel">
+              <div class="panel-grid-2">
+                <div class="content-panel border-info">
+                  <h3 class="panel-title">
+                    <lightning-icon icon-name="utility:sparkles" size="x-small" class="ic-info"></lightning-icon>
+                    Recommandations (données Core)
+                  </h3>
+                  <div class="ai-recommendations">
+                    <template for:each={aiRecsView} for:item="rec">
+                      <div key={rec.rowKey} class={rec.rowClass}>
+                        <div class="rec-icn">
+                          <lightning-icon icon-name={rec.toneIcon} size="small"></lightning-icon>
+                        </div>
+                        <div class="rec-content">
+                          <strong>{rec.title}</strong>
+                          <p>{rec.body}</p>
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+                <div class="content-panel">
+                  <h3 class="panel-title">Projection RTP (heuristique)</h3>
+                  <ul class="prediction-list">
+                    <template for:each={payload.predictions} for:item="pl">
+                      <li key={pl.id}>{pl.lineHtml}</li>
+                    </template>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </section>
+    </template>
+
+    <template if:false={hasData}>
+      <template if:false={hasError}>
+        <template if:false={isBuilderPreview}>
+          <div class="state">Chargement Medical 360...</div>
+        </template>
+      </template>
+    </template>
+  </section>
+</template>

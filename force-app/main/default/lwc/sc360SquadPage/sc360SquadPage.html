@@ -1,0 +1,68 @@
+<template>
+  <section class="slds-p-around_small">
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-bottom_small">{errorMessage}</div>
+    </template>
+    <lightning-tabset>
+      <lightning-tab label="Overview">
+        <lightning-record-view-form record-id={recordId} object-api-name="Squad__c">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="Code__c"></lightning-output-field>
+              <lightning-output-field field-name="IsActive__c"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="IsYouth__c"></lightning-output-field>
+              <lightning-output-field field-name="DisplayOrder__c"></lightning-output-field>
+            </div>
+          </div>
+        </lightning-record-view-form>
+      </lightning-tab>
+
+      <lightning-tab label="Assignments">
+        <template if:true={hasAssignments}>
+          <lightning-datatable
+            key-field="id"
+            data={assignments}
+            columns={assignmentColumns}
+            hide-checkbox-column
+            onrowaction={handleAssignmentAction}
+          ></lightning-datatable>
+        </template>
+        <template if:false={hasAssignments}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucune affectation.</div>
+        </template>
+      </lightning-tab>
+
+      <lightning-tab label="Planning Events">
+        <template if:true={hasPlanningEvents}>
+          <lightning-datatable
+            key-field="id"
+            data={planningEvents}
+            columns={planningColumns}
+            hide-checkbox-column
+            onrowaction={handlePlanningAction}
+          ></lightning-datatable>
+        </template>
+        <template if:false={hasPlanningEvents}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucun événement planning lié.</div>
+        </template>
+      </lightning-tab>
+
+      <lightning-tab label="Athletes">
+        <template if:true={hasAthletes}>
+          <lightning-datatable
+            key-field="id"
+            data={athletes}
+            columns={athleteColumns}
+            hide-checkbox-column
+            onrowaction={handleAthleteAction}
+          ></lightning-datatable>
+        </template>
+        <template if:false={hasAthletes}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucun athlète actuellement rattaché.</div>
+        </template>
+      </lightning-tab>
+    </lightning-tabset>
+  </section>
+</template>

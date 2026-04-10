@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Cloud 360 — Architecture Globale</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        @media print {
+            body { background: #fff; color: #000; padding: 20px; }
+            .page-break { page-break-before: always; }
+            h1, h2, h3 { color: #000; }
+            table th { background: #333 !important; color: #fff !important; }
+            .mermaid svg { max-width: 100% !important; }
+        }
+
+        .cover {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 2px solid #21262d;
+            margin-bottom: 50px;
+        }
+
+        .cover-badge {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.15);
+            color: #0ea5e9;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .cover-subtitle {
+            font-size: 1.1rem;
+            color: #8b949e;
+            margin-bottom: 30px;
+        }
+
+        .cover-meta {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 0.85rem;
+            color: #8b949e;
+        }
+
+        .cover-meta span { display: flex; align-items: center; gap: 6px; }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #21262d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0ea5e9;
+            margin: 25px 0 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #c9d1d9;
+            margin-bottom: 12px;
+        }
+
+        .mermaid-container {
+            background: #0d1117;
+            border: 1px solid #21262d;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0 40px;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 30px;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: #161b22;
+            color: #ffffff;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #0ea5e9;
+        }
+
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #21262d;
+            color: #c9d1d9;
+        }
+
+        tr:hover td { background: rgba(255,255,255,0.02); }
+
+        code {
+            background: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .section-block {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-left: 3px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+        }
+
+        .flow-table-row {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 2fr;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #21262d;
+            font-size: 0.9rem;
+        }
+        .flow-table-header { font-weight: 700; color: #fff; }
+
+        .badge-ok   { background: rgba(46,160,67,0.15); color: #2ea043; padding: 2px 8px; border-radius: 10px; font-size:0.8rem; }
+        .badge-warn { background: rgba(214,148,32,0.15); color: #d69420; padding: 2px 8px; border-radius: 10px; font-size:0.8rem; }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 0.85rem;
+        }
+        .legend-symbol {
+            font-family: monospace;
+            font-size: 1rem;
+            color: #0ea5e9;
+            white-space: nowrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            border-top: 1px solid #21262d;
+            font-size: 0.8rem;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE DE COUVERTURE -->
+    <div class="cover">
+        <div class="cover-badge">Document Technique v1.0</div>
+        <h1>🏟️ Sport Cloud 360</h1>
+        <p class="cover-subtitle">Architecture Globale — Modèle de Données, Applications, Flux & Acteurs</p>
+        <div class="cover-meta">
+            <span>📅 Avril 2026</span>
+            <span>⚡ Plateforme Salesforce</span>
+            <span>🔒 Usage Interne</span>
+        </div>
+    </div>
+
+    <!-- SECTION 1 : SCHÉMA -->
+    <h2>1. Schéma d'Architecture</h2>
+    <p>Vue d'ensemble de toutes les applications, objets Salesforce, flux de données internes/externes et acteurs du club.</p>
+
+    <div class="mermaid-container">
+        <div class="mermaid">
+flowchart TB
+
+    subgraph EXT ["🌐 Sources Externes"]
+        direction LR
+        GPS["📡 GPS & Wearables\nCatapult · StatSports"]
+        SportsAPI["⚽ Sports API\nScores & Calendrier"]
+        DataProvider["📊 Data Providers\nOpta · Wyscout · Hudl"]
+        Hospital["🏥 Imagerie & Labo\nHôpital Partenaire"]
+    end
+
+    subgraph SF ["⚡ Salesforce — Sport Cloud 360"]
+        direction TB
+
+        subgraph A1 ["📅 App 1 · Planning & Effectif"]
+            Squad["Squad__c"]
+            PlanningEvent["PlanningEvent__c"]
+            Resource["Resource__c"]
+            Booking["Booking__c"]
+            SquadAssign["SquadAssignment__c"]
+            Squad --> PlanningEvent
+            PlanningEvent --> Booking
+            Booking --> Resource
+            SquadAssign --> Squad
+        end
+
+        subgraph A2 ["🏋️ App 2 · Athlete 360 — Perf & Médical"]
+            Athlete["Athlete__c"]
+            ExtAthData["ExternalAthleteData__c"]
+            Inj["Injury__c"]
+            RTP["RTPPhase__c"]
+            Avail["AvailabilityBlock__c"]
+            MicroC["Microcycle__c"]
+            MicroCDay["MicrocycleDay__c"]
+            AthlMicro["AthleteMicrocycleDay__c"]
+            AthlEdu["AthleteEducation__c"]
+            EduRep["EducationReport__c"]
+            Absence["SchoolAbsence__c"]
+            Athlete <-->|sync physique| ExtAthData
+            Athlete --> Inj --> RTP --> Avail
+            Athlete --> Avail
+            MicroC --> MicroCDay --> AthlMicro --> Athlete
+            Athlete --> AthlEdu --> EduRep
+            AthlEdu --> Absence
+        end
+
+        subgraph A3 ["🔭 App 3 · Scouting 360"]
+            Prospect["Prospect__c"]
+            ScoutRep["ScoutingReport__c"]
+            ScoutSnap["ScoutingSnapshot__c"]
+            ExtProspData["ExternalProspectData__c"]
+            Prospect --> ScoutRep
+            Prospect --> ScoutSnap
+            Prospect <-->|stats externes| ExtProspData
+        end
+
+        subgraph A4 ["🧠 App 4 · Match & Intelligence 360"]
+            Match["Match__c"]
+            MPS["MatchPlayerStats__c"]
+            MTS["MatchTeamStats__c"]
+            MatchPrep["MatchPrepReport__c"]
+            Opp["Opponent__c"]
+            OppMatch["OpponentMatch__c"]
+            OppTac["OpponentTacticalPattern__c"]
+            OppLineup["OpponentLineup__c"]
+            Match --> MPS
+            Match --> MTS
+            MatchPrep --> Opp
+            MatchPrep --> Match
+            Opp --> OppMatch --> OppLineup
+            Opp --> OppTac
+        end
+
+        subgraph A5 ["📡 App 5 · Intégration"]
+            DataSrc["DataSource__c"]
+        end
+
+        Avail         ===>|"🚫 Bloque la dispo"| PlanningEvent
+        Prospect      -..->|"✅ Converti en"| Athlete
+        MicroC        ===>|"🎯 Ancré sur"| Match
+        PlanningEvent -..->|"📅 Alimente"| MatchPrep
+        Athlete       -..->|"appartient à"| SquadAssign
+        DataSrc --> ExtAthData
+        DataSrc --> ExtProspData
+    end
+
+    subgraph ACTORS ["👥 Acteurs"]
+        direction LR
+        DocActor(("🩺 Staff\nMédical"))
+        PerfActor(("⚡ Prépa\nPhysique"))
+        MgrActor(("📋 Team\nManager"))
+        CoachActor(("🎯 Staff\nTechnique"))
+        ScoutActor(("🔍 Recrutement"))
+        EduActor(("🎓 Formation"))
+    end
+
+    GPS          -->|"Batch Apex / MuleSoft"| ExtAthData
+    Hospital     -..->|"Import / Saisie"| Inj
+    DataProvider -->|"API REST Sync"| ExtProspData
+    SportsAPI    -->|"Webhook / Scheduled Apex"| Match
+    SportsAPI    -->|"Sync Historique"| OppMatch
+    DataProvider -->|"Vidéo & Stats"| OppTac
+
+    DocActor   -->|"Blessures & RTP"| Inj
+    PerfActor  -->|"Entraînements"| MicroC
+    MgrActor   -->|"Agenda & Ressources"| PlanningEvent
+    CoachActor -->|"Prépa Tactique"| MatchPrep
+    ScoutActor -->|"Rapports Scouts"| ScoutRep
+    EduActor   -->|"Suivi Scolaire"| AthlEdu
+        </div>
+    </div>
+
+    <!-- SECTION 2 : LÉGENDE -->
+    <h2>2. Légende des Flux</h2>
+    <div class="legend-grid">
+        <div class="legend-item"><span class="legend-symbol">──▶</span><div><strong>Relation directe</strong><br>Lookup ou Master-Detail Salesforce</div></div>
+        <div class="legend-item"><span class="legend-symbol">◀──▶</span><div><strong>Synchronisation bidirectionnelle</strong><br>Flux aller-retour (API / Platform Events)</div></div>
+        <div class="legend-item"><span class="legend-symbol">- -▶</span><div><strong>Flux logique / automation</strong><br>Flow, Process Builder, Trigger Apex</div></div>
+        <div class="legend-item"><span class="legend-symbol">═══▶</span><div><strong>Contrainte métier forte</strong><br>Bloque ou conditionne un autre objet</div></div>
+    </div>
+
+    <!-- SECTION 3 : OBJETS PAR APP -->
+    <h2 class="page-break">3. Applications & Objets Salesforce</h2>
+
+    <h3>📅 App 1 — Planning & Effectif</h3>
+    <div class="section-block">Transversale à toutes les applications, elle gère l'agenda du club, les ressources et l'organisation de l'effectif.</div>
+    <table>
+        <thead><tr><th>Objet</th><th>Rôle</th></tr></thead>
+        <tbody>
+            <tr><td><code>Squad__c</code></td><td>Groupe d'athlètes (équipe, catégorie d'âge)</td></tr>
+            <tr><td><code>PlanningEvent__c</code></td><td>Événement lié à un squad (entraînement, match, réunion)</td></tr>
+            <tr><td><code>Resource__c</code></td><td>Salle, terrain ou équipement disponible</td></tr>
+            <tr><td><code>Booking__c</code></td><td>Réservation d'une ressource pour un événement</td></tr>
+            <tr><td><code>SquadAssignment__c</code></td><td>Lien historisé entre un athlète et un squad</td></tr>
+        </tbody>
+    </table>
+
+    <h3>🏋️ App 2 — Athlete 360 · Perf & Médical</h3>
+    <div class="section-block">Suivi individuel complet de chaque joueur : santé, performance physique et scolarité (pour les jeunes en formation).</div>
+    <table>
+        <thead><tr><th>Objet</th><th>Rôle</th></tr></thead>
+        <tbody>
+            <tr><td><code>Athlete__c</code></td><td>Fiche centrale du joueur</td></tr>
+            <tr><td><code>ExternalAthleteData__c</code></td><td>Données physiques brutes issues des GPS / wearables</td></tr>
+            <tr><td><code>Injury__c</code></td><td>Historique des blessures (type, date, gravité)</td></tr>
+            <tr><td><code>RTPPhase__c</code></td><td>Protocole de Return-To-Play (phases médicale, physique, terrain)</td></tr>
+            <tr><td><code>AvailabilityBlock__c</code></td><td>Périodes d'indisponibilité (blessure, suspension, fatigue)</td></tr>
+            <tr><td><code>Microcycle__c</code></td><td>Semaine d'entraînement ancrée sur un match cible</td></tr>
+            <tr><td><code>MicrocycleDay__c</code></td><td>Séance journalière dans un microcycle</td></tr>
+            <tr><td><code>AthleteMicrocycleDay__c</code></td><td>Participation et charge individuelle d'un athlète à une séance</td></tr>
+            <tr><td><code>AthleteEducation__c</code></td><td>Suivi de la scolarité d'un joueur en formation</td></tr>
+            <tr><td><code>EducationReport__c</code></td><td>Bulletin scolaire ou rapport pédagogique</td></tr>
+            <tr><td><code>SchoolAbsence__c</code></td><td>Absences scolaires enregistrées</td></tr>
+        </tbody>
+    </table>
+
+    <h3>🔭 App 3 — Scouting 360</h3>
+    <div class="section-block">Intelligence recrutement sur les joueurs cibles, avec rapports qualitatifs et cotations statistiques externes.</div>
+    <table>
+        <thead><tr><th>Objet</th><th>Rôle</th></tr></thead>
+        <tbody>
+            <tr><td><code>Prospect__c</code></td><td>Joueur ciblé par la cellule recrutement</td></tr>
+            <tr><td><code>ScoutingReport__c</code></td><td>Rapport d'observation rédigé par un scout</td></tr>
+            <tr><td><code>ScoutingSnapshot__c</code></td><td>Instantané de données à un moment précis (comparaison historique)</td></tr>
+            <tr><td><code>ExternalProspectData__c</code></td><td>Statistiques externalisées (Opta, Wyscout...)</td></tr>
+        </tbody>
+    </table>
+
+    <h3>🧠 App 4 — Match & Intelligence 360</h3>
+    <div class="section-block">Analyse des matchs joués par votre équipe et préparation des rencontres à venir via l'analyse des adversaires.</div>
+    <table>
+        <thead><tr><th>Objet</th><th>Rôle</th></tr></thead>
+        <tbody>
+            <tr><td><code>Match__c</code></td><td>Rencontre officielle (résultat, calendrier, compétition)</td></tr>
+            <tr><td><code>MatchPlayerStats__c</code></td><td>Stats individuelles d'un joueur sur un match</td></tr>
+            <tr><td><code>MatchPlayerMetric__c</code></td><td>Métriques physiques détaillées d'un joueur sur un match</td></tr>
+            <tr><td><code>MatchTeamStats__c</code></td><td>Stats collectives de l'équipe sur un match</td></tr>
+            <tr><td><code>MatchTeamMetric__c</code></td><td>Métriques collectives physiques sur un match</td></tr>
+            <tr><td><code>MatchPrepReport__c</code></td><td>Rapport de préparation tactique généré avant un match</td></tr>
+            <tr><td><code>Opponent__c</code></td><td>Adversaire (club ou équipe)</td></tr>
+            <tr><td><code>OpponentMatch__c</code></td><td>Matchs récents joués par cet adversaire</td></tr>
+            <tr><td><code>OpponentTacticalPattern__c</code></td><td>Schémas tactiques identifiés de l'adversaire</td></tr>
+            <tr><td><code>OpponentLineup__c</code></td><td>Compositions utilisées par l'adversaire lors de ses matchs</td></tr>
+        </tbody>
+    </table>
+
+    <h3>📡 App 5 — Sources de Données & Intégration</h3>
+    <table>
+        <thead><tr><th>Objet</th><th>Rôle</th></tr></thead>
+        <tbody>
+            <tr><td><code>DataSource__c</code></td><td>Référentiel des sources externes configurées (nom, type, URL, statut API)</td></tr>
+        </tbody>
+    </table>
+
+    <!-- SECTION 4 : MATRICE ACTEURS -->
+    <h2 class="page-break">4. Matrice Acteurs × Applications</h2>
+    <table>
+        <thead>
+            <tr><th>Acteur</th><th>📅 Planning</th><th>🏋️ Athlete 360</th><th>🔭 Scouting</th><th>🧠 Match Intel</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>🩺 Staff Médical</td><td>Consultation dispo</td><td><strong>✅ Principal</strong> (Injury, RTP)</td><td>—</td><td>Lecture seule</td></tr>
+            <tr><td>⚡ Prépa Physique</td><td>Agenda entraînements</td><td><strong>✅ Principal</strong> (Microcycles, Perf)</td><td>—</td><td>Stats physiques matchs</td></tr>
+            <tr><td>📋 Team Manager</td><td><strong>✅ Principal</strong> (Agenda, Ressources)</td><td>Consultation</td><td>—</td><td>Calendrier matchs</td></tr>
+            <tr><td>🎯 Staff Technique</td><td>Planification</td><td>Consultation disponibilités</td><td>—</td><td><strong>✅ Principal</strong> (MatchPrep, Tactique)</td></tr>
+            <tr><td>🔍 Cellule Recrutement</td><td>—</td><td>Consultation profils</td><td><strong>✅ Principal</strong> (Rapports, Prospects)</td><td>Analyse adverses</td></tr>
+            <tr><td>🎓 Coordinateur Formation</td><td>—</td><td>✅ Scolarité (AthleteEducation)</td><td>Suivi jeunes</td><td>—</td></tr>
+        </tbody>
+    </table>
+
+    <!-- SECTION 5 : FLUX EXTERNES -->
+    <h2>5. Flux de Données Externes</h2>
+    <table>
+        <thead><tr><th>Source</th><th>Méthode d'intégration</th><th>Objet(s) cible(s)</th></tr></thead>
+        <tbody>
+            <tr><td>📡 Catapult / StatSports (GPS)</td><td>Apex Batch / MuleSoft REST</td><td><code>ExternalAthleteData__c</code></td></tr>
+            <tr><td>🏥 Hôpital partenaire</td><td>Import PDF / Saisie manuelle</td><td><code>Injury__c</code></td></tr>
+            <tr><td>📊 Opta / Wyscout</td><td>API REST Sync</td><td><code>ExternalProspectData__c</code></td></tr>
+            <tr><td>🎥 Wyscout / Hudl</td><td>API REST + URL Vidéo</td><td><code>OpponentTacticalPattern__c</code></td></tr>
+            <tr><td>⚽ Sports API</td><td>Webhook + Scheduled Apex</td><td><code>Match__c</code>, <code>OpponentMatch__c</code></td></tr>
+        </tbody>
+    </table>
+
+    <!-- SECTION 6 : FLUX INTER-APPS -->
+    <h2>6. Flux Clés Inter-Applications</h2>
+    <table>
+        <thead><tr><th>Flux</th><th>Déclencheur</th><th>Impact Métier</th></tr></thead>
+        <tbody>
+            <tr><td>🚫 <strong>Indisponibilité</strong></td><td>Création d'une <code>Injury__c</code></td><td><code>AvailabilityBlock__c</code> bloque le joueur dans <code>PlanningEvent__c</code></td></tr>
+            <tr><td>✅ <strong>Conversion Prospect</strong></td><td>Signature du contrat</td><td><code>Prospect__c</code> → <code>Athlete__c</code> + <code>SquadAssignment__c</code></td></tr>
+            <tr><td>🎯 <strong>Ancrage Micro-cycle</strong></td><td>Création d'un <code>Microcycle__c</code></td><td>La semaine d'entraînement est orientée vers un <code>Match__c</code> précis</td></tr>
+            <tr><td>📅 <strong>Rapport de Préparation</strong></td><td>Génération du <code>MatchPrepReport__c</code></td><td><code>PlanningEvent__c</code> alimente automatiquement la date et l'adversaire</td></tr>
+        </tbody>
+    </table>
+
+    <footer>
+        Sport Cloud 360 — Document Confidentiel · Usage Interne · Avril 2026
+    </footer>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { curve: 'basis' }
+        });
+    </script>
+</body>
+</html>

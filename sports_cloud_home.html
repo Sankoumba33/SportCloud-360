@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Intelligence Cloud - Cockpit</title>
+    <!-- Chargement des styles et Polices -->
+    <link rel="stylesheet" href="sports_cloud_home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome pour les icônes premium -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="sic-container">
+        <!-- 1. Header Minimal -->
+        <header class="sic-header">
+            <div class="header-left">
+                <h1 class="logo">SIC <span>Cockpit</span></h1>
+                <div class="team-selector">
+                    <select>
+                        <option>Équipe Première</option>
+                        <option>Réserve (B)</option>
+                        <option>U19 Elite</option>
+                    </select>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="microcycle-info">
+                    <span class="label">Microcycle Actuel</span>
+                    <span class="value">MD-3 (Jeudi)</span>
+                </div>
+                <div class="next-match">
+                    <span class="label">Prochain Match</span>
+                    <span class="value"><i class="fa-solid fa-calendar-day"></i> Sam. 18 Nov - 20:00 vs FC Lorient</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="sic-main">
+            <!-- 2. Zone Décision Immédiate -->
+            <section class="decision-zone">
+                <h2 class="section-title">À Surveiller Aujourd'hui</h2>
+                <div class="alert-cards">
+                    <div class="card alert-card warning">
+                        <div class="card-icon"><i class="fa-solid fa-battery-quarter"></i></div>
+                        <div class="card-content">
+                            <span class="card-value">3</span>
+                            <span class="card-label">Joueurs en surcharge (ACWR)</span>
+                        </div>
+                    </div>
+                    <div class="card alert-card danger">
+                        <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="card-content">
+                            <span class="card-value">2</span>
+                            <span class="card-label">À risque de blessure (Ischios)</span>
+                        </div>
+                    </div>
+                    <div class="card alert-card info">
+                        <div class="card-icon"><i class="fa-solid fa-arrow-up-right-dots"></i></div>
+                        <div class="card-content">
+                            <span class="card-value">4</span>
+                            <span class="card-label">Top-ups nécessaires (MD+1)</span>
+                        </div>
+                    </div>
+                    <div class="card alert-card success">
+                        <div class="card-icon"><i class="fa-solid fa-check-double"></i></div>
+                        <div class="card-content">
+                            <span class="card-value">18</span>
+                            <span class="card-label">Prêts & Alignés (100%)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="main-grid">
+                <!-- 3. Vue Microcycle Compacte -->
+                <section class="microcycle-view">
+                    <h2 class="section-title">Suivi du Microcycle (Prévu vs Réel)</h2>
+                    <div class="card microcycle-card">
+                        <div class="timeline">
+                            <div class="day past">
+                                <div class="day-label">MD+1</div>
+                                <div class="intensity-bar plan" style="height: 30%"></div>
+                                <div class="intensity-bar actual low" style="height: 25%"></div>
+                            </div>
+                            <div class="day past">
+                                <div class="day-label">MD-5</div>
+                                <div class="intensity-bar plan" style="height: 0%"></div>
+                                <div class="day-off">OFF</div>
+                            </div>
+                            <div class="day past">
+                                <div class="day-label">MD-4</div>
+                                <div class="intensity-bar plan" style="height: 80%"></div>
+                                <div class="intensity-bar actual high" style="height: 88%"></div>
+                            </div>
+                            <div class="day today">
+                                <div class="day-label">MD-3</div>
+                                <div class="intensity-bar plan" style="height: 70%"></div>
+                                <div class="intensity-bar actual pending" style="height: 0%"></div>
+                                <div class="today-marker">Auj.</div>
+                            </div>
+                            <div class="day future">
+                                <div class="day-label">MD-2</div>
+                                <div class="intensity-bar plan" style="height: 40%"></div>
+                            </div>
+                            <div class="day future">
+                                <div class="day-label">MD-1</div>
+                                <div class="intensity-bar plan" style="height: 20%"></div>
+                            </div>
+                            <div class="day match">
+                                <div class="day-label">MD</div>
+                                <i class="fa-regular fa-futbol"></i>
+                            </div>
+                        </div>
+                        <div class="timeline-legend">
+                            <span><div class="legend-box plan"></div> Cible</span>
+                            <span><div class="legend-box actual high"></div> Surcharge</span>
+                            <span><div class="legend-box actual optimal"></div> Optimal</span>
+                            <span><div class="legend-box actual low"></div> Sous-charge</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Tendances Clés de la Semaine -->
+                <section class="trends-view">
+                    <h2 class="section-title">Tendances Collectives</h2>
+                    <div class="charts-grid">
+                        <div class="card chart-card">
+                            <div class="chart-header">
+                                <h3>Charge Globale (ACWR Équipe)</h3>
+                            </div>
+                            <div class="chart-placeholder">
+                                <div class="placeholder-bars">
+                                    <div class="p-bar" style="height: 40%"></div>
+                                    <div class="p-bar" style="height: 60%"></div>
+                                    <div class="p-bar" style="height: 55%"></div>
+                                    <div class="p-bar" style="height: 80%"></div>
+                                    <div class="p-bar danger-zone" style="height: 105%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card chart-card">
+                            <div class="chart-header">
+                                <h3>HID Cumulée & Sprints (vs Target)</h3>
+                            </div>
+                            <div class="chart-placeholder">
+                                <div class="placeholder-lines">
+                                    <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                                        <!-- Realisé -->
+                                        <path d="M0,35 Q25,10 50,20 T100,5" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
+                                        <!-- Prévu -->
+                                        <path d="M0,30 Q25,25 50,15 T100,20" fill="none" stroke="var(--color-info)" stroke-width="2" stroke-dasharray="3"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 5. Accès Rapide -->
+            <section class="quick-access">
+                <h2 class="section-title">Applications Hub</h2>
+                <div class="apps-grid">
+                    <a href="athlete360.html" class="app-card">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        <span>Athlete 360</span>
+                    </a>
+                    <a href="#" class="app-card">
+                        <i class="fa-solid fa-users-viewfinder"></i>
+                        <span>Scouting 360</span>
+                    </a>
+                    <a href="#" class="app-card">
+                        <i class="fa-solid fa-kit-medical"></i>
+                        <span>Medical 360</span>
+                    </a>
+                    <a href="#" class="app-card">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Match Analysis</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="sports_cloud_home.js"></script>
+</body>
+</html>

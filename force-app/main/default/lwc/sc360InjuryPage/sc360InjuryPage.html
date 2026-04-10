@@ -1,0 +1,51 @@
+<template>
+  <section class="slds-box slds-theme_default">
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-bottom_small">{errorMessage}</div>
+    </template>
+    <lightning-tabset>
+      <lightning-tab label="Overview">
+        <lightning-record-view-form record-id={recordId} object-api-name="Injury__c">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="Athlete__c"></lightning-output-field>
+              <lightning-output-field field-name="BodyZone__c"></lightning-output-field>
+              <lightning-output-field field-name="Status__c"></lightning-output-field>
+              <lightning-output-field field-name="InjuryDate__c"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="ExpectedReturnDate__c"></lightning-output-field>
+              <lightning-output-field field-name="ActualReturnDate__c"></lightning-output-field>
+              <lightning-output-field field-name="RecurrenceNote__c"></lightning-output-field>
+              <lightning-output-field field-name="ClinicalSummary__c"></lightning-output-field>
+            </div>
+          </div>
+        </lightning-record-view-form>
+      </lightning-tab>
+
+      <lightning-tab label="RTP Phases">
+        <template if:true={hasRtpPhases}>
+          <lightning-datatable
+            key-field="id"
+            data={rtpPhases}
+            columns={rtpColumns}
+            hide-checkbox-column
+            onrowaction={handleRtpAction}
+          ></lightning-datatable>
+        </template>
+        <template if:false={hasRtpPhases}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucune phase RTP liée.</div>
+        </template>
+      </lightning-tab>
+
+      <lightning-tab label="Athlete">
+        <template if:true={hasAthlete}>
+          <lightning-button variant="brand" label={athleteName} onclick={openAthlete}></lightning-button>
+        </template>
+        <template if:false={hasAthlete}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucun athlète lié.</div>
+        </template>
+      </lightning-tab>
+    </lightning-tabset>
+  </section>
+</template>

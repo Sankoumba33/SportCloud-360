@@ -30,6 +30,42 @@ public with sharing class SC360MedicalController {
         @AuraEnabled public List<String> aiInsights;
     }
 
+    public class AthleteRiskRowDto {
+        @AuraEnabled public Id athleteId;
+        @AuraEnabled public String name;
+        @AuraEnabled public Decimal injuryRisk;
+        @AuraEnabled public Decimal readiness;
+        @AuraEnabled public String statusLabel;
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<AthleteRiskRowDto> getHighRiskAthletes(Integer rowLimit) {
+        Integer lim = rowLimit == null ? 50 : rowLimit;
+        if (lim < 1) {
+            lim = 1;
+        }
+        if (lim > 200) {
+            lim = 200;
+        }
+        List<AthleteRiskRowDto> rows = new List<AthleteRiskRowDto>();
+        for (Athlete__c a : [
+            SELECT Id, Name, InjuryRiskScore__c, ReadinessScore__c, Status__c
+            FROM Athlete__c
+            WHERE InjuryRiskScore__c != NULL AND InjuryRiskScore__c >= 45
+            ORDER BY InjuryRiskScore__c DESC NULLS LAST, Name ASC
+            LIMIT :lim
+        ]) {
+            AthleteRiskRowDto r = new AthleteRiskRowDto();
+            r.athleteId = a.Id;
+            r.name = a.Name;
+            r.injuryRisk = a.InjuryRiskScore__c;
+            r.readiness = a.ReadinessScore__c;
+            r.statusLabel = a.Status__c;
+            rows.add(r);
+        }
+        return rows;
+    }
+
     @AuraEnabled(cacheable=true)
     public static OverviewDto getOverview() {
         OverviewDto dto = new OverviewDto();

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical 360 - Sports Intelligence Cloud</title>
+    <link rel="stylesheet" href="medical360.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Premium icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="medical-theme">
+    <div class="app-layout">
+        
+        <main class="main-content">
+            
+            <!-- 1. HERO MEDICAL STATUS -->
+            <section class="hero-medical animated-entrance delay-1">
+                <div class="hero-header">
+                    <div class="player-identity">
+                        <div class="player-avatar">
+                            <i class="fa-solid fa-user-injured"></i>
+                        </div>
+                        <div>
+                            <h1 class="player-name">Lucas Hernandez</h1>
+                            <div class="status-medical warning-mode">
+                                <i class="fa-solid fa-spinner fa-spin-pulse"></i> En Phase de Reprise
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overall-risk tooltip-container">
+                        <div class="risk-gauge warning-glow">
+                            <span class="gauge-value">55<small>%</small></span>
+                        </div>
+                        <span class="risk-label">Risque de Récidive</span>
+                    </div>
+                </div>
+
+                <div class="injury-details">
+                    <div class="detail-item">
+                        <i class="fa-solid fa-bone text-muted"></i>
+                        <div class="d-text">
+                            <span class="d-label">Zone Corporelle</span>
+                            <span class="d-val">Genou Droit (LCA)</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-regular fa-calendar-xmark text-muted"></i>
+                        <div class="d-text">
+                            <span class="d-label">Date Blessure</span>
+                            <span class="d-val">12 Aoû 2026</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-solid fa-flag-checkered text-muted"></i>
+                        <div class="d-text">
+                            <span class="d-label">Retour Compétition</span>
+                            <span class="d-val warning-text">Prévu: 25 Nov 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. KPI STRIP -->
+            <section class="kpi-strip animated-entrance delay-2">
+                <div class="kpi-card">
+                    <div class="kpi-data">
+                        <span class="kpi-val text-pure">95</span>
+                        <span class="kpi-title">Jours d'indisponibilité</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-data">
+                        <span class="kpi-val text-success">Optimale</span>
+                        <span class="kpi-title">Progression Charge</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-data">
+                        <span class="kpi-val">0.65</span>
+                        <span class="kpi-title">Ratio Charge Actuelle / Réf.</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-data">
+                        <span class="kpi-val warning-text">24.5 <small>km/h</small></span>
+                        <span class="kpi-title">Intensité Max Récente</span>
+                    </div>
+                </div>
+                <div class="kpi-card border-warning">
+                    <div class="kpi-data">
+                        <span class="kpi-val text-warning">Modéré</span>
+                        <span class="kpi-title">Niveau de Risque Global</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. ONGLETS PRINCIPAUX -->
+            <section class="tabs-section animated-entrance delay-3">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-target="tab-reath">Réathlétisation</button>
+                    <button class="tab-btn" data-target="tab-load">Charge & Risque</button>
+                    <button class="tab-btn" data-target="tab-collab">Collaboration Staff</button>
+                    <button class="tab-btn" data-target="tab-history">Historique Médical</button>
+                    <button class="tab-btn" data-target="tab-ai">IA Médicale</button>
+                </div>
+
+                <div class="tabs-container">
+                    
+                    <!-- ONGLET 2: Réathlétisation (Placé en premier car le joueur est en reprise) -->
+                    <div id="tab-reath" class="tab-content active">
+                        <div class="panel-grid-2">
+                            <div class="content-panel">
+                                <h3 class="panel-title">Phases du Protocole RTP (Return to Play)</h3>
+                                <div class="rtp-steps">
+                                    <div class="rtp-step completed">
+                                        <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+                                        <div class="step-info">
+                                            <strong>Phase 1 : Soins & Mobilité</strong>
+                                            <span>Validation Staff Médical</span>
+                                        </div>
+                                    </div>
+                                    <div class="rtp-step completed">
+                                        <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+                                        <div class="step-info">
+                                            <strong>Phase 2 : Renforcement (Gym)</strong>
+                                            <span>Validation Prépa. Physique</span>
+                                        </div>
+                                    </div>
+                                    <div class="rtp-step current">
+                                        <div class="step-icon"><i class="fa-solid fa-person-running"></i></div>
+                                        <div class="step-info">
+                                            <strong>Phase 3 : Retour Terrain (Isolé)</strong>
+                                            <span class="text-warning">En cours (Semaine 3)</span>
+                                        </div>
+                                    </div>
+                                    <div class="rtp-step future">
+                                        <div class="step-icon"></div>
+                                        <div class="step-info">
+                                            <strong>Phase 4 : Intégration Groupe</strong>
+                                            <span>Prévu J-10</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-panel">
+                                <h3 class="panel-title">Exercices de la semaine</h3>
+                                <div class="task-list">
+                                    <div class="task-item">
+                                        <span class="task-name">Course en ligne droite (Piste)</span>
+                                        <span class="badge success">Toléré (100%)</span>
+                                    </div>
+                                    <div class="task-item">
+                                        <span class="task-name">Changements de direction 45°</span>
+                                        <span class="badge warning">Tolérance : 70%</span>
+                                    </div>
+                                    <div class="task-item">
+                                        <span class="task-name">Frappes de balle (Intérieur pied)</span>
+                                        <span class="badge danger">Douleur signalée (3/10)</span>
+                                    </div>
+                                    <div class="task-item">
+                                        <span class="task-name">Proprioception Instable</span>
+                                        <span class="badge success">Acquis</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 3: Charge & Risque -->
+                    <div id="tab-load" class="tab-content">
+                        <div class="content-panel">
+                            <h3 class="panel-title">Comparatif Charge (Pré-Blessure vs Reprise)</h3>
+                            <div class="chart-mockup compare-chart">
+                                <!-- Mockup CSS d'un graphique superposé -->
+                                <div class="chart-y-axis">
+                                    <span>100% (Réf)</span>
+                                    <span>50%</span>
+                                    <span>0</span>
+                                </div>
+                                <div class="chart-area">
+                                    <!-- Ligne de référence "Pre-injury" -->
+                                    <div class="reference-line" style="bottom: 80%;"></div>
+                                    
+                                    <!-- Barres d'évolution -->
+                                    <div class="trend-bars">
+                                        <div class="t-bar"><div class="fill" style="height: 10%"></div><span>S1</span></div>
+                                        <div class="t-bar"><div class="fill" style="height: 25%"></div><span>S2</span></div>
+                                        <div class="t-bar"><div class="fill" style="height: 40%"></div><span>S3</span></div>
+                                        <div class="t-bar"><div class="fill" style="height: 55%"></div><span>S4</span></div>
+                                        <div class="t-bar"><div class="fill warning-bg" style="height: 75%"></div><span>S5 (Auj.)</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="risk-zones">
+                                <div class="rz-item"><span class="dot success"></span> Zone Sécure (< 60% réf)</div>
+                                <div class="rz-item"><span class="dot warning"></span> Zone Stimuli (60-85%)</div>
+                                <div class="rz-item"><span class="dot danger"></span> Zone Risque (> 85%)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 4: Collaboration Staff -->
+                    <div id="tab-collab" class="tab-content">
+                        <div class="panel-grid-2">
+                            <div class="content-panel">
+                                <h3 class="panel-title">Canal Staff Médical <i class="fa-solid fa-stethoscope"></i></h3>
+                                <div class="notes-feed">
+                                    <div class="note-card">
+                                        <div class="nc-meta"><span class="author">Doc. Moreau (Médecin)</span> <span class="date">Il y a 2j</span></div>
+                                        <p>Léger épanchement post-séance mardi. On glace et on réduit la charge articulaire sur 48h. Pas d'inquiétude structurelle sur le greffon.</p>
+                                    </div>
+                                    <div class="note-card">
+                                        <div class="nc-meta"><span class="author">S. Bernard (Kiné)</span> <span class="date">Il y a 4j</span></div>
+                                        <p>Déficit ischio droit mesuré à -15% sur dynamomètre (vs jambe saine). Objectif d'équilibrage la semaine prochaine.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-panel">
+                                <h3 class="panel-title">Canal Performance <i class="fa-solid fa-stopwatch"></i></h3>
+                                <div class="notes-feed">
+                                    <div class="note-card">
+                                        <div class="nc-meta"><span class="author">R. Silva (Prépa Physique)</span> <span class="date">Aujourd'hui</span></div>
+                                        <p>Bonne réponse physiologique sur la séance intermittente. FC max atteinte proprement. On évite encore les décélérations brutales.</p>
+                                    </div>
+                                    <div class="note-action">
+                                        <input type="text" placeholder="Ajouter une note de suivi..." class="input-note">
+                                        <button class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 1 (Maintenant onglet 4): Historique Médical -->
+                    <div id="tab-history" class="tab-content">
+                        <div class="content-panel">
+                            <h3 class="panel-title">Timeline & Antécédents</h3>
+                            <table class="medical-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Blessure / Pathologie</th>
+                                        <th>Durée Indisp.</th>
+                                        <th>Récidive</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="active-injury">
+                                        <td>Aoû 2026</td>
+                                        <td><strong>Rupture de LCA (Genou Droit)</strong></td>
+                                        <td>En cours</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fév 2025</td>
+                                        <td>Lésion Grade 2 (Ischio-Jambier Droit)</td>
+                                        <td>23 Jours</td>
+                                        <td>Non</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oct 2024</td>
+                                        <td>Entorse Cheville Gauche (Grade 1)</td>
+                                        <td>12 Jours</td>
+                                        <td>Oui</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 5: IA Médicale -->
+                    <div id="tab-ai" class="tab-content">
+                        <div class="panel-grid-2">
+                             <div class="content-panel border-info">
+                                <h3 class="panel-title"><i class="fa-solid fa-robot text-info"></i> Recommandations Algorithmiques</h3>
+                                <div class="ai-recommendations">
+                                    <div class="rec-item warning">
+                                        <i class="fa-solid fa-triangle-exclamation"></i>
+                                        <div class="rec-content">
+                                            <strong>Alerte Asymétrie Ischio-cuissard</strong>
+                                            <p>Le déficit de force de l'ischio droit expose le greffon du LCA. Le modèle préconise de différer les frappes de balle lourdes de 7 jours minimum.</p>
+                                        </div>
+                                    </div>
+                                    <div class="rec-item success">
+                                        <i class="fa-solid fa-check-double"></i>
+                                        <div class="rec-content">
+                                            <strong>Charge Cardiovasculaire Validée</strong>
+                                            <p>Capacité aérobie revenue à 90% des standards pré-blessure. Le reintegra-groupe pour "jokers tactiques" est sécurisé d'un point de vue métabolique.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-panel">
+                                <h3 class="panel-title">Modèle Prédictif RTP</h3>
+                                <ul class="prediction-list">
+                                    <li>Intégration entraînement collectif (Sans contact) : <strong>+ 3 Jours</strong></li>
+                                    <li>Intégration totale (Avec contacts) : <strong>+ 10 Jours</strong></li>
+                                    <li><strong class="text-primary">Temps de jeu compétitif estimé (U23) : J-18</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="medical360.js"></script>
+</body>
+</html>

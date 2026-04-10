@@ -1,0 +1,40 @@
+<template>
+  <section class="slds-p-around_small">
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-bottom_small">{errorMessage}</div>
+    </template>
+    <lightning-tabset>
+      <lightning-tab label="Overview">
+        <c-sc360-prospect-detail record-id={recordId}></c-sc360-prospect-detail>
+      </lightning-tab>
+      <lightning-tab label="Scouting Reports">
+        <template if:true={hasReports}>
+          <lightning-datatable
+            key-field="id"
+            data={reports}
+            columns={reportColumns}
+            hide-checkbox-column
+            onrowaction={handleReportAction}
+          ></lightning-datatable>
+        </template>
+        <template if:false={hasReports}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucun rapport lié.</div>
+        </template>
+      </lightning-tab>
+      <lightning-tab label="Scouting Snapshots">
+        <template if:true={hasSnapshots}>
+          <lightning-datatable
+            key-field="id"
+            data={snapshots}
+            columns={snapshotColumns}
+            hide-checkbox-column
+            onrowaction={handleSnapshotAction}
+          ></lightning-datatable>
+        </template>
+        <template if:false={hasSnapshots}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucun snapshot lié.</div>
+        </template>
+      </lightning-tab>
+    </lightning-tabset>
+  </section>
+</template>

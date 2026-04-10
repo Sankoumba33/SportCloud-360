@@ -1,0 +1,47 @@
+<template>
+  <section class="slds-box slds-theme_default">
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-bottom_small">{errorMessage}</div>
+    </template>
+    <lightning-tabset>
+      <lightning-tab label="Overview">
+        <lightning-record-view-form record-id={recordId} object-api-name="MicrocycleDay__c">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="Microcycle__c"></lightning-output-field>
+              <lightning-output-field field-name="DayDate__c"></lightning-output-field>
+              <lightning-output-field field-name="Phase__c"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="TargetIntensity__c"></lightning-output-field>
+              <lightning-output-field field-name="PhysicalFocus__c"></lightning-output-field>
+              <lightning-output-field field-name="PlanningEvent__c"></lightning-output-field>
+            </div>
+          </div>
+        </lightning-record-view-form>
+      </lightning-tab>
+      <lightning-tab label="Athlete Links">
+        <template if:true={hasAthleteLinks}>
+          <lightning-datatable
+            key-field="id"
+            data={athleteLinks}
+            columns={athleteColumns}
+            hide-checkbox-column
+            onrowaction={handleAthleteAction}
+          ></lightning-datatable>
+        </template>
+        <template if:false={hasAthleteLinks}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucun athlete link.</div>
+        </template>
+      </lightning-tab>
+      <lightning-tab label="Planning Event">
+        <template if:true={hasPlanningEvent}>
+          <lightning-button variant="brand-outline" label={planningEventName} onclick={openPlanningEvent}></lightning-button>
+        </template>
+        <template if:false={hasPlanningEvent}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucun planning event lié.</div>
+        </template>
+      </lightning-tab>
+    </lightning-tabset>
+  </section>
+</template>

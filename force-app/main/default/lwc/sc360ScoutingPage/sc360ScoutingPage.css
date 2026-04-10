@@ -1,0 +1,40 @@
+:host {
+  display: block;
+}
+
+.page-shell {
+  min-height: 100%;
+}
+
+.sc360-page-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, #080b12 0%, #0a0e14 100%);
+}
+
+.sc360-tab {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid transparent;
+  border-bottom: none;
+  background: transparent;
+  color: #7f8ea3;
+  letter-spacing: 0.02em;
+}
+
+.sc360-tab:hover {
+  color: #f1f5f9;
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.sc360-tab--active {
+  color: #f1f5f9;
+  background: #111827;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -2px 0 #6366f1 inset;
+}

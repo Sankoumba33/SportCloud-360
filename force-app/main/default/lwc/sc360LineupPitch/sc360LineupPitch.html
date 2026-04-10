@@ -1,0 +1,48 @@
+<template>
+  <div class="topbar">
+    <div class="chips">
+      <span class="chip">Formation {compactFormationLabel}</span>
+      <span class="chip">Titulaires {startersCount}</span>
+      <span class="chip">Menaces {threatCount}</span>
+    </div>
+    <template if:true={showToggles}>
+      <div class="toggles">
+        <lightning-input type="toggle" variant="label-hidden" label="Afficher noms" message-toggle-active="Noms" message-toggle-inactive="Noms" checked onchange={handleToggleNames}></lightning-input>
+        <lightning-input type="toggle" variant="label-hidden" label="Afficher ratings" message-toggle-active="Ratings" message-toggle-inactive="Ratings" checked onchange={handleToggleRatings}></lightning-input>
+        <lightning-input type="toggle" variant="label-hidden" label="Highlight menace" message-toggle-active="Menaces" message-toggle-inactive="Menaces" checked onchange={handleToggleThreat}></lightning-input>
+      </div>
+    </template>
+  </div>
+
+  <div class="pitch">
+    <div class="center-circle"></div>
+    <template for:each={nodes} for:item="n">
+      <article key={n.key} class={n.cssClass} style={n.leftStyle} title={n.threatTags}>
+        <div class="badge">{n.pos}</div>
+        <template if:true={showNames}>
+          <div class="name" title={n.name}>{n.name}</div>
+        </template>
+        <template if:true={showRatings}>
+          <div class="rating">{n.rating}</div>
+        </template>
+        <template if:true={n.hasThreat}>
+          <div class="threat-dot"></div>
+        </template>
+      </article>
+    </template>
+  </div>
+
+  <template if:true={hasBench}>
+    <div class="bench">
+      <h3>Banc</h3>
+      <div class="bench-grid">
+        <template for:each={benchRows} for:item="b">
+          <article key={b.key} class="bench-item">
+            <span class="bench-name">{b.name}</span>
+            <span class="bench-meta">{b.position} · {b.minutes} min · {b.rating}</span>
+          </article>
+        </template>
+      </div>
+    </div>
+  </template>
+</template>

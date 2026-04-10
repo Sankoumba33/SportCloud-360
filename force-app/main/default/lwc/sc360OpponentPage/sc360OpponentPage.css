@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.hero {
+  background: linear-gradient(180deg, #0f1b33, #091222);
+  border: 1px solid rgba(120, 160, 255, 0.3);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  color: #f4f8ff;
+}
+
+.hero h1 {
+  margin: 0 0 0.3rem 0;
+  font-size: 1.2rem;
+}
+
+.hero p {
+  margin: 0.15rem 0;
+  color: #b9c8ea;
+}

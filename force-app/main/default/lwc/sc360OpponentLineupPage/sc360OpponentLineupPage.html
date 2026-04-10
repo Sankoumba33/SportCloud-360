@@ -1,0 +1,23 @@
+<template>
+  <section class="slds-p-around_small">
+    <lightning-tabset>
+      <lightning-tab label="Overview">
+        <lightning-record-view-form record-id={recordId} object-api-name="OpponentLineup__c">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="OpponentMatch__c"></lightning-output-field>
+              <lightning-output-field field-name="PlayerName__c"></lightning-output-field>
+              <lightning-output-field field-name="Position__c"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="Starter__c"></lightning-output-field>
+              <lightning-output-field field-name="Minutes__c"></lightning-output-field>
+              <lightning-output-field field-name="Rating__c"></lightning-output-field>
+              <lightning-output-field field-name="ThreatTags__c"></lightning-output-field>
+            </div>
+          </div>
+        </lightning-record-view-form>
+      </lightning-tab>
+    </lightning-tabset>
+  </section>
+</template>

@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.hero {
+  border-radius: 12px;
+  border: 1px solid rgba(130, 160, 255, 0.3);
+  padding: 0.9rem 1rem;
+  color: #f4f8ff;
+  background: linear-gradient(180deg, #0f1a31, #081120);
+}
+
+.hero.high,
+.hero.critical {
+  border-color: rgba(255, 95, 95, 0.5);
+  background: linear-gradient(180deg, #321018, #1f0a10);
+}
+
+.hero.medium {
+  border-color: rgba(255, 188, 68, 0.5);
+  background: linear-gradient(180deg, #2e220f, #1b140b);
+}
+
+.block {
+  margin: 0 0 0.8rem 0;
+  color: #d8e3fa;
+}

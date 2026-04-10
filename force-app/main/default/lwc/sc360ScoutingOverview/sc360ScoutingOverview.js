@@ -1,9 +1,11 @@
 import { LightningElement, wire } from 'lwc';
 import getOverview from '@salesforce/apex/SC360ScoutingController.getOverview';
+import getPipelineKanban from '@salesforce/apex/SC360ScoutingEnhancedController.getPipelineKanban';
 
 export default class Sc360ScoutingOverview extends LightningElement {
   overview;
   error;
+  kanbanData;
 
   @wire(getOverview)
   wiredOverview({ data, error }) {
@@ -13,6 +15,29 @@ export default class Sc360ScoutingOverview extends LightningElement {
     } else if (error) {
       this.error = error;
       this.overview = undefined;
+    }
+  }
+
+  @wire(getPipelineKanban)
+  wiredKanban({ data, error }) {
+    if (data) {
+      // Transform incoming Apex grouping into the format accepted by c-sc360-kanban
+      // Assuming c-sc360-kanban takes an array of items with a 'status' or 'lane' property.
+      let flattenedItems = [];
+      data.forEach(lane => {
+          if (lane.items) {
+              lane.items.forEach(item => {
+                  flattenedItems.push({
+                      id: item.id,
+                      title: item.title,
+                      subtitle: item.position || '',
+                      status: lane.status, // Link to lane via status value
+                      variant: 'info'
+                  });
+              });
+          }
+      });
+      this.kanbanData = flattenedItems;
     }
   }
 

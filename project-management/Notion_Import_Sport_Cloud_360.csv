@@ -1,0 +1,78 @@
+Nom,Epic,Sprint,Type,Priorité,Environnement,Statut,Doc_ref
+"Créer ou vérifier 6 enregistrements Squad__c",E1,S1,Données,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Créer ou vérifier 10 enregistrements Athlete__c",E1,S1,Données,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Créer ou vérifier 10 enregistrements Prospect__c",E1,S1,Données,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Créer ou vérifier 15 enregistrements SquadAssignment__c",E1,S1,Données,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Page layout Athlete__c : sections champs ordre",E1,S1,"Page layout",P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Page layout Prospect__c : sections champs ordre",E1,S1,"Page layout",P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Related lists visibles (affectations données externes rapports)",E1,S1,"Page layout",P2,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Lightning Record Pages : fiche détail et mobile",E1,S1,Flexipage,P2,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Tabs : objets Athlete Prospect exposés dans les apps",E1,S1,Onglet,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Apps Lightning Athlete_360 Scouting_360 Medical_360 Club_360 visibles tests",E1,S1,"App Lightning",P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Navigation : ordre onglets cohérent par app",E1,S1,"App Lightning",P2,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Déployer et assigner Permission Set SportCloud_Admin",E2,S1,"Permission Set",P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Déployer et assigner Permission Set Coach_Read",E2,S1,"Permission Set",P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Déployer et assigner Permission Set Scout_Editor",E2,S1,"Permission Set",P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Déployer et assigner Permission Set Recruiter_Editor",E2,S1,"Permission Set",P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Déployer et assigner Permission Set Planning_Editor",E2,S1,"Permission Set",P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"FLS : champs critiques par Permission Set",E2,S1,FLS,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"PlanningEvent__c créé : Event Salesforce créé",E3,S1,Flow,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"PlanningEvent__c MAJ : Event Salesforce MAJ",E3,S1,Flow,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"PlanningEvent__c supprimé : Event supprimé",E3,S1,Flow,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Conversion Prospect vers Athlete opérationnelle",E5,S1,Flow,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Règles de validation dates opérationnelles",E5,S1,Champ,P2,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Anti-chevauchement affectation si implémenté",E5,S1,Flow,P2,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Tests rôle Coach OK",E7,S1,QA,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Tests rôle Scout OK",E7,S1,QA,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Tests rôle Recruiter OK",E7,S1,QA,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"UAT script démo 8 étapes",E7,S1,QA,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Démo moins de 7 minutes sans blocker",E7,S1,QA,P1,Sandbox,À faire,Sprint1_Execution_Checklist.md
+"Source données API ou fichiers : token quotas",E4,S2,"Data Cloud",P1,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Fichiers mock athlete_features prospect_features alignés schéma",E4,S2,"Data Cloud",P1,Sandbox,À faire,data/sprint2/
+"External IDs alignés Athlete__c et Prospect__c ExternalId__c",E4,S2,Champ,P0,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Plan de refresh documenté intraday daily scouting",E4,S2,Doc,P2,Sandbox,À faire,Sprint2_DataCloud_Runbook.md
+"Features athlète readiness injury ACWR trends lake",E4,S2,"Data Cloud",P1,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Features scouting scores et data_confidence",E4,S2,"Data Cloud",P1,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"JSON snapshot FeaturesJson__c ScoutingFeaturesJson__c audit",E4,S2,Champ,P2,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Valider mapping Athlete vs CSV repo",E4,S2,"Data Cloud",P0,Sandbox,À faire,DataCloud_Activation_Mapping_Athlete.csv
+"Valider mapping Scouting vs CSV repo",E4,S2,"Data Cloud",P0,Sandbox,À faire,DataCloud_Activation_Mapping_Scouting.csv
+"Data Action upsert Athlete__c sans doublons",E4,S2,"Data Cloud",P0,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Data Action upsert Prospect__c sans doublons",E4,S2,"Data Cloud",P0,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Timestamps LastTrainingSync LastMatchSync LastDataCloudSync après activation",E4,S2,Champ,P1,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Prompts brouillon AthleteAgent summary et risk",E6,S2,"Prompt IA",P2,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Prompt brouillon ScoutingAgent recommendation",E6,S2,"Prompt IA",P2,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Flow alerte risque blessure élevé si pas reporté S3",E5,S2,Flow,P2,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Flow alerte ACWR hors plage si pas reporté S3",E5,S2,Flow,P2,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"5 athlètes cohérence features vers record Core",E7,S2,QA,P1,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"5 prospects cohérence scores vers record Core",E7,S2,QA,P1,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Alertes test cas positif et négatif",E7,S2,QA,P1,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"Démo moins 10 min 24h sans échec sync KPI Data Cloud",E7,S2,QA,P1,Sandbox,À faire,Sprint2_Execution_Checklist.md
+"ExternalId__c 100% athlètes cibles",E4,S3,Données,P0,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"ExternalId__c 100% prospects cibles",E4,S3,Données,P0,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Zéro doublon ExternalId__c athlète et prospect",E4,S3,Données,P0,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Data Action Athlete sans erreur fenêtre 24h",E4,S3,"Data Cloud",P0,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Data Action Prospect sans erreur fenêtre 24h",E4,S3,"Data Cloud",P0,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Flow injury actif InjuryRiskScore >= 75",E5,S3,Flow,P0,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Flow ACWR actif Acwr hors plage 1.5 ou 0.8",E5,S3,Flow,P0,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Notifications rôles Coach Medical Recruiter ou groupes",E5,S3,Flow,P1,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Dédoublonnage alertes anti spam 24h même athlète",E5,S3,Flow,P1,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Prompt Agentforce Athlete Summary Sprint3_PromptPack",E6,S3,"Prompt IA",P0,Sandbox,À faire,Sprint3_PromptPack.md
+"Prompt Agentforce Risk Alert Sprint3_PromptPack",E6,S3,"Prompt IA",P0,Sandbox,À faire,Sprint3_PromptPack.md
+"Prompt Agentforce Scouting Recommendation Sprint3_PromptPack",E6,S3,"Prompt IA",P0,Sandbox,À faire,Sprint3_PromptPack.md
+"Paramètres IA température tokens grounding champs Core",E6,S3,"Prompt IA",P1,Sandbox,À faire,Sprint3_PromptPack.md
+"Inputs outputs prompts documentés fallback champs manquants",E6,S3,Doc,P1,Sandbox,À faire,Sprint3_PromptPack.md
+"Dashboard latence sync échecs couverture",E7,S3,Doc,P1,Sandbox,À faire,Sprint3_AI_Automation_Runbook.md
+"KPI LastDataCloudSync__c athlète et prospect",E7,S3,QA,P1,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Procédure incident replay event ré-ingestion",E7,S3,Doc,P1,Sandbox,À faire,Sprint3_AI_Automation_Runbook.md
+"Runbook testé par autre membre équipe",E7,S3,QA,P2,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"5 cas athlète scores trend alertes",E7,S3,QA,P1,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"5 cas prospect scores summary confidence",E7,S3,QA,P1,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Cas négatif external id absent pas de MAJ",E7,S3,QA,P1,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Cas limites nulls bornes extrêmes",E7,S3,QA,P1,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Démo moins 10 min 0 blocker P1 P2 storyline DC Event Core IA",E7,S3,QA,P0,Sandbox,À faire,Sprint3_Execution_Checklist.md
+"Déployer force-app sf project deploy source-dir force-app",E1,S4,Déploiement,P1,Sandbox,À faire,Sprint4_UI_Revamp_Runbook.md
+"Lightning Record Page Athlete__c sc360AthletePage ou sc360App",E1,S4,Flexipage,P1,Sandbox,À faire,Sprint4_UI_Revamp_Runbook.md
+"Thème darkPro lightMinimal ou neonSport",E1,S4,Flexipage,P2,Sandbox,À faire,Sprint4_UI_Revamp_Runbook.md
+"Vérifier LWC sc360 suite header kpi chart timeline ai kanban",E1,S4,Flexipage,P2,Sandbox,À faire,Sprint4_UI_Revamp_Runbook.md
+"Storyboard démo 45s hero KPIs charts timeline AI documents",E7,S4,QA,P2,Sandbox,À faire,Sprint4_UI_Revamp_Runbook.md
+"Capture vidéo finale script PowerShell runbook",E7,S4,QA,P2,Sandbox,À faire,Sprint4_UI_Revamp_Runbook.md

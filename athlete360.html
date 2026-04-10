@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athlete 360 - Sports Intelligence Cloud</title>
+    <link rel="stylesheet" href="athlete360.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-layout">
+        
+        <!-- MAIN CONTENT (Left Side) -->
+        <main class="main-content">
+            
+            <!-- 1. HERO ATHLETE -->
+            <section class="hero-athlete animated-entrance delay-1">
+                <div class="hero-left">
+                    <div class="athlete-photo">
+                        <!-- Placeholder pour la photo -->
+                        <div class="photo-placeholder"><i class="fa-solid fa-user"></i></div>
+                    </div>
+                    <div class="athlete-info">
+                        <h1 class="athlete-name">Marcus Rashford</h1>
+                        <div class="athlete-meta">
+                            <span class="meta-tag position">Attaquant (Ailier)</span>
+                            <span class="meta-tag age">26 ans</span>
+                        </div>
+                        <div class="status-badge warning">
+                            <i class="fa-solid fa-circle"></i> À surveiller
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-right">
+                    <div class="next-match-countdown">
+                        <span class="label">Prochain Match (J-2)</span>
+                        <div class="countdown-value">vs Arsenal <br> <span>Dim. 17:30</span></div>
+                    </div>
+                    <div class="readiness-score warning-glow">
+                        <div class="circle-progress">
+                            <span class="score-value">72</span>
+                            <span class="score-label">Readiness</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. KPI STRIP (6 KPIs max) -->
+            <section class="kpi-strip animated-entrance delay-2">
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-regular fa-clock"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val">180<small>m</small></span>
+                        <span class="kpi-title">Minutes (7j)</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val">4.2<small>k</small></span>
+                        <span class="kpi-title">Charge Hebdo</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val danger-text">850<small>m</small></span>
+                        <span class="kpi-title">HID (>19.8km/h)</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val">32</span>
+                        <span class="kpi-title">Sprints (>25km/h)</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val">34.1<small>km/h</small></span>
+                        <span class="kpi-title">Vitesse Max</span>
+                    </div>
+                </div>
+                <div class="kpi-card ratio-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val warning-text">1.15</span>
+                        <span class="kpi-title">Ratio ACWR</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. ONGLETS PRINCIPAUX -->
+            <section class="tabs-section animated-entrance delay-3">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-target="tab-performance">Performance</button>
+                    <button class="tab-btn" data-target="tab-microcycle">Microcycle</button>
+                    <button class="tab-btn" data-target="tab-match">Match</button>
+                    <button class="tab-btn" data-target="tab-medical">Médical</button>
+                </div>
+
+                <div class="tabs-container">
+                    
+                    <!-- ONGLET 1: Performance -->
+                    <div id="tab-performance" class="tab-content active">
+                        <div class="panel-grid-2">
+                            <div class="content-panel">
+                                <h3 class="panel-title">Courbe de charge dynamique</h3>
+                                <div class="chart-mockup">
+                                    <svg viewBox="0 0 100 40" preserveAspectRatio="none" class="mock-line-chart">
+                                        <path d="M0,35 Q10,15 20,20 T40,10 T60,25 T80,5 T100,15" fill="none" class="line-path"/>
+                                        <path d="M0,30 L100,30" stroke="rgba(255,255,255,0.1)" stroke-dasharray="2" fill="none" stroke-width="0.5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="content-panel">
+                                <h3 class="panel-title">Répartition par zones (vs Référence)</h3>
+                                <div class="chart-mockup bars">
+                                    <div class="bar-group"><div class="bar-fill z1" style="height:80%"></div><span class="bar-label">Z1</span></div>
+                                    <div class="bar-group"><div class="bar-fill z2" style="height:60%"></div><span class="bar-label">Z2</span></div>
+                                    <div class="bar-group"><div class="bar-fill z3" style="height:40%"></div><span class="bar-label">Z3</span></div>
+                                    <div class="bar-group"><div class="bar-fill z4" style="height:90%"></div><span class="bar-label">Z4</span></div>
+                                    <div class="bar-group"><div class="bar-fill z5 danger" style="height:110%"></div><span class="bar-label">Z5</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 2: Microcycle -->
+                    <div id="tab-microcycle" class="tab-content">
+                        <div class="content-panel">
+                            <h3 class="panel-title">Suivi Journalier (MD+1 → MD-1)</h3>
+                            <div class="microcycle-timeline">
+                                <!-- Day Items -->
+                                <div class="mc-day past complete">
+                                    <span class="mc-label">MD+1</span>
+                                    <div class="mc-circle"><i class="fa-solid fa-check"></i></div>
+                                    <span class="mc-focus">Récup</span>
+                                </div>
+                                <div class="mc-day past complete">
+                                    <span class="mc-label">MD-5</span>
+                                    <div class="mc-circle off">OFF</div>
+                                    <span class="mc-focus">-</span>
+                                </div>
+                                <div class="mc-day past warning">
+                                    <span class="mc-label">MD-4</span>
+                                    <div class="mc-circle"><i class="fa-solid fa-exclamation"></i></div>
+                                    <span class="mc-focus danger-text">Intensif (+15%)</span>
+                                </div>
+                                <div class="mc-day today">
+                                    <span class="mc-label">MD-3 (Auj.)</span>
+                                    <div class="mc-circle pulse">...</div>
+                                    <span class="mc-focus text-primary">Terrain & Gym</span>
+                                </div>
+                                <div class="mc-day future">
+                                    <span class="mc-label">MD-2</span>
+                                    <div class="mc-circle empty"></div>
+                                    <span class="mc-focus">Tactique</span>
+                                </div>
+                                <div class="mc-day future">
+                                    <span class="mc-label">MD-1</span>
+                                    <div class="mc-circle empty"></div>
+                                    <span class="mc-focus">Activation</span>
+                                </div>
+                            </div>
+                            <div class="mc-legend">
+                                <span><i class="fa-solid fa-circle text-primary"></i> Conforme</span>
+                                <span><i class="fa-solid fa-circle text-warning"></i> Surcharge mineure</span>
+                                <span><i class="fa-solid fa-circle text-danger"></i> Risque d'alarme</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 3: Match -->
+                    <div id="tab-match" class="tab-content">
+                        <div class="panel-grid-2">
+                            <div class="content-panel">
+                                <h3 class="panel-title">Dernier Match (vs Chelsea)</h3>
+                                <div class="match-stats">
+                                    <div class="ms-row"><span>Minutes</span> <span>88'</span></div>
+                                    <div class="ms-row"><span>Distance</span> <span>10.4 km</span></div>
+                                    <div class="ms-row warning-text"><span>Sprints utiles</span> <span>42 (Moy: 35)</span></div>
+                                </div>
+                            </div>
+                            <div class="content-panel">
+                                <h3 class="panel-title">Extraits Vidéos (Placements tactiques)</h3>
+                                <div class="video-grid">
+                                    <div class="video-placeholder"><i class="fa-solid fa-play"></i><span>Action 1</span></div>
+                                    <div class="video-placeholder"><i class="fa-solid fa-play"></i><span>Action 2</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 4: Médical -->
+                    <div id="tab-medical" class="tab-content">
+                        <div class="content-panel border-danger">
+                            <h3 class="panel-title">Statut & Historique</h3>
+                            <div class="med-history">
+                                <div class="history-item">
+                                    <div class="hi-date">Il y a 3 mois</div>
+                                    <div class="hi-desc">
+                                        <strong>Lésion Ischio-jambiers (Grade 1)</strong>
+                                        <p>Indisponibilité : 14 jours. Reprise validée.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="med-alert">
+                                <i class="fa-solid fa-triangle-exclamation danger-text"></i>
+                                <p>La charge actuelle en sprints élevés (Zone 5) augmente le risque de récidive ischio. Surveillance requise à J-2.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
+        <!-- 4. PANNEAU IA (Sidebar Sticky) -->
+        <aside class="ai-panel animated-entrance delay-4">
+            <div class="ai-header">
+                <i class="fa-solid fa-robot"></i>
+                <h2>Insights IA</h2>
+            </div>
+            
+            <div class="ai-content">
+                <div class="ai-box summary">
+                    <h4>Résumé de la semaine</h4>
+                    <p>Joueur très sollicité sur le cycle précédent. Le ratio ACWR indique un pic (1.15).</p>
+                </div>
+
+                <div class="ai-box anomalie border-warning">
+                    <h4>Détection d'anomalie</h4>
+                    <p>Le nombre de sprints en MD-4 est de <strong class="warning-text">20% supérieur</strong> à la norme du poste (Ailier) pour ce joueur.</p>
+                </div>
+
+                <div class="ai-actions">
+                    <h4>Recommandations Décisionnelles</h4>
+                    <ul class="action-list">
+                        <li class="action-item decrease">
+                            <i class="fa-solid fa-arrow-trend-down"></i> Réduire intensité (MD-2)
+                        </li>
+                        <li class="action-item observe">
+                            <i class="fa-solid fa-eye"></i> Surveiller ischio droit
+                        </li>
+                        <li class="action-item maintient">
+                            <i class="fa-solid fa-scale-balanced"></i> Maintenir temps de jeu
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="ai-footer">
+                <button class="btn-primary">Générer rapport PDF</button>
+            </div>
+        </aside>
+
+    </div>
+    
+    <script src="athlete360.js"></script>
+</body>
+</html>

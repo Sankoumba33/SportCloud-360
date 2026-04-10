@@ -1,0 +1,299 @@
+<template>
+  <template lwc:if={isPreviewWithoutRecord}>
+    <div class="preview-hint">
+      <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+      <span>Place ce composant sur une record page Athlete (recordId requis).</span>
+    </div>
+  </template>
+
+  <template lwc:else>
+    <template lwc:if={wireError}>
+      <div class="wire-error-banner" role="alert">
+        <lightning-icon icon-name="utility:error" size="small" class="wire-error-banner__icon"></lightning-icon>
+        <span>{wireError}</span>
+      </div>
+    </template>
+    <template lwc:elseif={showWireLoading}>
+      <div class="wire-loading">
+        <lightning-spinner alternative-text="Chargement" size="medium"></lightning-spinner>
+      </div>
+    </template>
+    <template lwc:else>
+    <div class="app-layout">
+      <main class="main-content">
+        <section class="hero-athlete animated-entrance delay-1">
+          <div class="hero-left">
+            <div class="athlete-photo">
+              <template lwc:if={hero.photoUrl}>
+                <img class="athlete-photo__img" src={hero.photoUrl} alt={hero.athleteName} loading="lazy" />
+              </template>
+              <template lwc:else>
+                <div class="photo-placeholder">
+                  <lightning-icon icon-name="standard:person_account" size="large"></lightning-icon>
+                </div>
+              </template>
+            </div>
+            <div class="athlete-info">
+              <h1 class="athlete-name">{hero.athleteName}</h1>
+              <div class="athlete-meta">
+                <span class="meta-tag position">{hero.positionLabel}</span>
+                <span class="meta-tag age">{hero.ageLabel}</span>
+              </div>
+              <div class={hero.statusBadgeClass}>
+                <span class="status-dot" aria-hidden="true"></span>
+                {hero.statusLabel}
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="next-match-countdown">
+              <span class="label">{hero.nextMatchLabel}</span>
+              <div class="countdown-value">
+                {hero.matchTitle} <br />
+                <span>{hero.matchTime}</span>
+              </div>
+            </div>
+            <div class={readinessCircleClass}>
+              <div class="circle-progress">
+                <span class="score-value">{readinessDisplay}</span>
+                <span class="score-label">Readiness</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="kpi-strip animated-entrance delay-2">
+          <template for:each={kpis} for:item="kpi">
+            <div key={kpi.id} class={kpi.cardClass}>
+              <div class="kpi-icon">
+                <lightning-icon icon-name={kpi.iconName} size="small"></lightning-icon>
+              </div>
+              <div class="kpi-data">
+                <span class={kpi.valClass}>
+                  {kpi.valueMain}<small>{kpi.valueUnit}</small>
+                </span>
+                <span class="kpi-title">{kpi.title}</span>
+              </div>
+            </div>
+          </template>
+        </section>
+
+        <section class="tabs-section animated-entrance delay-3">
+          <div class="tabs-nav">
+            <template for:each={tabDefs} for:item="tab">
+              <button
+                key={tab.id}
+                type="button"
+                class={tab.buttonClass}
+                data-tabid={tab.id}
+                aria-selected={tab.isActive}
+                onclick={handleTabClick}
+              >
+                {tab.label}
+              </button>
+            </template>
+          </div>
+
+          <div class="tabs-container">
+            <template lwc:if={isPerformanceTab}>
+              <div class="tab-content tab-content--visible" role="tabpanel">
+                <div class="panel-grid-2">
+                  <div class="content-panel">
+                    <h3 class="panel-title">Courbe de charge dynamique</h3>
+                    <template lwc:if={hasLoadChart}>
+                      <c-sc360-chart-card
+                        title=""
+                        type="line"
+                        series={loadSeries}
+                      ></c-sc360-chart-card>
+                    </template>
+                    <template lwc:else>
+                      <div class="chart-empty" aria-live="polite">Aucune donnée.</div>
+                    </template>
+                  </div>
+                  <div class="content-panel">
+                    <h3 class="panel-title">Répartition par zones (vs référence)</h3>
+                    <template lwc:if={hasZoneChart}>
+                      <c-sc360-chart-card
+                        title=""
+                        type="bar"
+                        series={zoneSeries}
+                      ></c-sc360-chart-card>
+                    </template>
+                    <template lwc:else>
+                      <div class="chart-empty" aria-live="polite">Aucune donnée.</div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </template>
+
+            <template lwc:if={isMicrocycleTab}>
+              <div class="tab-content tab-content--visible" role="tabpanel">
+                <div class="content-panel">
+                  <h3 class="panel-title">Suivi journalier (MD+1 → MD-1)</h3>
+                  <template lwc:if={hasMicrocycleDays}>
+                  <div class="microcycle-timeline">
+                    <template for:each={microcycleDays} for:item="day">
+                      <div key={day.id} class={day.dayClass}>
+                        <span class="mc-label">{day.label}</span>
+                        <template lwc:if={day.circleKindIcon}>
+                          <div class="mc-circle">
+                            <lightning-icon icon-name={day.iconName} size="xx-small"></lightning-icon>
+                          </div>
+                        </template>
+                        <template lwc:if={day.circleKindOff}>
+                          <div class="mc-circle off">{day.offText}</div>
+                        </template>
+                        <template lwc:if={day.circleKindPulse}>
+                          <div class="mc-circle pulse">...</div>
+                        </template>
+                        <template lwc:if={day.circleKindEmpty}>
+                          <div class="mc-circle empty"></div>
+                        </template>
+                        <span class={day.focusWrapClass}>
+                          <span class={day.focusClass}>{day.focus}</span>
+                        </span>
+                      </div>
+                    </template>
+                  </div>
+                  </template>
+                  <template lwc:else>
+                    <div class="chart-empty">Aucun jour de microcycle lié à cet athlète.</div>
+                  </template>
+                  <div class="mc-legend">
+                    <span
+                      ><lightning-icon icon-name="utility:success" size="xx-small" class="legend-icon legend-icon--ok"></lightning-icon>
+                      Conforme</span
+                    >
+                    <span
+                      ><lightning-icon icon-name="utility:warning" size="xx-small" class="legend-icon legend-icon--warn"></lightning-icon>
+                      Surcharge mineure</span
+                    >
+                    <span
+                      ><lightning-icon icon-name="utility:error" size="xx-small" class="legend-icon legend-icon--danger"></lightning-icon>
+                      Risque d'alarme</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </template>
+
+            <template lwc:if={isMatchTab}>
+              <div class="tab-content tab-content--visible" role="tabpanel">
+                <div class="panel-grid-2">
+                  <div class="content-panel">
+                    <h3 class="panel-title">Statistiques match (fenêtre glissante)</h3>
+                    <div class="match-stats">
+                      <template for:each={matchStatRows} for:item="row">
+                        <div key={row.id} class={row.rowClass}>
+                          <span>{row.label}</span> <span>{row.value}</span>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                  <div class="content-panel">
+                    <h3 class="panel-title">Extraits vidéo</h3>
+                    <template lwc:if={hasVideoClips}>
+                      <div class="video-grid">
+                        <template for:each={videoClips} for:item="vid">
+                          <div key={vid.id} class="video-placeholder">
+                            <lightning-icon icon-name="utility:play" size="small"></lightning-icon>
+                            <span>{vid.label}</span>
+                          </div>
+                        </template>
+                      </div>
+                    </template>
+                    <template lwc:else>
+                      <div class="chart-empty">Aucun extrait renseigné.</div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </template>
+
+            <template lwc:if={isMedicalTab}>
+              <div class="tab-content tab-content--visible" role="tabpanel">
+                <div class={medicalPanelClass}>
+                  <h3 class="panel-title">Statut &amp; historique</h3>
+                  <template lwc:if={hasMedicalContent}>
+                    <div class="med-history">
+                      <template for:each={medicalHistory} for:item="hi">
+                        <div key={hi.id} class="history-item">
+                          <div class="hi-date">{hi.dateLabel}</div>
+                          <div class="hi-desc">
+                            <strong>{hi.title}</strong>
+                            <p>{hi.body}</p>
+                          </div>
+                        </div>
+                      </template>
+                    </div>
+                    <template lwc:if={medicalAlert}>
+                      <div class="med-alert">
+                        <lightning-icon icon-name="utility:warning" size="small" class="med-alert__icon danger-text"></lightning-icon>
+                        <p>{medicalAlert}</p>
+                      </div>
+                    </template>
+                  </template>
+                  <template lwc:else>
+                    <div class="chart-empty">Aucune donnée médicale (risques / alertes) sur l’athlète.</div>
+                  </template>
+                </div>
+              </div>
+            </template>
+          </div>
+        </section>
+      </main>
+
+      <aside class="ai-panel animated-entrance delay-4">
+        <div class="ai-header">
+          <lightning-icon icon-name="utility:sparkles" size="medium" class="ai-header__icon"></lightning-icon>
+          <h2>Insights IA</h2>
+        </div>
+
+        <div class="ai-content">
+          <template lwc:if={hasAiSummary}>
+            <div class="ai-box summary">
+              <template lwc:if={aiSummaryTitle}>
+                <h4>{aiSummaryTitle}</h4>
+              </template>
+              <p>{aiSummaryBody}</p>
+            </div>
+          </template>
+          <template lwc:else>
+            <div class="chart-empty">Aucun résumé IA.</div>
+          </template>
+
+          <template lwc:if={hasAiAnomaly}>
+            <div class={aiAnomalyBorderClass}>
+              <template lwc:if={aiAnomalyTitle}>
+                <h4>{aiAnomalyTitle}</h4>
+              </template>
+              <p>{aiAnomalyBody}</p>
+            </div>
+          </template>
+
+          <template lwc:if={hasAiActions}>
+            <div class="ai-actions">
+              <h4>{aiActionsTitle}</h4>
+              <ul class="action-list">
+                <template for:each={aiActionItems} for:item="act">
+                  <li key={act.id} class={act.itemClass}>
+                    <lightning-icon icon-name={act.iconName} size="xx-small"></lightning-icon>
+                    {act.label}
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </template>
+        </div>
+
+        <div class="ai-footer">
+          <button type="button" class="btn-primary" onclick={handleGeneratePdf}>Générer rapport PDF</button>
+        </div>
+      </aside>
+    </div>
+    </template>
+  </template>
+</template>

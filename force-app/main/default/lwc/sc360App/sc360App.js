@@ -4,7 +4,7 @@ import getAthlete360 from '@salesforce/apex/SC360DashboardController.getAthlete3
 export default class Sc360App extends LightningElement {
   @api recordId;
   @api pageType = 'athlete';
-  @api theme = 'reset';
+  @api theme = 'avironBayonnais';
 
   dashboard;
   error;
@@ -25,6 +25,9 @@ export default class Sc360App extends LightningElement {
   }
 
   get themeClass() {
+    if (this.theme === 'avironBayonnais') {
+      return 'theme-aviron';
+    }
     if (this.theme === 'lightMinimal') {
       return 'theme-light';
     }
@@ -34,7 +37,10 @@ export default class Sc360App extends LightningElement {
     if (this.theme === 'darkPro') {
       return 'theme-dark';
     }
-    return 'theme-reset';
+    if (this.theme === 'reset') {
+      return 'theme-reset';
+    }
+    return 'theme-aviron';
   }
 
   get pageLabel() {

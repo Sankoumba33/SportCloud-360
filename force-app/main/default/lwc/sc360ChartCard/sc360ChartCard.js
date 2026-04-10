@@ -8,19 +8,57 @@ export default class Sc360ChartCard extends LightningElement {
   @api series = [];
 
   chart;
-  hasLoaded = false;
+  _scriptLoaded = false;
+  _lastSeriesSig = '';
+  _loadPromise;
+
+  connectedCallback() {
+    this._loadPromise = loadScript(this, CHART_JS_LOADER)
+      .then(() => this.waitForChart(0))
+      .then(() => {
+        this._scriptLoaded = true;
+        return true;
+      })
+      .catch(() => {
+        this._scriptLoaded = false;
+      });
+  }
+
+  disconnectedCallback() {
+    this.destroyChart();
+  }
 
   renderedCallback() {
-    if (this.hasLoaded) {
+    if (!this._loadPromise) {
       return;
     }
-    this.hasLoaded = true;
-    loadScript(this, CHART_JS_LOADER)
-      .then(() => this.waitForChart(0))
-      .then(() => this.buildChart())
-      .catch(() => {
-        this.hasLoaded = false;
-      });
+    this._loadPromise.then(() => this.syncChart());
+  }
+
+  syncChart() {
+    if (!this._scriptLoaded || !window.Chart) {
+      return;
+    }
+    const series = this.series || [];
+    const sig = JSON.stringify(
+      series.map((p) => ({ label: p?.label, value: p?.value }))
+    );
+    if (sig === this._lastSeriesSig && this.chart) {
+      return;
+    }
+    this._lastSeriesSig = sig;
+    this.destroyChart();
+    if (!series.length) {
+      return;
+    }
+    this.buildChart();
+  }
+
+  destroyChart() {
+    if (this.chart) {
+      this.chart.destroy();
+      this.chart = null;
+    }
   }
 
   waitForChart(iteration) {
@@ -47,9 +85,20 @@ export default class Sc360ChartCard extends LightningElement {
 
     const labels = (this.series || []).map((point) => point.label);
     const values = (this.series || []).map((point) => Number(point.value || 0));
-    const gradient = canvas.getContext('2d').createLinearGradient(0, 0, 0, 180);
-    gradient.addColorStop(0, 'rgba(106,149,255,0.52)');
-    gradient.addColorStop(1, 'rgba(106,149,255,0.06)');
+    const isBar = this.type === 'bar';
+    const ctx = canvas.getContext('2d');
+
+    let backgroundColor;
+    if (isBar) {
+      backgroundColor = values.map((_, i) =>
+        i === values.length - 1 ? 'rgba(239,68,68,0.55)' : 'rgba(106,149,255,0.5)'
+      );
+    } else {
+      const gradient = ctx.createLinearGradient(0, 0, 0, 180);
+      gradient.addColorStop(0, 'rgba(106,149,255,0.52)');
+      gradient.addColorStop(1, 'rgba(106,149,255,0.06)');
+      backgroundColor = gradient;
+    }
 
     this.chart = new window.Chart(canvas, {
       type: this.type,
@@ -59,10 +108,10 @@ export default class Sc360ChartCard extends LightningElement {
           {
             data: values,
             borderColor: '#6a95ff',
-            backgroundColor: gradient,
-            fill: true,
-            borderWidth: 2,
-            tension: 0.36
+            backgroundColor,
+            fill: !isBar,
+            borderWidth: isBar ? 0 : 2,
+            tension: isBar ? 0 : 0.36
           }
         ]
       },
@@ -70,7 +119,7 @@ export default class Sc360ChartCard extends LightningElement {
         responsive: true,
         maintainAspectRatio: false,
         animation: {
-          duration: 1000
+          duration: 800
         },
         plugins: {
           legend: { display: false }

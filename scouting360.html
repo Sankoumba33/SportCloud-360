@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scouting 360 - Sports Intelligence Cloud</title>
+    <link rel="stylesheet" href="scouting360.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-layout">
+        
+        <main class="main-content">
+            
+            <!-- 1. HERO PROSPECT -->
+            <section class="hero-prospect animated-entrance delay-1">
+                <div class="hero-left">
+                    <div class="prospect-photo">
+                        <div class="photo-placeholder"><i class="fa-solid fa-user-secret"></i></div>
+                    </div>
+                    <div class="prospect-info">
+                        <h1 class="prospect-name">Elias Benaissa</h1>
+                        <div class="prospect-meta">
+                            <span class="meta-tag position">Milieu Défensif (N°6)</span>
+                            <span class="meta-tag age">21 ans</span>
+                            <span class="meta-tag foot">Pied Droit</span>
+                            <span class="meta-tag club"><i class="fa-solid fa-shield-halved"></i> FC Annecy</span>
+                        </div>
+                        <div class="status-tags">
+                            <div class="status-badge priority">
+                                <i class="fa-solid fa-star"></i> Cible Prioritaire
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-right">
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary"><i class="fa-solid fa-pen"></i> Rapport</button>
+                        <button class="btn btn-secondary"><i class="fa-solid fa-scale-balanced"></i> Comparer</button>
+                        <button class="btn btn-primary"><i class="fa-solid fa-bookmark"></i> Shortlist</button>
+                    </div>
+                    <div class="potential-score success-glow">
+                        <div class="circle-progress">
+                            <span class="score-value">84</span>
+                            <span class="score-label">Potentiel</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. KPI STRIP (6 KPIs max) -->
+            <section class="kpi-strip animated-entrance delay-2">
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-regular fa-clock"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val">1840<small>m</small></span>
+                        <span class="kpi-title">Temps de jeu (Saison)</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-fire"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val text-success">Haute</span>
+                        <span class="kpi-title">Intensité Moyenne</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val">6.2</span>
+                        <span class="kpi-title">Récupérations / M</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val">18</span>
+                        <span class="kpi-title">Sprints / M</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val">33.2<small>km/h</small></span>
+                        <span class="kpi-title">Vitesse Max</span>
+                    </div>
+                </div>
+                <div class="kpi-card scouting-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-eye text-primary"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val text-primary">7.8<small>/10</small></span>
+                        <span class="kpi-title">Score Scouting</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. ONGLETS PRINCIPAUX -->
+            <section class="tabs-section animated-entrance delay-3">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-target="tab-profile">Profil & Perf</button>
+                    <button class="tab-btn" data-target="tab-match">Matchs & Vidéos</button>
+                    <button class="tab-btn" data-target="tab-compare">Comparaison</button>
+                    <button class="tab-btn" data-target="tab-reports">Rapports Scouts</button>
+                    <button class="tab-btn" data-target="tab-ai">Projection & IA</button>
+                </div>
+
+                <div class="tabs-container">
+                    
+                    <!-- ONGLET 1: Profil & Performance -->
+                    <div id="tab-profile" class="tab-content active">
+                        <div class="panel-grid-2">
+                            <div class="content-panel">
+                                <h3 class="panel-title">Radar de Compétences (vs N°6 L2 Moyen)</h3>
+                                <div class="radar-mockup">
+                                    <!-- Représentation CSS d'un Radar Chart Mockup pour le prototype -->
+                                    <div class="radar-background">
+                                        <div class="radar-polygon target"></div>
+                                        <div class="radar-polygon current"></div>
+                                        <span class="radar-label top">Jeu Aérien</span>
+                                        <span class="radar-label top-right">Relance</span>
+                                        <span class="radar-label bot-right">Tacles</span>
+                                        <span class="radar-label bot">Placement</span>
+                                        <span class="radar-label bot-left">Vitesse</span>
+                                        <span class="radar-label top-left">Volume (km)</span>
+                                    </div>
+                                    <div class="radar-legend">
+                                        <span><span class="dot current-dot"></span> Benaissa</span>
+                                        <span><span class="dot target-dot"></span> Moyenne L2</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-panel">
+                                <h3 class="panel-title">Stats Clés (Saison)</h3>
+                                <div class="stats-list">
+                                    <div class="stat-row"><span>Passes vers l'avant réussies</span> <span class="badge success">88%</span></div>
+                                    <div class="stat-row"><span>Duels aériens gagnés</span> <span class="badge warning">54%</span></div>
+                                    <div class="stat-row"><span>Interceptions p/ 90m</span> <span class="badge success">4.1</span></div>
+                                    <div class="stat-row"><span>Pertes de balle p/ 90m</span> <span class="badge success">1.2</span></div>
+                                    <div class="stat-row"><span>Fautes commises p/ 90m</span> <span class="badge danger">2.8</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 2: Matchs & Vidéo -->
+                    <div id="tab-match" class="tab-content">
+                        <div class="panel-grid-2">
+                            <div class="content-panel">
+                                <h3 class="panel-title">Derniers Matchs Observés</h3>
+                                <div class="match-list">
+                                    <div class="match-item">
+                                        <div class="mi-date">10 Nov.</div>
+                                        <div class="mi-desc"><strong>vs FC Sochaux</strong> (Extérieur)</div>
+                                        <div class="mi-grade text-success">8.0</div>
+                                    </div>
+                                    <div class="match-item">
+                                        <div class="mi-date">03 Nov.</div>
+                                        <div class="mi-desc"><strong>vs Nîmes</strong> (Domicile)</div>
+                                        <div class="mi-grade text-warning">6.5</div>
+                                    </div>
+                                    <div class="match-item">
+                                        <div class="mi-date">28 Oct.</div>
+                                        <div class="mi-desc"><strong>vs Dijon</strong> (Extérieur)</div>
+                                        <div class="mi-grade text-success">7.5</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-panel">
+                                <h3 class="panel-title">Playlist Vidéo (Extraits)</h3>
+                                <div class="video-grid">
+                                    <div class="video-placeholder"><i class="fa-solid fa-play"></i><span>Relances sous pression</span></div>
+                                    <div class="video-placeholder"><i class="fa-solid fa-play"></i><span>Duels défensifs isolés</span></div>
+                                    <div class="video-placeholder"><i class="fa-solid fa-play"></i><span>Pertes de balle</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 3: Comparaison -->
+                    <div id="tab-compare" class="tab-content">
+                        <div class="content-panel">
+                            <h3 class="panel-title">Prospect vs Titulaire Actuel (M. Diop)</h3>
+                            <div class="compare-container">
+                                <div class="compare-row">
+                                    <span class="c-label">Volume de jeu (km / 90m)</span>
+                                    <div class="c-bars">
+                                        <div class="c-bar left"><span class="c-val text-success">E. Benaissa (11.2)</span><div class="cb-fill success-bg" style="width: 80%"></div></div>
+                                        <div class="c-bar right"><div class="cb-fill base-bg" style="width: 65%"></div><span class="c-val">M. Diop (9.5)</span></div>
+                                    </div>
+                                </div>
+                                <div class="compare-row">
+                                    <span class="c-label">Passes progressives (/ 90m)</span>
+                                    <div class="c-bars">
+                                        <div class="c-bar left"><span class="c-val">E. Benaissa (18)</span><div class="cb-fill base-bg" style="width: 60%"></div></div>
+                                        <div class="c-bar right"><div class="cb-fill success-bg" style="width: 85%"></div><span class="c-val text-success">M. Diop (24)</span></div>
+                                    </div>
+                                </div>
+                                <div class="compare-row">
+                                    <span class="c-label">Taux de duels gagnés</span>
+                                    <div class="c-bars">
+                                        <div class="c-bar left"><span class="c-val text-success">E. Benaissa (68%)</span><div class="cb-fill success-bg" style="width: 90%"></div></div>
+                                        <div class="c-bar right"><div class="cb-fill base-bg" style="width: 70%"></div><span class="c-val">M. Diop (58%)</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 4: Rapports Scouts -->
+                    <div id="tab-reports" class="tab-content">
+                        <div class="content-panel">
+                            <h3 class="panel-title">Timeline Qualitative</h3>
+                            <div class="scout-timeline">
+                                <div class="scout-report">
+                                    <div class="sr-header">
+                                        <span class="sr-author"><i class="fa-solid fa-user-tie"></i> M. Dubois (Chief Scout)</span>
+                                        <span class="sr-date">11 Nov. 2026</span>
+                                    </div>
+                                    <div class="sr-tags">
+                                        <span class="tag pos">Lecture du jeu</span>
+                                        <span class="tag pos">Grinta</span>
+                                        <span class="tag neg">Jeu de tête</span>
+                                    </div>
+                                    <p class="sr-text">Excellente prestation. A complètement éteint le meneur de jeu adverse. Très agressif sur le porteur, mais serein dans la relance courte. Manque encore un peu d'allonge sur le jeu long.</p>
+                                </div>
+                                <div class="scout-report">
+                                    <div class="sr-header">
+                                        <span class="sr-author"><i class="fa-solid fa-laptop-code"></i> J. Leroy (Data Scout)</span>
+                                        <span class="sr-date">04 Nov. 2026</span>
+                                    </div>
+                                    <div class="sr-tags">
+                                        <span class="tag pos">Intensité athlétique</span>
+                                    </div>
+                                    <p class="sr-text">Les données physiques crèvent le plafond sur ses 5 derniers matchs. Son volume de course à haute intensité lui permet de colmater les brèches au milieu très rapidement.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 5: Projection & IA -->
+                    <div id="tab-ai" class="tab-content">
+                        <div class="panel-grid-2">
+                             <div class="content-panel border-bot">
+                                <h3 class="panel-title"><i class="fa-solid fa-robot text-primary"></i> Synthèse IA Décisionnelle</h3>
+                                <p class="ai-text">Elias Benaissa présente un profil de <strong>"Destroyer"</strong> extrêmement compatible avec un système de pressing haut. Sa courbe athlétique indique qu'il est physiquement prêt pour le niveau supérieur. Son point faible reste le jeu de tête (Déficit de taille) sur CPA défensifs.</p>
+                                <div class="ai-box">
+                                    <span class="am-label">Compatibilité avec notre style de jeu :</span>
+                                    <span class="am-val text-success"><i class="fa-solid fa-check"></i> 92% (Excellent fit)</span>
+                                </div>
+                            </div>
+                            <div class="content-panel">
+                                <h3 class="panel-title">Projection de Niveau Requis</h3>
+                                <div class="level-projection">
+                                    <div class="level-step past">
+                                        <i class="fa-solid fa-check-circle"></i> National 2 (Validé)
+                                    </div>
+                                    <div class="level-step past">
+                                        <i class="fa-solid fa-check-circle"></i> National (Domine)
+                                    </div>
+                                    <div class="level-step current border-left-target">
+                                        <i class="fa-solid fa-bullseye"></i> Ligue 2 (Niveau Requis Immédiat)
+                                    </div>
+                                    <div class="level-step future">
+                                        <i class="fa-regular fa-circle"></i> Ligue 1 (Potentiel estimé d'ici 3 ans)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="scouting360.js"></script>
+</body>
+</html>

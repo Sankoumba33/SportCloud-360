@@ -1,0 +1,84 @@
+:host {
+  display: block;
+}
+
+.page-shell {
+  min-height: 100%;
+}
+
+.sc360-page-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, #080b12 0%, #0a0e14 100%);
+}
+
+.sc360-tab {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid transparent;
+  border-bottom: none;
+  background: transparent;
+  color: #7f8ea3;
+  letter-spacing: 0.02em;
+}
+
+.sc360-tab:hover {
+  color: #f1f5f9;
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.sc360-tab--active {
+  color: #f1f5f9;
+  background: #111827;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -2px 0 #6366f1 inset;
+}
+
+.risk-zone {
+  padding: 1rem;
+  background: radial-gradient(
+      ellipse 70% 55% at 28% -8%,
+      rgba(99, 102, 241, 0.1) 0%,
+      transparent 58%
+    ),
+    linear-gradient(180deg, #080b12 0%, #0d1117 55%, #080b12 100%);
+  min-height: 280px;
+}
+
+.risk-head {
+  margin-bottom: 1rem;
+}
+
+.risk-title {
+  margin: 0;
+  font-size: 1.15rem;
+  color: #f1f5f9;
+}
+
+.risk-sub {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: #7f8ea3;
+}
+
+.state {
+  min-height: 200px;
+  display: grid;
+  place-items: center;
+  color: #7f8ea3;
+}
+
+.state.error {
+  color: #ef4444;
+}
+
+.empty-msg {
+  text-align: center;
+  max-width: 32rem;
+  margin: 2rem auto;
+}

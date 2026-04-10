@@ -1,0 +1,38 @@
+<template>
+  <section class="slds-box slds-theme_default">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">Relations Athlete</h3>
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-bottom_small">{errorMessage}</div>
+    </template>
+    <lightning-tabset>
+      <lightning-tab label="Injuries">
+        <template if:true={hasInjuries}>
+          <lightning-datatable
+            key-field="id"
+            data={injuries}
+            columns={injuryColumns}
+            hide-checkbox-column
+            onrowaction={handleInjuryRowAction}
+          ></lightning-datatable>
+        </template>
+        <template if:false={hasInjuries}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucune blessure liée.</div>
+        </template>
+      </lightning-tab>
+      <lightning-tab label="Microcycle Links">
+        <template if:true={hasMicrocycleLinks}>
+          <lightning-datatable
+            key-field="id"
+            data={microcycleLinks}
+            columns={microColumns}
+            hide-checkbox-column
+            onrowaction={handleMicroRowAction}
+          ></lightning-datatable>
+        </template>
+        <template if:false={hasMicrocycleLinks}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucun lien microcycle.</div>
+        </template>
+      </lightning-tab>
+    </lightning-tabset>
+  </section>
+</template>

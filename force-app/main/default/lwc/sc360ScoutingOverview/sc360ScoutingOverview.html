@@ -18,7 +18,23 @@
         <c-sc360-chart-card title="Distribution par poste" type="bar" series={positionSeries}></c-sc360-chart-card>
       </section>
 
-      <c-sc360-ai-insight insights={insights}></c-sc360-ai-insight>
+      <!-- Option 5: Pipeline Kanban -->
+      <section class="kanban-section slds-m-top_large">
+        <h2 class="section-title"><lightning-icon icon-name="utility:kanban" size="small" class="slds-m-right_x-small"></lightning-icon> Pipeline de Recrutement Actif</h2>
+        <p class="section-subtitle">Déplacez les prospects dans les colonnes (Source des données: Prospect__c.Status__c)</p>
+        <div class="slds-m-top_medium">
+           <template if:true={kanbanData}>
+              <c-sc360-kanban items={kanbanData}></c-sc360-kanban>
+           </template>
+           <template if:false={kanbanData}>
+              <div class="state">Récupération des données pipeline en cours...</div>
+           </template>
+        </div>
+      </section>
+
+      <section class="slds-m-top_large">
+        <c-sc360-ai-insight insights={insights}></c-sc360-ai-insight>
+      </section>
     </template>
 
     <template if:true={hasError}>

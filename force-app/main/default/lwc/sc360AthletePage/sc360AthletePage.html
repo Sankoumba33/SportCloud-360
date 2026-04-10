@@ -1,3 +1,22 @@
 <template>
-  <c-sc360-app page-type="athlete" theme="reset" record-id={recordId}></c-sc360-app>
+  <section class="slds-p-around_small">
+    <lightning-button-group class="slds-m-bottom_small">
+      <lightning-button label="Performance" value="performance" onclick={handleTab}></lightning-button>
+      <lightning-button label="Medical" value="medical" onclick={handleTab}></lightning-button>
+      <lightning-button label="Relations" value="relations" onclick={handleTab}></lightning-button>
+    </lightning-button-group>
+
+    <template if:true={isPerformance}>
+      <c-sc360-athlete-home record-id={recordId}></c-sc360-athlete-home>
+      <div class="slds-m-top_small">
+        <c-sc360-athlete-radar record-id={recordId}></c-sc360-athlete-radar>
+      </div>
+    </template>
+    <template if:true={isMedical}>
+      <c-sc360-athlete-medical record-id={recordId}></c-sc360-athlete-medical>
+    </template>
+    <template if:true={isRelations}>
+      <c-sc360-athlete-relations record-id={recordId}></c-sc360-athlete-relations>
+    </template>
+  </section>
 </template>

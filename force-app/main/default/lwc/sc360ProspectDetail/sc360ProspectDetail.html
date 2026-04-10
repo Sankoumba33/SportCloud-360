@@ -1,64 +1,355 @@
 <template>
-  <section class="shell">
+  <section class="sg360-shell">
     <template if:true={isBuilderPreview}>
-      <div class="state">
-        Mode Builder: ouvre cette page avec un enregistrement Prospect pour afficher les donnees.
-      </div>
+      <div class="state">Mode Builder : ouvre cette page avec un enregistrement Prospect.</div>
     </template>
+
     <template if:true={hasData}>
-      <header class="hero">
-        <p class="overline">PROSPECT DETAIL</p>
-        <h1>{detail.name}</h1>
-        <p class="meta">{detail.position} - {detail.currentClub} - {detail.status}</p>
-      </header>
+      <section class="hero-prospect animated-entrance delay-1">
+        <div class="hero-left">
+          <div class="prospect-photo">
+            <lightning-icon icon-name="standard:person_account" size="large"></lightning-icon>
+          </div>
+          <div class="prospect-info">
+            <h1 class="prospect-name">{detail.name}</h1>
+            <div class="prospect-meta">
+              <span class="meta-tag">{detail.position}</span>
+              <span class="meta-tag">{detail.currentClub}</span>
+              <span class="meta-tag subtle">{detail.externalId}</span>
+            </div>
+            <div class={statusBadgeClass}>
+              <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-icn"></lightning-icon>
+              {statusBadgeLabel}
+            </div>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="action-buttons">
+            <button type="button" class="btn btn-secondary" onclick={handleOpenReport} aria-label="Ouvrir saisie rapport">
+              <lightning-icon icon-name="utility:edit" size="x-small"></lightning-icon>
+              Rapport
+            </button>
+            <button type="button" class="btn btn-secondary" onclick={handleOpenCompare} aria-label="Comparer les prospects">
+              <lightning-icon icon-name="utility:metrics" size="x-small"></lightning-icon>
+              Comparer
+            </button>
+            <button type="button" class="btn btn-primary" onclick={handleShortlist} aria-label="Passer en shortlist Priority">
+              <lightning-icon icon-name="utility:bookmark" size="x-small"></lightning-icon>
+              Shortlist
+            </button>
+          </div>
+          <div class={potentialCircleClass}>
+            <div class="circle-progress">
+              <span class="score-value">{potentialDisplay}</span>
+              <span class="score-label">Potentiel</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <lightning-tabset>
-        <lightning-tab label="Overview">
-          <section class="kpi-grid">
-            <template for:each={detail.kpis} for:item="kpi">
-              <c-sc360-kpi-card key={kpi.key} kpi={kpi}></c-sc360-kpi-card>
-            </template>
-          </section>
+      <section class="kpi-strip animated-entrance delay-2">
+        <template for:each={stripKpis} for:item="k">
+          <div key={k.id} class={k.cardClass}>
+            <div class="kpi-icon">
+              <lightning-icon icon-name={k.iconName} size="small"></lightning-icon>
+            </div>
+            <div class="kpi-data">
+              <span class="kpi-val">
+                {k.valueMain}<small>{k.valueUnit}</small>
+              </span>
+              <span class="kpi-title">{k.title}</span>
+            </div>
+          </div>
+        </template>
+      </section>
 
-          <template if:true={hasApiSeasonKpis}>
-            <h3 class="section-title">Stats saison (API-Football)</h3>
-            <section class="kpi-grid">
-              <template for:each={apiSeasonKpis} for:item="kpi">
-                <c-sc360-kpi-card key={kpi.key} kpi={kpi}></c-sc360-kpi-card>
-              </template>
-            </section>
+      <section class="tabs-section animated-entrance delay-3">
+        <div class="tabs-nav">
+          <template for:each={tabDefs} for:item="tab">
+            <button
+              key={tab.id}
+              type="button"
+              class={tab.buttonClass}
+              data-tabid={tab.id}
+              onclick={handleTabClick}
+              aria-label={tab.label}
+            >
+              {tab.label}
+            </button>
+          </template>
+        </div>
+
+        <div class="tabs-container">
+          <template lwc:if={isProfileTab}>
+            <div class="tab-content tab-content--visible" role="tabpanel">
+              <div class="panel-grid-2">
+                <div class="content-panel">
+                  <h3 class="panel-title">Benchmark poste</h3>
+                  <c-sc360-chart-card title="Scores vs moyenne poste" type="bar" series={detail.benchmark}></c-sc360-chart-card>
+                  <div class="radar-mockup" aria-hidden="true">
+                    <div class="radar-background">
+                      <div class="radar-polygon target"></div>
+                      <div class="radar-polygon current"></div>
+                      <span class="radar-label top">Jeu aérien</span>
+                      <span class="radar-label top-right">Relance</span>
+                      <span class="radar-label bot-right">Tacles</span>
+                      <span class="radar-label bot">Placement</span>
+                      <span class="radar-label bot-left">Vitesse</span>
+                      <span class="radar-label top-left">Volume</span>
+                    </div>
+                    <div class="radar-legend">
+                      <span><span class="dot current-dot"></span> Prospect</span>
+                      <span><span class="dot target-dot"></span> Moyenne poste</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-panel">
+                  <h3 class="panel-title">Stats clés (données API / Core)</h3>
+                  <div class="stats-list">
+                    <template for:each={keyStatsRows} for:item="row">
+                      <div key={row.id} class="stat-row">
+                        <span>{row.metricLabel}</span>
+                        <span class={row.badgeClass}>{row.displayValue}</span>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+                
+                <!-- Option 4: Module Financier (Dynamic) -->
+                <div class="content-panel slds-m-top_medium">
+                  <h3 class="panel-title"><lightning-icon icon-name="utility:money" size="x-small" class="slds-m-right_xx-small"></lightning-icon> Projection Financière</h3>
+                  <template if:true={financeData}>
+                     <div class="stats-list">
+                        <div class="stat-row"><span>Valeur Marchande Estimée</span> <span class="badge warning">{financeData.marketValue} €</span></div>
+                        <div class="stat-row"><span>Salaire Cible</span> <span class="badge base">{financeData.expectedSalary} € / an</span></div>
+                        <div class="stat-row"><span>Fin de contrat (Source)</span> <span class="badge base">{financeData.contractEnds}</span></div>
+                        <div class="stat-row"><span>Indice Retour sur Investissement</span> <span class="badge success">{financeData.roiProbability}</span></div>
+                     </div>
+                  </template>
+                  <template if:false={financeData}>
+                     <p class="help-text">Données financières non disponibles. Connectez un module (ex: Transfermarkt API) pour évaluer ce prospect.</p>
+                  </template>
+                </div>
+              </div>
+            </div>
           </template>
 
-          <section class="chart-grid">
-            <c-sc360-chart-card title="Benchmark poste" type="bar" series={detail.benchmark}></c-sc360-chart-card>
-          </section>
-          <c-sc360-ai-insight insights={insights}></c-sc360-ai-insight>
-        </lightning-tab>
+          <template lwc:if={isMatchTab}>
+            <div class="tab-content tab-content--visible" role="tabpanel">
+              <div class="panel-grid-2">
+                <div class="content-panel">
+                  <h3 class="panel-title">Derniers comptes rendus (proxy matchs)</h3>
+                  <div class="match-list">
+                    <template for:each={matchRows} for:item="m">
+                      <div key={m.id} class="match-item">
+                        <div class="mi-date">{m.dateLabel}</div>
+                        <div class="mi-desc">{m.line}</div>
+                        <div class="mi-grade">{m.grade}</div>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+                <div class="content-panel">
+                  <h3 class="panel-title"><lightning-icon icon-name="utility:video" size="small" class="slds-m-right_xx-small"></lightning-icon> Smart Video Event-Tracker</h3>
+                  <template if:true={hasVideoEvents}>
+                     <div class="video-grid">
+                        <template for:each={videoEvents} for:item="evt">
+                          <a href={evt.url} target="_blank" key={evt.id} class="video-placeholder" style="text-decoration: none;">
+                            <lightning-icon icon-name="utility:play" size="small"></lightning-icon>
+                            <span>{evt.type} ({evt.minute}') <br> <small>{evt.matchName}</small></span>
+                          </a>
+                        </template>
+                     </div>
+                  </template>
+                  <template if:false={hasVideoEvents}>
+                     <p class="help-text">0 événement vidéo tagué pour ce prospect. Les intégrations Wyscout/Instat via `MatchPlayerMetric__c` remonteront automatiquement ici sans data fictive.</p>
+                  </template>
+                </div>
+              </div>
+              
+              <!-- Option 6: Carte de Chaleur Tactique -->
+              <div class="panel-grid-1 slds-m-top_large">
+                 <div class="content-panel">
+                    <h3 class="panel-title"><lightning-icon icon-name="utility:checkin" size="small" class="slds-m-right_xx-small"></lightning-icon> Heatmap de Positionnement Interactif</h3>
+                    <template if:true={hasHeatmapData}>
+                       <div class="heatmap-container" style="background:#2C8A4A; height: 120px; border-radius: 8px; position:relative; overflow:hidden;">
+                          <template for:each={heatmapData} for:item="pt" for:index="idx">
+                             <div key={pt.x} style="position:absolute; width:15px; height:15px; background:rgba(255,50,50,0.7); border-radius:50%; filter:blur(4px);" class="heatmap-dot"></div>
+                          </template>
+                       </div>
+                    </template>
+                    <template if:false={hasHeatmapData}>
+                       <p class="help-text">Données GPS (X/Y) indisponibles dans l'objet `MatchPlayerMetric__c`. La carte de chaleur sera générée une fois les coordonnées du prospect remontées.</p>
+                    </template>
+                 </div>
+              </div>
+            </div>
+          </template>
 
-        <lightning-tab label="Scouting Process">
-          <div class="step-form">
-            <lightning-combobox name="stepType" label="Etape" value={form.stepType} options={stepOptions} onchange={handleInput}></lightning-combobox>
-            <lightning-input name="rating" type="number" label="Rating /10" value={form.rating} min="0" max="10" step="0.1" onchange={handleInput}></lightning-input>
-            <lightning-textarea name="matchSelection" label="Matchs observes (video/live)" value={form.matchSelection} onchange={handleInput}></lightning-textarea>
-            <lightning-textarea name="summary" label="Rapport scout" value={form.summary} onchange={handleInput}></lightning-textarea>
-            <lightning-textarea name="comparisonNotes" label="Data Check / Comparaison" value={form.comparisonNotes} onchange={handleInput}></lightning-textarea>
-            <lightning-textarea name="referenceContacts" label="Reference Check (personnes rencontrees + resume)" value={form.referenceContacts} onchange={handleInput}></lightning-textarea>
-            <lightning-textarea name="socialNetworks" label="Background Check (reseaux sociaux/liens)" value={form.socialNetworks} onchange={handleInput}></lightning-textarea>
-            <lightning-button variant="brand" label="Enregistrer etape" onclick={handleSaveStep} disabled={saving}></lightning-button>
-          </div>
+          <template lwc:if={isCompareTab}>
+            <div class="tab-content tab-content--visible" role="tabpanel">
+              <div class="content-panel">
+                <h3 class="panel-title">Prospect vs moyenne poste (même position)</h3>
+                <div class="compare-container">
+                  <template for:each={compareRows} for:item="c">
+                    <div key={c.rowKey} class="compare-row">
+                      <span class="c-label">{c.metricLabel}</span>
+                      <div class="c-bars">
+                        <div class="c-bar left">
+                          <span class="c-val text-success">{c.leftCaption} ({c.leftFmt})</span>
+                          <div class="cb-fill success-bg" style={c.leftStyle}></div>
+                        </div>
+                        <div class="c-bar right">
+                          <div class="cb-fill base-bg" style={c.rightStyle}></div>
+                          <span class="c-val">{c.rightCaption} ({c.rightFmt})</span>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </template>
 
-          <section class="reports">
-            <h3>Historique des etapes</h3>
-            <template for:each={reports} for:item="r">
-              <article class="report" key={r.id}>
-                <p class="title">{r.stepType} - {r.reportDate}</p>
-                <p>{r.summary}</p>
-                <p class="small">{r.autoInsights}</p>
-              </article>
-            </template>
-          </section>
-        </lightning-tab>
-      </lightning-tabset>
+          <template lwc:if={isReportsTab}>
+            <div class="tab-content tab-content--visible" role="tabpanel">
+              <div class="content-panel">
+                <h3 class="panel-title">Timeline qualitative</h3>
+                <div class="scout-timeline">
+                  <template for:each={reportsFormatted} for:item="r">
+                    <article key={r.id} class="scout-report">
+                      <div class="sr-header">
+                        <span class="sr-author">{r.stepType}</span>
+                        <span class="sr-date">{r.reportDateStr}</span>
+                      </div>
+                      <p class="sr-text">{r.summary}</p>
+                      <template if:true={r.autoInsights}>
+                        <p class="sr-auto">{r.autoInsights}</p>
+                      </template>
+                    </article>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <template lwc:if={isAiTab}>
+            <div class="tab-content tab-content--visible" role="tabpanel">
+              <div class="panel-grid-2">
+                <div class="content-panel border-bot">
+                  <div style="display:flex; justify-content: space-between; align-items: flex-start;">
+                      <h3 class="panel-title">
+                        <lightning-icon icon-name="utility:sparkles" size="x-small" class="title-icn"></lightning-icon>
+                        Générateur de Synthèse IA ("Super-Scout")
+                      </h3>
+                      <button class="btn btn-primary" style="padding: 4px 10px; font-size:0.8rem;" onclick={handleGenerateAI} disabled={isGeneratingAI}>Générer Synthèse</button>
+                  </div>
+                  <div class="slds-m-top_medium">
+                      <template if:true={isGeneratingAI}>
+                          <lightning-spinner alternative-text="Génération par IA..." size="small" variant="brand"></lightning-spinner>
+                      </template>
+                      <template if:false={isGeneratingAI}>
+                          <template if:true={aiSummaryResult}>
+                              <div class="slds-box slds-box_small slds-theme_shade" style="background: rgba(99, 102, 241, 0.1); border:1px solid rgba(99, 102, 241, 0.4); color: white;">
+                                  <p>{aiSummaryResult}</p>
+                              </div>
+                          </template>
+                          <template if:false={aiSummaryResult}>
+                              <template for:each={insightLines} for:item="line">
+                                <p key={line.id} class="ai-text">{line.text}</p>
+                              </template>
+                          </template>
+                      </template>
+                  </div>
+                </div>
+                <div class="content-panel">
+                  <h3 class="panel-title">Projection de niveau</h3>
+                  <div class="level-projection">
+                    <div class="level-step past">
+                      <lightning-icon icon-name="utility:success" size="x-small"></lightning-icon>
+                      Pipeline scouting (Core)
+                    </div>
+                    <div class="level-step past">
+                      <lightning-icon icon-name="utility:success" size="x-small"></lightning-icon>
+                      Data enrichie (API / Data Cloud)
+                    </div>
+                    <div class="level-step current">
+                      <lightning-icon icon-name="utility:target" size="x-small"></lightning-icon>
+                      Décision club (shortlist / négociation)
+                    </div>
+                    <div class="level-step future">
+                      <lightning-icon icon-name="utility:record" size="x-small"></lightning-icon>
+                      Conversion Athlete__c
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <template lwc:if={isProcessTab}>
+            <div class="tab-content tab-content--visible" role="tabpanel">
+              <div class="panel-grid-2">
+                <div class="content-panel">
+                  <h3 class="panel-title">Saisie étape scouting</h3>
+                  <div class="step-form">
+                    <lightning-combobox
+                      name="stepType"
+                      label="Étape"
+                      value={form.stepType}
+                      options={stepOptions}
+                      onchange={handleInput}
+                    ></lightning-combobox>
+                    <lightning-input
+                      name="rating"
+                      type="number"
+                      label="Rating /10"
+                      value={form.rating}
+                      min="0"
+                      max="10"
+                      step="0.1"
+                      onchange={handleInput}
+                    ></lightning-input>
+                    <lightning-textarea
+                      name="matchSelection"
+                      label="Matchs observés (vidéo / live)"
+                      value={form.matchSelection}
+                      onchange={handleInput}
+                    ></lightning-textarea>
+                    <lightning-textarea name="summary" label="Rapport scout" value={form.summary} onchange={handleInput}></lightning-textarea>
+                    <lightning-textarea
+                      name="comparisonNotes"
+                      label="Data check / comparaison"
+                      value={form.comparisonNotes}
+                      onchange={handleInput}
+                    ></lightning-textarea>
+                    <lightning-textarea
+                      name="referenceContacts"
+                      label="Références"
+                      value={form.referenceContacts}
+                      onchange={handleInput}
+                    ></lightning-textarea>
+                    <lightning-textarea
+                      name="socialNetworks"
+                      label="Background réseaux"
+                      value={form.socialNetworks}
+                      onchange={handleInput}
+                    ></lightning-textarea>
+                    <lightning-button variant="brand" label="Enregistrer etape" onclick={handleSaveStep} disabled={saving}></lightning-button>
+                  </div>
+                </div>
+                <div class="content-panel">
+                  <h3 class="panel-title">Aide</h3>
+                  <p class="help-text">
+                    Les champs API-Football alimentent la bande KPI et les stats clés. Les rapports
+                    apparaissent dans l’onglet « Rapports scouts ».
+                  </p>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </section>
     </template>
 
     <template if:true={hasError}>
@@ -67,7 +358,7 @@
     <template if:false={hasData}>
       <template if:false={hasError}>
         <template if:false={isBuilderPreview}>
-          <div class="state">Chargement detail prospect...</div>
+          <div class="state">Chargement fiche prospect...</div>
         </template>
       </template>
     </template>

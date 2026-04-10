@@ -14,6 +14,34 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
+.theme-antigravity .docs {
+  background: linear-gradient(180deg, var(--sc360-card), var(--sc360-card-2));
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.theme-aviron {
+  --sc360-bg: radial-gradient(1100px 520px at 8% -5%, rgba(180, 231, 255, 0.28) 0%, rgba(180, 231, 255, 0.06) 45%, transparent 68%),
+    linear-gradient(180deg, #07132a 0%, #0c1e3a 44%, #0a1730 100%);
+  --sc360-card: #13284d;
+  --sc360-card-2: #1a355f;
+  --sc360-border: rgba(182, 225, 255, 0.36);
+  --sc360-text: #f5fbff;
+  --sc360-muted: #b5cce8;
+  --sc360-primary: #9edfff;
+  --sc360-ok: #42b649;
+  --sc360-danger: #e53e24;
+  --slds-c-button-brand-color-background: #9edfff;
+  --slds-c-button-brand-color-border: #9edfff;
+  --slds-c-button-brand-text-color: #07132a;
+  --slds-c-tabs-item-text-color-active: #9edfff;
+  --slds-c-tabs-item-color-border-active: #9edfff;
+}
+
+.theme-aviron .docs {
+  background: linear-gradient(180deg, rgba(19, 40, 77, 0.98), rgba(17, 35, 67, 0.98));
+  box-shadow: 0 8px 26px rgba(3, 8, 19, 0.38);
+}
+
 .theme-dark {
   --sc360-bg: radial-gradient(1200px 550px at 8% -5%, #1d2a52 0%, #0a1020 55%, #080d1a 100%);
   --sc360-card: #141f39;
@@ -61,6 +89,27 @@
   --sc360-primary: #0176d3;
   --sc360-ok: #2e844a;
   --sc360-danger: #ba0517;
+}
+
+/*
+ * Antigravity — aligné sur style.css (racine projet) : Dark Premium indigo,
+ * surfaces slate, accents sémantiques. Reprise du design « Athlete 360 Dashboard ».
+ */
+.theme-antigravity {
+  --sc360-bg: radial-gradient(
+      ellipse 70% 55% at 28% -8%,
+      rgba(99, 102, 241, 0.14) 0%,
+      transparent 58%
+    ),
+    linear-gradient(180deg, #080b12 0%, #0d1117 55%, #080b12 100%);
+  --sc360-card: #111827;
+  --sc360-card-2: #1a2236;
+  --sc360-border: rgba(255, 255, 255, 0.08);
+  --sc360-text: #f1f5f9;
+  --sc360-muted: #7f8ea3;
+  --sc360-primary: #6366f1;
+  --sc360-ok: #22c55e;
+  --sc360-danger: #ef4444;
 }
 
 .main-grid {

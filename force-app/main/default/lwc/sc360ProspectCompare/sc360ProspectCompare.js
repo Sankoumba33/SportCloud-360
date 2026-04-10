@@ -1,10 +1,15 @@
 import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import getProspectsCompare from '@salesforce/apex/SC360ProspectCompareController.getProspectsCompare';
+import searchProspectsForComparison from '@salesforce/apex/SC360ScoutingEnhancedController.searchProspectsForComparison';
 
 export default class Sc360ProspectCompare extends NavigationMixin(LightningElement) {
+    searchTerm = '';
+    searchResults = [];
     prospectAId;
     prospectBId;
+    prospectAName = 'Glisser un prospect ici (A)';
+    prospectBName = 'Glisser un prospect ici (B)';
     @track rows;
     error;
     loading;
@@ -65,6 +70,50 @@ export default class Sc360ProspectCompare extends NavigationMixin(LightningEleme
     handleChangeB(event) {
         this.prospectBId = event.detail.recordId || null;
         this.clearResult();
+    }
+
+    async handleSearchToggle(event) {
+        this.searchTerm = event.target.value;
+        if(this.searchTerm.length > 2) {
+            try {
+                this.searchResults = await searchProspectsForComparison({ searchTerm: this.searchTerm });
+            } catch(e) {
+                this.searchResults = [];
+            }
+        } else {
+            this.searchResults = [];
+        }
+    }
+
+    handleDragStart(event) {
+        event.dataTransfer.setData('prospectId', event.currentTarget.dataset.id);
+        event.dataTransfer.setData('prospectName', event.currentTarget.dataset.name);
+    }
+
+    allowDrop(event) {
+        event.preventDefault();
+    }
+
+    handleDropA(event) {
+        event.preventDefault();
+        const id = event.dataTransfer.getData('prospectId');
+        const name = event.dataTransfer.getData('prospectName');
+        if(id) {
+            this.prospectAId = id;
+            this.prospectAName = name;
+            this.clearResult();
+        }
+    }
+
+    handleDropB(event) {
+        event.preventDefault();
+        const id = event.dataTransfer.getData('prospectId');
+        const name = event.dataTransfer.getData('prospectName');
+        if(id) {
+            this.prospectBId = id;
+            this.prospectBName = name;
+            this.clearResult();
+        }
     }
 
     clearResult() {

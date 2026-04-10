@@ -1,6 +1,8 @@
 <template>
   <article class="card">
-    <p>{title}</p>
+    <template lwc:if={title}>
+      <p>{title}</p>
+    </template>
     <div class="chart-wrap">
       <canvas lwc:dom="manual"></canvas>
     </div>

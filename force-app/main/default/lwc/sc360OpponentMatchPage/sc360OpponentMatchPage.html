@@ -1,0 +1,30 @@
+<template>
+  <section class="slds-p-around_small">
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-bottom_small">{errorMessage}</div>
+    </template>
+
+    <template if:true={opponent}>
+      <article class="hero slds-m-bottom_small">
+        <h1>{opponent.name}</h1>
+        <p>{match.competition} · {match.matchDate} · {match.homeAway} · {match.result}</p>
+        <p>Formation: {formation} · Score {match.goalsFor}-{match.goalsAgainst} · xG {match.xgFor}/{match.xgAgainst}</p>
+        <p>Titulaires: {starters.length} · Banc: {benchCount} · Menaces titulaires: {threatStartersCount}</p>
+      </article>
+    </template>
+
+    <lightning-tabset>
+      <lightning-tab label="Lineup Pitch">
+        <c-sc360-lineup-pitch formation={formation} players={lineup} show-bench></c-sc360-lineup-pitch>
+      </lightning-tab>
+
+      <lightning-tab label="Lineup Table">
+        <lightning-datatable key-field="id" data={lineup} columns={lineupColumns} hide-checkbox-column></lightning-datatable>
+      </lightning-tab>
+
+      <lightning-tab label="Raw Payload">
+        <lightning-textarea value={rawPayload} readonly class="raw-box"></lightning-textarea>
+      </lightning-tab>
+    </lightning-tabset>
+  </section>
+</template>

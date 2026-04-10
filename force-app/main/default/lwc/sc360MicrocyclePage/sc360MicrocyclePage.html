@@ -1,0 +1,39 @@
+<template>
+  <section class="slds-box slds-theme_default">
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-bottom_small">{errorMessage}</div>
+    </template>
+    <lightning-tabset>
+      <lightning-tab label="Overview">
+        <lightning-record-view-form record-id={recordId} object-api-name="Microcycle__c">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="WeekStartDate__c"></lightning-output-field>
+              <lightning-output-field field-name="WeekEndDate__c"></lightning-output-field>
+              <lightning-output-field field-name="Status__c"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="Squad__c"></lightning-output-field>
+              <lightning-output-field field-name="AnchorMatch__c"></lightning-output-field>
+              <lightning-output-field field-name="Notes__c"></lightning-output-field>
+            </div>
+          </div>
+        </lightning-record-view-form>
+      </lightning-tab>
+      <lightning-tab label="Days">
+        <template if:true={hasDays}>
+          <lightning-datatable
+            key-field="id"
+            data={days}
+            columns={dayColumns}
+            hide-checkbox-column
+            onrowaction={handleDayAction}
+          ></lightning-datatable>
+        </template>
+        <template if:false={hasDays}>
+          <div class="slds-text-color_weak slds-p-around_small">Aucun MicrocycleDay lié.</div>
+        </template>
+      </lightning-tab>
+    </lightning-tabset>
+  </section>
+</template>

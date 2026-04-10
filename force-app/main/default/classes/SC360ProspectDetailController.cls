@@ -12,6 +12,20 @@ public with sharing class SC360ProspectDetailController {
         @AuraEnabled public Decimal value;
     }
 
+    public class StatRowDto {
+        @AuraEnabled public String metricLabel;
+        @AuraEnabled public String displayValue;
+        @AuraEnabled public String badgeTone;
+    }
+
+    public class ComparePairDto {
+        @AuraEnabled public String metricLabel;
+        @AuraEnabled public String leftCaption;
+        @AuraEnabled public String rightCaption;
+        @AuraEnabled public Decimal leftValue;
+        @AuraEnabled public Decimal rightValue;
+    }
+
     public class ProspectDto {
         @AuraEnabled public String id;
         @AuraEnabled public String name;
@@ -24,6 +38,10 @@ public with sharing class SC360ProspectDetailController {
         @AuraEnabled public List<KpiDto> apiSeasonKpis;
         @AuraEnabled public List<String> insights;
         @AuraEnabled public List<PointDto> benchmark;
+        @AuraEnabled public Integer potentialDisplay;
+        @AuraEnabled public Boolean isPriority;
+        @AuraEnabled public List<StatRowDto> keyStats;
+        @AuraEnabled public List<ComparePairDto> comparePairs;
     }
 
     public class StepReportDto {
@@ -111,6 +129,10 @@ public with sharing class SC360ProspectDetailController {
             dto.insights.add('Aucun insight scouting disponible.');
         }
         dto.benchmark = buildBenchmark(prospect);
+        dto.potentialDisplay = potentialInt(prospect.PotentialScore__c);
+        dto.isPriority = prospect.Status__c == 'Priority';
+        dto.keyStats = buildKeyStats(prospect);
+        dto.comparePairs = buildComparePairs(prospect);
         return dto;
     }
 
@@ -205,6 +227,117 @@ public with sharing class SC360ProspectDetailController {
             return;
         }
         rows.add(kpi(key, label, val, unit, 'stable'));
+    }
+
+    private static Integer potentialInt(Decimal p) {
+        if (p == null) {
+            return 0;
+        }
+        Integer v = Integer.valueOf(p.round());
+        if (v > 100) {
+            return 100;
+        }
+        if (v < 0) {
+            return 0;
+        }
+        return v;
+    }
+
+    private static List<StatRowDto> buildKeyStats(Prospect__c p) {
+        List<StatRowDto> rows = new List<StatRowDto>();
+        if (p.ApiPassesAccuracyPct__c != null) {
+            rows.add(
+                statRow(
+                    'Précision passes',
+                    String.valueOf(p.ApiPassesAccuracyPct__c.setScale(0)) + '%',
+                    p.ApiPassesAccuracyPct__c >= 80
+                        ? 'success'
+                        : (p.ApiPassesAccuracyPct__c >= 65 ? 'warning' : 'danger')
+                )
+            );
+        }
+        if (p.ApiDuelsWon__c != null) {
+            rows.add(statRow('Duels gagnés (API)', String.valueOf(p.ApiDuelsWon__c.setScale(0)), 'success'));
+        }
+        if (p.ApiTacklesTotal__c != null) {
+            rows.add(statRow('Tacles (API)', String.valueOf(p.ApiTacklesTotal__c.setScale(0)), 'success'));
+        }
+        if (p.ApiPassesKey__c != null) {
+            rows.add(statRow('Passes clés / saison', String.valueOf(p.ApiPassesKey__c.setScale(1)), 'success'));
+        }
+        if (p.ApiShotsOnTarget__c != null && p.ApiShotsTotal__c != null && p.ApiShotsTotal__c > 0) {
+            Decimal pct = (p.ApiShotsOnTarget__c / p.ApiShotsTotal__c) * 100;
+            rows.add(
+                statRow('Tirs cadrés / tirs', String.valueOf(pct.setScale(0)) + '%', pct >= 40 ? 'success' : 'warning')
+            );
+        }
+        if (rows.isEmpty()) {
+            rows.add(statRow('Scouting score', p.ScoutingScore__c == null ? '—' : String.valueOf(p.ScoutingScore__c.setScale(1)), 'success'));
+            rows.add(statRow('Risk score', p.RiskScore__c == null ? '—' : String.valueOf(p.RiskScore__c.setScale(1)), 'warning'));
+        }
+        return rows;
+    }
+
+    private static StatRowDto statRow(String label, String val, String tone) {
+        StatRowDto r = new StatRowDto();
+        r.metricLabel = label;
+        r.displayValue = val;
+        r.badgeTone = tone;
+        return r;
+    }
+
+    private static List<ComparePairDto> buildComparePairs(Prospect__c prospect) {
+        AggregateResult[] aggRows = [
+            SELECT AVG(ScoutingScore__c) avgScouting, AVG(PotentialScore__c) avgPotential, AVG(RiskScore__c) avgRisk
+            FROM Prospect__c
+            WHERE Position__c = :prospect.Position__c
+        ];
+        AggregateResult agg = aggRows.isEmpty() ? null : aggRows[0];
+        List<ComparePairDto> pairs = new List<ComparePairDto>();
+        pairs.add(
+            comparePair(
+                'Scouting score',
+                prospect.Name,
+                'Moyenne poste',
+                prospect.ScoutingScore__c,
+                decimalOrZero(agg, 'avgScouting')
+            )
+        );
+        pairs.add(
+            comparePair(
+                'Potential',
+                prospect.Name,
+                'Moyenne poste',
+                prospect.PotentialScore__c,
+                decimalOrZero(agg, 'avgPotential')
+            )
+        );
+        pairs.add(
+            comparePair(
+                'Risk',
+                prospect.Name,
+                'Moyenne poste',
+                prospect.RiskScore__c,
+                decimalOrZero(agg, 'avgRisk')
+            )
+        );
+        return pairs;
+    }
+
+    private static ComparePairDto comparePair(
+        String metricLabel,
+        String leftCaption,
+        String rightCaption,
+        Decimal leftValue,
+        Decimal rightValue
+    ) {
+        ComparePairDto c = new ComparePairDto();
+        c.metricLabel = metricLabel;
+        c.leftCaption = leftCaption;
+        c.rightCaption = rightCaption;
+        c.leftValue = leftValue;
+        c.rightValue = rightValue;
+        return c;
     }
 
     private static List<PointDto> buildBenchmark(Prospect__c prospect) {

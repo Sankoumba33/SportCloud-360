@@ -23,6 +23,7 @@ public with sharing class SC360AthleteDetailController {
     public class DetailDto {
         @AuraEnabled public String name;
         @AuraEnabled public String externalId;
+        @AuraEnabled public String photoUrl;
         @AuraEnabled public String sport;
         @AuraEnabled public String status;
         @AuraEnabled public Datetime lastSync;
@@ -53,7 +54,8 @@ public with sharing class SC360AthleteDetailController {
                 TopRisks__c,
                 TopStrengths__c,
                 LastDataCloudSync__c,
-                AthleteSummary__c
+                AthleteSummary__c,
+                PhotoUrl__c
             FROM Athlete__c
             WHERE Id = :recordId
             LIMIT 1
@@ -62,6 +64,7 @@ public with sharing class SC360AthleteDetailController {
         DetailDto dto = new DetailDto();
         dto.name = athlete.Name;
         dto.externalId = athlete.ExternalId__c;
+        dto.photoUrl = athlete.PhotoUrl__c;
         dto.sport = athlete.Sport__c;
         dto.status = athlete.Status__c;
         dto.lastSync = athlete.LastDataCloudSync__c;

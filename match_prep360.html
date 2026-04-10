@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Prep 360 - Sports Intelligence Cloud</title>
+    <link rel="stylesheet" href="match_prep360.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-layout">
+        
+        <main class="main-content">
+            
+            <!-- 1. HERO MATCH PREP (TRAME DYNAMIQUE) -->
+            <section class="hero-match animated-entrance delay-1">
+                <div class="hero-left">
+                    <div class="opponent-logo">
+                        <div class="logo-placeholder"><i class="fa-solid fa-shield"></i></div>
+                    </div>
+                    <div class="match-info">
+                        <h1 class="match-title">vs [Nom de l'Adversaire]</h1>
+                        <div class="match-meta">
+                            <span class="meta-tag date"><i class="fa-regular fa-calendar"></i> [Date du Match] - [Heure]</span>
+                            <span class="meta-tag location"><i class="fa-solid fa-location-dot"></i> [Lieu / Stade]</span>
+                            <span class="meta-tag competition"><i class="fa-solid fa-trophy"></i> [Compétition] - [Journée]</span>
+                        </div>
+                        <div class="match-logistics">
+                            <span class="log-tag"><i class="fa-solid fa-cloud-rain text-primary"></i> Météo : [Prévisions]</span>
+                            <span class="log-tag"><i class="fa-solid fa-leaf text-success"></i> État Pelouse : [Type et État]</span>
+                            <span class="log-tag"><i class="fa-solid fa-plane text-warning"></i> Trajet : [Durée et Type]</span>
+                        </div>
+                        <div class="status-tags">
+                            <div class="status-badge risk-high">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Niveau de Risque : [Risque IA]
+                            </div>
+                            <div class="status-badge status-ready">
+                                <i class="fa-solid fa-check"></i> Statut : [Statut du Rapport]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-right">
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary"><i class="fa-solid fa-share-nodes"></i> Partager</button>
+                        <button class="btn btn-secondary"><i class="fa-solid fa-file-pdf"></i> Exporter</button>
+                        <button class="btn btn-primary"><i class="fa-solid fa-chess-knight"></i> Plan d'Action</button>
+                    </div>
+                    <div class="confidence-score">
+                        <div class="circle-progress" style="background: conic-gradient(var(--color-primary) 0deg, rgba(255,255,255,0.05) 0deg);">
+                            <!-- La valeur et le rendu sont gérés dynamiquement -->
+                            <span class="score-value">[XX]<small>%</small></span>
+                            <span class="score-label">Confiance (IA)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. KPI STRIP (TRAME DYNAMIQUE) -->
+            <section class="kpi-strip animated-entrance delay-2">
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val form-trend">
+                            <!-- Les balises de forme V/N/D sont intégrées programmatiquement -->
+                            [Historique Forme]
+                        </span>
+                        <span class="kpi-title">Forme (5 derniers matchs)</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-futbol"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val text-success">[X.X]</span>
+                        <span class="kpi-title">Buts Marqués / Match</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val text-danger">[X.X]</span>
+                        <span class="kpi-title">Buts Encaissés / Match</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-percent"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val">[XX]<small>%</small></span>
+                        <span class="kpi-title">Possession Moyenne</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val">[X.X]</span>
+                        <span class="kpi-title">PPDA (Intensité Pressing)</span>
+                    </div>
+                </div>
+                <div class="kpi-card ai-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-brain text-primary"></i></div>
+                    <div class="kpi-data">
+                        <span class="kpi-val text-primary">[X.X] <small>vs [X.X]</small></span>
+                        <span class="kpi-title">xG Projetés</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. ONGLETS PRINCIPAUX -->
+            <section class="tabs-section animated-entrance delay-3">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-target="tab-summary">Synthèse & Plan d'Action</button>
+                    <button class="tab-btn" data-target="tab-swot">Forces & Faiblesses</button>
+                    <button class="tab-btn" data-target="tab-keyplayers">Joueurs Clés</button>
+                    <button class="tab-btn" data-target="tab-tactics">Tactique & Vidéo</button>
+                    <button class="tab-btn roster-btn" data-target="tab-roster"><i class="fa-solid fa-user-doctor"></i> Notre Effectif</button>
+                </div>
+
+                <div class="tabs-container">
+                    
+                    <!-- ONGLET 1: Synthèse & Plan d'Action -->
+                    <div id="tab-summary" class="tab-content active">
+                        <div class="panel-grid-2">
+                            <div class="content-panel">
+                                <h3 class="panel-title"><i class="fa-solid fa-align-left text-primary"></i> Résumé de l'Adversaire</h3>
+                                <div class="summary-box">
+                                    <p>[Texte généré dynamiquement basé sur le champ Summary__c : Description de l'organisation tactique et des schémas récurrents...]</p>
+                                </div>
+                                <h3 class="panel-title mt-4"><i class="fa-solid fa-shield-virus text-danger"></i> Vulnérabilité Principale</h3>
+                                <div class="danger-box">
+                                    <div class="danger-icon"><i class="fa-solid fa-bullseye"></i></div>
+                                    <div class="danger-content">
+                                        <h4>[Titre de la vulnérabilité]</h4>
+                                        <p>[Explication détaillée générée par l'analyse...]</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-panel plan-panel border-top-primary">
+                                <h3 class="panel-title"><i class="fa-solid fa-chess-board text-primary"></i> Plan de Jeu Recommandé (IA)</h3>
+                                <!-- Boucle dynamique sur les recommandations du champ RecommendedPlan__c -->
+                                <div class="plan-steps">
+                                    <div class="plan-step">
+                                        <div class="step-num">1</div>
+                                        <div class="step-desc">
+                                            <strong>[Titre Étape 1]</strong>
+                                            <p>[Description Étape 1...]</p>
+                                        </div>
+                                    </div>
+                                    <div class="plan-step">
+                                        <div class="step-num">2</div>
+                                        <div class="step-desc">
+                                            <strong>[Titre Étape 2]</strong>
+                                            <p>[Description Étape 2...]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 2: Forces & Faiblesses -->
+                    <div id="tab-swot" class="tab-content">
+                        <div class="panel-grid-2">
+                            <div class="content-panel swot-panel strengths">
+                                <div class="swot-header">
+                                    <h3 class="panel-title"><i class="fa-solid fa-arrow-trend-up text-success"></i> Forces Majeures</h3>
+                                    <span class="badge success">À surveiller</span>
+                                </div>
+                                <!-- Liste générée depuis Strengths__c -->
+                                <ul class="swot-list">
+                                    <li>
+                                        <strong>[Point Fort n°1]</strong>
+                                        <p>[Détails associés à ce point fort...]</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="content-panel swot-panel weaknesses">
+                                <div class="swot-header">
+                                    <h3 class="panel-title"><i class="fa-solid fa-arrow-trend-down text-danger"></i> Faiblesses Identifiées</h3>
+                                    <span class="badge danger">À exploiter</span>
+                                </div>
+                                <!-- Liste générée depuis Weaknesses__c -->
+                                <ul class="swot-list">
+                                    <li>
+                                        <strong>[Point Faible n°1]</strong>
+                                        <p>[Détails associés à ce point faible...]</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 3: Joueurs Clés -->
+                    <div id="tab-keyplayers" class="tab-content">
+                        <div class="content-panel">
+                            <h3 class="panel-title">Menaces Individualisées</h3>
+                            <div class="key-players-grid">
+                                <!-- Modèle de carte joueur instancié dynamiquement -->
+                                <div class="player-card">
+                                    <div class="pc-header">
+                                        <div class="pc-photo"><i class="fa-solid fa-user"></i></div>
+                                        <div class="pc-info">
+                                            <h4>[Nom du Joueur Clé]</h4>
+                                            <span>[Poste] (N°[X])</span>
+                                        </div>
+                                    </div>
+                                    <div class="pc-body">
+                                        <div class="pc-stat"><span>[Stat]</span><strong>[Valeur]</strong></div>
+                                        <div class="pc-stat"><span>[Stat]</span><strong>[Valeur]</strong></div>
+                                        <div class="pc-stat"><span>[Stat]</span><strong>[Valeur]</strong></div>
+                                    </div>
+                                    <div class="pc-footer">
+                                        <p><i class="fa-solid fa-circle-info"></i> <strong>Consigne :</strong> [Commentaire ou alerte spécifique au joueur...]</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 4: Tactique & VIDEO -->
+                    <div id="tab-tactics" class="tab-content">
+                        <div class="panel-grid-2">
+                            <div class="content-panel">
+                                <h3 class="panel-title">Animation Tactique Adverse</h3>
+                                <div class="tactics-visualization">
+                                    <!-- Le widget Terrain est chargé via un composant fils -->
+                                    <div class="pitch-container">
+                                        <div class="pitch">
+                                            <div class="center-circle"></div>
+                                            <div class="penalty-area left"></div>
+                                            <div class="penalty-area right"></div>
+                                            <!-- Positions générées via LWC Data -->
+                                            <div style="position: absolute; top:50%; right:50%; color: white; transform: translate(50%, -50%); opacity: 0.5;">
+                                                [Zone de rendu LWC Tableau Stratégique]
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="content-panel video-panel">
+                                <h3 class="panel-title"><i class="fa-solid fa-video text-warning"></i> Séquences Vidéo</h3>
+                                <!-- Itération LWC sur l'objet VideoClip__c ou intégration de l'iframe -->
+                                <div class="video-clips">
+                                    <div class="video-card">
+                                        <div class="video-thumbnail">
+                                            <i class="fa-solid fa-play"></i>
+                                            <span class="video-time">[MM:SS]</span>
+                                        </div>
+                                        <div class="video-info">
+                                            <h4>[Titre de la séquence vidéo]</h4>
+                                            <p>[Description courte de l'extrait pertinent...]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET 5: MEDICAL ROSTER -->
+                    <div id="tab-roster" class="tab-content">
+                        <div class="panel-grid-2">
+                            <!-- Section Indisponibilités -->
+                            <div class="content-panel border-top-danger">
+                                <h3 class="panel-title"><i class="fa-solid fa-truck-medical text-danger"></i> Absences & Alertes</h3>
+                                <p class="roster-desc">Joueurs indisponibles ou incertains pour cette rencontre.</p>
+                                <div class="roster-list mt-4">
+                                    <!-- Composant LWC itérant sur les blessures / sanctions en cours -->
+                                    <div class="roster-item">
+                                        <div class="ri-photo"><i class="fa-solid fa-user-injured"></i></div>
+                                        <div class="ri-info">
+                                            <strong>[Identité du Joueur]</strong>
+                                            <span>[Motif Absence / Blessure]</span>
+                                        </div>
+                                        <div class="badge danger">[Statut d'inaptitude]</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Section Retours / Disponibles -->
+                            <div class="content-panel border-top-success">
+                                <h3 class="panel-title"><i class="fa-solid fa-heart-pulse text-success"></i> Retours & Feux Verts</h3>
+                                <p class="roster-desc">Joueurs de retour ou profil validés ponctuellement par le médical.</p>
+                                <div class="roster-list mt-4">
+                                    <!-- Composant LWC itérant -->
+                                    <div class="roster-item">
+                                        <div class="ri-photo text-success"><i class="fa-solid fa-user-check"></i></div>
+                                        <div class="ri-info">
+                                            <strong>[Identité du Joueur]</strong>
+                                            <span>[Observation ou validation]</span>
+                                        </div>
+                                        <div class="badge success">[Statut de retour]</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="match_prep360.js"></script>
+</body>
+</html>

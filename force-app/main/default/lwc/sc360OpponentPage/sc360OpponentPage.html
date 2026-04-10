@@ -1,0 +1,57 @@
+<template>
+  <section class="slds-p-around_small">
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-bottom_small">{errorMessage}</div>
+    </template>
+    <template if:true={header}>
+      <article class="hero slds-m-bottom_small">
+        <h1>{header.name}</h1>
+        <p>{header.league} · Coach {header.coach}</p>
+        <p>{header.preferredFormation} · {header.pressingStyle} · {header.buildUpStyle} · CPA {header.setPieceThreat}</p>
+      </article>
+    </template>
+
+    <lightning-tabset>
+      <lightning-tab label="Overview">
+        <lightning-record-view-form record-id={recordId} object-api-name="Opponent__c">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="League__c"></lightning-output-field>
+              <lightning-output-field field-name="Coach__c"></lightning-output-field>
+              <lightning-output-field field-name="PreferredFormation__c"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+              <lightning-output-field field-name="PressingStyle__c"></lightning-output-field>
+              <lightning-output-field field-name="BuildUpStyle__c"></lightning-output-field>
+              <lightning-output-field field-name="SetPieceThreat__c"></lightning-output-field>
+            </div>
+          </div>
+        </lightning-record-view-form>
+      </lightning-tab>
+
+      <lightning-tab label="Matches">
+        <lightning-datatable
+          key-field="id"
+          data={matches}
+          columns={matchColumns}
+          hide-checkbox-column
+          onrowaction={handleMatchAction}
+        ></lightning-datatable>
+      </lightning-tab>
+
+      <lightning-tab label="Tactical Patterns">
+        <lightning-datatable key-field="id" data={patterns} columns={patternColumns} hide-checkbox-column></lightning-datatable>
+      </lightning-tab>
+
+      <lightning-tab label="Prep Reports">
+        <lightning-datatable
+          key-field="id"
+          data={reports}
+          columns={reportColumns}
+          hide-checkbox-column
+          onrowaction={handleReportAction}
+        ></lightning-datatable>
+      </lightning-tab>
+    </lightning-tabset>
+  </section>
+</template>

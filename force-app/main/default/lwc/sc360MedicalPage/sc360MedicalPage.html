@@ -1,3 +1,59 @@
 <template>
-  <c-sc360-medical-overview></c-sc360-medical-overview>
+  <section class="page-shell">
+    <nav class="sc360-page-tabs" role="tablist" aria-label="Medical 360">
+      <button
+        type="button"
+        role="tab"
+        class={tabOverviewClass}
+        aria-selected={isOverview}
+        data-tab="overview"
+        onclick={handleTabClick}
+      >
+        Vue d'ensemble
+      </button>
+      <button
+        type="button"
+        role="tab"
+        class={tabRiskClass}
+        aria-selected={isRisk}
+        data-tab="risk"
+        onclick={handleTabClick}
+      >
+        Vigilance (risque)
+      </button>
+    </nav>
+
+    <template lwc:if={isOverview}>
+      <c-sc360-medical-overview></c-sc360-medical-overview>
+    </template>
+
+    <template lwc:if={isRisk}>
+      <div class="risk-zone">
+        <template lwc:if={riskLoading}>
+          <div class="state">Chargement de la liste vigilance...</div>
+        </template>
+        <template lwc:elseif={riskError}>
+          <div class="state error">{riskErrorMessage}</div>
+        </template>
+        <template lwc:else>
+          <header class="risk-head">
+            <h2 class="risk-title">Athlètes sous vigilance</h2>
+            <p class="risk-sub">Injury risk ≥ 45 — tri décroissant.</p>
+          </header>
+          <template lwc:if={hasRiskRows}>
+            <lightning-datatable
+              key-field="athleteId"
+              data={riskRows}
+              columns={columns}
+              hide-checkbox-column
+              onrowaction={handleRiskRow}
+            ></lightning-datatable>
+          </template>
+          <template lwc:else>
+            <p class="state empty-msg">Aucun athlète au-dessus du seuil (45) pour l’instant.</p>
+          </template>
+        </template>
+      </div>
+    </template>
+  </section>
 </template>

@@ -1,0 +1,33 @@
+<template>
+  <section class="slds-p-around_small">
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-bottom_small">{errorMessage}</div>
+    </template>
+    <template if:true={report}>
+      <article class={headerClass}>
+        <h1>Match Prep Report</h1>
+        <p>Risque: {report.riskLevel} · Statut: {report.status} · Confiance: {report.confidenceScore}%</p>
+        <p>Généré le: {report.generatedAt}</p>
+        <div class="slds-m-top_x-small">
+          <lightning-button-group>
+            <lightning-button label={report.opponent.name} onclick={openOpponent}></lightning-button>
+            <lightning-button label={report.planningEventName} onclick={openPlanningEvent}></lightning-button>
+          </lightning-button-group>
+        </div>
+      </article>
+
+      <lightning-tabset class="slds-m-top_small">
+        <lightning-tab label="Summary">
+          <p class="block"><strong>Summary</strong><br />{report.summary}</p>
+          <p class="block"><strong>Strengths</strong><br />{report.strengths}</p>
+          <p class="block"><strong>Weaknesses</strong><br />{report.weaknesses}</p>
+          <p class="block"><strong>Key Players</strong><br />{report.keyPlayers}</p>
+          <p class="block"><strong>Recommended Plan</strong><br />{report.recommendedPlan}</p>
+        </lightning-tab>
+        <lightning-tab label="Recent Opponent Matches">
+          <lightning-datatable key-field="id" data={recentMatches} columns={recentMatchColumns} hide-checkbox-column></lightning-datatable>
+        </lightning-tab>
+      </lightning-tabset>
+    </template>
+  </section>
+</template>

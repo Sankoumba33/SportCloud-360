@@ -1,6 +1,9 @@
 <template>
   <section class="card">
     <h3>Player Profile</h3>
+    <template if:true={profile.photoUrl}>
+      <img class="avatar" src={profile.photoUrl} alt={profile.name} loading="lazy" />
+    </template>
     <dl class="grid">
       <dt>Nom</dt>
       <dd>{profile.name}</dd>

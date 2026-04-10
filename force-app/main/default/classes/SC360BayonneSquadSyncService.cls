@@ -92,6 +92,7 @@ public with sharing class SC360BayonneSquadSyncService {
                 ExternalId__c = extId,
                 Sport__c = 'Football',
                 Status__c = 'Active',
+                PhotoUrl__c = (String) pl.get('photo'),
                 FeaturesJson__c = JSON.serialize(featurePayload)
             );
             if (squadId != null) {

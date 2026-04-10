@@ -1,3 +1,33 @@
 <template>
-  <c-sc360-scouting-overview></c-sc360-scouting-overview>
+  <section class="page-shell">
+    <nav class="sc360-page-tabs" role="tablist" aria-label="Scouting 360">
+      <button
+        type="button"
+        role="tab"
+        class={tabOverviewClass}
+        aria-selected={isOverview}
+        data-tab="overview"
+        onclick={handleTabClick}
+      >
+        Vue d'ensemble
+      </button>
+      <button
+        type="button"
+        role="tab"
+        class={tabExplorerClass}
+        aria-selected={isExplorer}
+        data-tab="explorer"
+        onclick={handleTabClick}
+      >
+        Explorateur
+      </button>
+    </nav>
+
+    <template lwc:if={isOverview}>
+      <c-sc360-scouting-overview></c-sc360-scouting-overview>
+    </template>
+    <template lwc:if={isExplorer}>
+      <c-sc360-scouting-explorer></c-sc360-scouting-explorer>
+    </template>
+  </section>
 </template>

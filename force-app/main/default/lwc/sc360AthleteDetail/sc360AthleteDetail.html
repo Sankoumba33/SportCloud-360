@@ -7,6 +7,9 @@
     </template>
     <template if:true={hasData}>
       <header class="hero">
+        <template if:true={detail.photoUrl}>
+          <img class="avatar" src={detail.photoUrl} alt={detail.name} loading="lazy" />
+        </template>
         <p class="overline">ATHLETE DETAIL</p>
         <h1>{detail.name}</h1>
         <p class="meta">{detail.externalId} - {detail.sport} - {detail.status}</p>
@@ -29,10 +32,7 @@
         </lightning-tab>
 
         <lightning-tab label="Medical">
-          <section class="content-grid">
-            <c-sc360-ai-insight insights={detail.medicalInsights}></c-sc360-ai-insight>
-            <c-sc360-timeline items={detail.timeline}></c-sc360-timeline>
-          </section>
+          <c-sc360-athlete-medical record-id={recordId}></c-sc360-athlete-medical>
         </lightning-tab>
       </lightning-tabset>
     </template>

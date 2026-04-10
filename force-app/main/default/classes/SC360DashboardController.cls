@@ -33,6 +33,7 @@ public with sharing class SC360DashboardController {
     public class ProfileDto {
         @AuraEnabled public String name;
         @AuraEnabled public String externalId;
+        @AuraEnabled public String photoUrl;
         @AuraEnabled public String sport;
         @AuraEnabled public String status;
         @AuraEnabled public Integer age;
@@ -77,7 +78,8 @@ public with sharing class SC360DashboardController {
                     AthleteSummary__c,
                     TopStrengths__c,
                     TopRisks__c,
-                    LastDataCloudSync__c
+                    LastDataCloudSync__c,
+                    PhotoUrl__c
                 FROM Athlete__c
                 ORDER BY LastModifiedDate DESC
                 LIMIT 1
@@ -99,7 +101,8 @@ public with sharing class SC360DashboardController {
                     AthleteSummary__c,
                     TopStrengths__c,
                     TopRisks__c,
-                    LastDataCloudSync__c
+                    LastDataCloudSync__c,
+                    PhotoUrl__c
                 FROM Athlete__c
                 WHERE Id = :athleteId
                 LIMIT 1
@@ -134,6 +137,7 @@ public with sharing class SC360DashboardController {
         ProfileDto p = new ProfileDto();
         p.name = athlete.Name;
         p.externalId = athlete.ExternalId__c;
+        p.photoUrl = athlete.PhotoUrl__c;
         p.sport = athlete.Sport__c;
         p.status = athlete.Status__c;
         p.lastSync = athlete.LastDataCloudSync__c;

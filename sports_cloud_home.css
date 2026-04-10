@@ -1,0 +1,439 @@
+/* Design Tokens / CSS Variables */
+:root {
+    /* Couleurs principales: Dark theme premium (inspiration Whoop/Strava) */
+    --bg-dark: #0f1115;      /* Fond principal profond */
+    --bg-surface: #1a1d24;   /* Fond des cartes */
+    --bg-surface-hover: #22262f;
+
+    --text-main: #f0f2f5;    /* Texte clair lisible */
+    --text-muted: #8b92a5;   /* Texte secondaire pour réduire la charge cognitive */
+    
+    --color-primary: #00e676; /* Vert fluo sport-tech (dynamisme) */
+    --color-primary-dim: rgba(0, 230, 118, 0.15);
+    
+    /* Statuts & Alertes (Traffic Light System) */
+    --color-danger: #ff4757;  /* Rouge alerte critique */
+    --color-warning: #ffa502; /* Orange attention/surcharge */
+    --color-info: #1e90ff;    /* Bleu data/neutre */
+    --color-success: #2ed573; /* Vert validé/optimal */
+
+    /* Espacements, Bords, Ombres */
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.25);
+    
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    
+    /* Typographie moderne et nette */
+    --font-family: 'Inter', system-ui, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-family);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+/* --- Layout --- */
+.sic-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+/* --- Header Minimal --- */
+.sic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: var(--color-primary);
+    font-weight: 400;
+}
+
+.team-selector select {
+    background: var(--bg-surface);
+    color: var(--text-main);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.team-selector select:hover { border-color: var(--color-primary); }
+
+.header-right {
+    display: flex;
+    gap: var(--space-xl);
+}
+
+.microcycle-info, .next-match {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.value {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+.value i { color: var(--color-primary); margin-right: 6px; }
+
+/* --- Règles Globales --- */
+.section-title {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-md);
+    font-weight: 600;
+}
+
+.card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: transform 0.2s, background 0.2s;
+}
+
+/* --- 2. Zone Décision Immédiate --- */
+.alert-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+}
+
+.alert-card {
+    display: flex;
+    align-items: center;
+    padding: var(--space-lg);
+    gap: var(--space-md);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bande latérale de couleur pour lecture instantanée */
+.alert-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0; width: 4px;
+    background: currentcolor;
+}
+
+.alert-card:hover {
+    transform: translateY(-4px);
+    background: var(--bg-surface-hover);
+}
+
+.card-icon {
+    font-size: 1.8rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.card-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* Couleurs injectées via classes */
+.warning { color: var(--color-warning); }
+.warning .card-icon { color: var(--color-warning); }
+.danger { color: var(--color-danger); }
+.danger .card-icon { color: var(--color-danger); }
+.info { color: var(--color-info); }
+.info .card-icon { color: var(--color-info); }
+.success { color: var(--color-primary); }
+.success .card-icon { color: var(--color-primary); }
+
+/* --- 3. Main Grid --- */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+}
+
+/* --- Vue Microcycle Compacte --- */
+.microcycle-card {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.timeline {
+    height: 180px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 30px;
+    position: relative;
+    flex-grow: 1;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.day {
+    position: relative;
+    width: 36px;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.day-label {
+    position: absolute;
+    bottom: -25px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Barres de charge (Prévu vs Réel) */
+.intensity-bar {
+    position: absolute;
+    bottom: 0;
+    width: 14px;
+    border-radius: 4px;
+    transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.intensity-bar.plan {
+    background: rgba(255, 255, 255, 0.1);
+    left: 2px;
+    z-index: 1;
+}
+
+.intensity-bar.actual {
+    left: 20px;
+    z-index: 2;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+}
+
+/* Logique de couleurs du Microcycle */
+.actual.low { background: var(--color-warning); }
+.actual.high { background: var(--color-danger); }
+.actual.optimal { background: var(--color-primary); }
+.actual.pending { 
+    background: transparent; 
+    border: 1px dashed rgba(255,255,255,0.3); 
+}
+
+.day-off {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.2);
+    margin-bottom: 8px;
+}
+
+.today-marker {
+    position: absolute;
+    top: -24px;
+    font-size: 0.65rem;
+    background: var(--color-primary);
+    color: var(--bg-dark);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.day.match i {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+
+.timeline-legend {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    justify-content: center;
+}
+
+.timeline-legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-box {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+/* --- 4. Tendances Clés --- */
+.charts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    height: 100%;
+}
+
+.chart-card {
+    padding: var(--space-md) var(--space-lg);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-header h3 {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    margin-bottom: var(--space-sm);
+    font-weight: 600;
+}
+
+.chart-placeholder {
+    flex-grow: 1;
+    min-height: 110px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    border-left: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 10px 0 0 10px;
+}
+
+.placeholder-bars {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+}
+
+.p-bar {
+    width: 12%;
+    background: var(--color-primary-dim);
+    border-top: 2px solid var(--color-primary);
+    border-radius: 4px 4px 0 0;
+}
+
+.p-bar.danger-zone {
+    background: rgba(255, 71, 87, 0.15);
+    border-top-color: var(--color-danger);
+}
+
+.placeholder-lines {
+    width: 100%;
+    height: 100%;
+}
+.placeholder-lines svg { width: 100%; height: 100%; }
+
+/* --- 5. Accès Rapide --- */
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+}
+
+.app-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.2s;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.app-card i {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+.app-card:hover {
+    background: var(--color-primary-dim);
+    border-color: rgba(0, 230, 118, 0.3);
+    transform: translateY(-2px);
+}
+
+.app-card:hover i { color: var(--color-primary); }
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+    .alert-cards, .apps-grid { grid-template-columns: repeat(2, 1fr); }
+    .main-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .sic-header { flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+    .header-right { width: 100%; justify-content: space-between; }
+    .alert-cards, .apps-grid { grid-template-columns: 1fr; }
+    .timeline { overflow-x: auto; padding-bottom: 40px; }
+}

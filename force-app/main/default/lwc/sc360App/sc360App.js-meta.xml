@@ -12,11 +12,11 @@
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage,lightning__AppPage,lightning__HomePage">
             <property name="pageType" type="String" default="athlete" label="SC360 page type"/>
-            <property name="theme" type="String" default="reset" label="SC360 theme"/>
+            <property name="theme" type="String" default="avironBayonnais" label="SC360 theme"/>
         </targetConfig>
         <targetConfig targets="lightningCommunity__Default">
             <property name="pageType" type="String" default="athlete" label="SC360 page type"/>
-            <property name="theme" type="String" default="reset" label="SC360 theme"/>
+            <property name="theme" type="String" default="avironBayonnais" label="SC360 theme"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

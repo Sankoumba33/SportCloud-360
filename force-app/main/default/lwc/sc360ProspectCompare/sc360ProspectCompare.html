@@ -6,21 +6,33 @@
             <p class="meta">Choisis deux prospects puis lance la comparaison.</p>
         </header>
 
-        <div class="pickers">
-            <lightning-record-picker
-                label="Prospect A"
-                placeholder="Rechercher un prospect..."
-                object-api-name="Prospect__c"
-                value={prospectAId}
-                onchange={handleChangeA}
-            ></lightning-record-picker>
-            <lightning-record-picker
-                label="Prospect B"
-                placeholder="Rechercher un prospect..."
-                object-api-name="Prospect__c"
-                value={prospectBId}
-                onchange={handleChangeB}
-            ></lightning-record-picker>
+        <!-- Option 1: Comparaison Dynamic Drag & Drop -->
+        <div class="slds-m-bottom_large" style="background: rgba(10,16,32,0.6); padding: 1rem; border-radius: 8px; border: 1px solid var(--sc360-border);">
+            <div class="slds-form-element slds-m-bottom_small">
+                <lightning-input type="search" placeholder="Rechercher un prospect à glisser-déposer..." onchange={handleSearchToggle}></lightning-input>
+            </div>
+            
+            <template if:true={searchResults}>
+                <div style="display:flex; gap: 0.5rem; overflow-x:auto; padding-bottom: 0.5rem;">
+                    <template for:each={searchResults} for:item="s">
+                        <div key={s.Id} draggable="true" ondragstart={handleDragStart} data-id={s.Id} data-name={s.Name} 
+                             style="cursor: grab; padding: 0.5rem 1rem; background: var(--sc360-primary); color: white; border-radius: 20px; white-space: nowrap; font-size: 0.85rem; font-weight:600;">
+                            <lightning-icon icon-name="standard:user" size="xx-small" class="slds-m-right_xx-small"></lightning-icon> {s.Name}
+                        </div>
+                    </template>
+                </div>
+            </template>
+            
+            <div style="display:flex; gap: 1rem; margin-top: 1rem;">
+                <div ondragover={allowDrop} ondrop={handleDropA} style="flex:1; border: 2px dashed rgba(255,255,255,0.2); border-radius: 12px; padding: 1.5rem; text-align:center; color: var(--sc360-text);">
+                    <lightning-icon icon-name="utility:download" size="small" class="slds-m-bottom_small"></lightning-icon><br>
+                    {prospectAName}
+                </div>
+                <div ondragover={allowDrop} ondrop={handleDropB} style="flex:1; border: 2px dashed rgba(255,255,255,0.2); border-radius: 12px; padding: 1.5rem; text-align:center; color: var(--sc360-text);">
+                    <lightning-icon icon-name="utility:download" size="small" class="slds-m-bottom_small"></lightning-icon><br>
+                    {prospectBName}
+                </div>
+            </div>
         </div>
 
         <div class="actions">
